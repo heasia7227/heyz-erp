@@ -1,15 +1,16 @@
+import Layout from "@/theme/Layout";
 import Home from "@/pages/Home";
 
 const routes = [
     {
         path: "/",
-        element: <Home />,
-        // children: [
-        //     {
-        //         path: "/",
-        //         element: <Home />,
-        //     },
-        // ],
+        element: <Layout />,
+        children: [
+            {
+                path: "/",
+                element: <Home />,
+            },
+        ],
     },
 ];
 
