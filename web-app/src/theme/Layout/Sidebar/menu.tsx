@@ -1,3 +1,4 @@
+import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import {
     AuditOutlined,
     BankOutlined,
@@ -12,46 +13,46 @@ import {
 
 export const menus = [
     {
-        title: "PRODUCTION",
+        title: LANGUAGE_KEYS.FIRST_MENU_PRODUCTION,
         icon: <DeploymentUnitOutlined />,
         children: [],
     },
     {
-        title: "INVENTORY",
+        title: LANGUAGE_KEYS.FIRST_MENU_INVENTORY,
         icon: <BankOutlined />,
         children: [
             {
-                title: "Materials",
+                title: LANGUAGE_KEYS.SUB_MENU_MATERIALS,
                 url: "",
             },
             {
-                title: "Warehouse",
+                title: LANGUAGE_KEYS.SUB_MENU_WAREHOUSE,
                 url: "",
             },
             {
-                title: "Counting",
+                title: LANGUAGE_KEYS.SUB_MENU_COUNTING,
                 url: "",
             },
             {
-                title: "Transfer",
+                title: LANGUAGE_KEYS.SUB_MENU_TRANSFER,
                 url: "",
             },
             {
-                title: "Scrap",
+                title: LANGUAGE_KEYS.SUB_MENU_SCRAP,
                 url: "",
             },
             {
-                title: "Early Warning",
+                title: LANGUAGE_KEYS.SUB_MENU_EARLY_WARNING,
                 url: "",
             },
             {
-                title: "Quality",
+                title: LANGUAGE_KEYS.SUB_MENU_QUALITY,
                 url: "",
             },
         ],
     },
     {
-        title: "PURCHASING",
+        title: LANGUAGE_KEYS.FIRST_MENU_PURCHASING,
         icon: <GoldOutlined />,
         children: [
             {
@@ -65,7 +66,7 @@ export const menus = [
         ],
     },
     {
-        title: "SALES",
+        title: LANGUAGE_KEYS.FIRST_MENU_SALES,
         icon: <LineChartOutlined />,
         children: [
             {
@@ -83,7 +84,7 @@ export const menus = [
         ],
     },
     {
-        title: "FINANCE",
+        title: LANGUAGE_KEYS.FIRST_MENU_FINANCE,
         icon: <AuditOutlined />,
         children: [
             {
@@ -105,22 +106,22 @@ export const menus = [
         ],
     },
     {
-        title: "PROJECTS",
+        title: LANGUAGE_KEYS.FIRST_MENU_PROJECTS,
         icon: <FolderOpenOutlined />,
         children: [],
     },
     {
-        title: "ASSETS",
+        title: LANGUAGE_KEYS.FIRST_MENU_ASSETS,
         icon: <UngroupOutlined />,
         children: [],
     },
     {
-        title: "OFFICE AUTOMATION",
+        title: LANGUAGE_KEYS.FIRST_MENU_OFFICE_AUTOMATION,
         icon: <LaptopOutlined />,
         children: [],
     },
     {
-        title: "HUMAN RESOURCE",
+        title: LANGUAGE_KEYS.FIRST_MENU_HUMAN_RESOURCE,
         icon: <TeamOutlined />,
         children: [
             {

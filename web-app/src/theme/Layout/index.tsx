@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 const Layout = () => {
     return (
@@ -8,9 +9,7 @@ const Layout = () => {
             <Screen>
                 <Sidebar />
                 <Section>
-                    <Header>
-                        <span>English</span>
-                    </Header>
+                    <Header />
                     <Content>
                         <Outlet />
                     </Content>
@@ -29,16 +28,6 @@ const Screen = styled.div`
 
 const Section = styled.div`
     flex: 1;
-`;
-
-const Header = styled.div`
-    height: 49px;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    background-color: #ffffff;
-    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08);
 `;
 
 const Content = styled.div`

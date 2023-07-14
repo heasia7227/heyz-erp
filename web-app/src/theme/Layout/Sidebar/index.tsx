@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
+import { useThemeController } from "@/theme";
 import { BaseStyled, DivProps } from "@/components/BaseStyled";
 import { menus } from "./menu";
 
 const Sidebar = () => {
+    const themeController = useThemeController();
     const [expands, setExpands] = useState<Array<string>>([]);
 
     const onFirstMenuClick = (title: string) => {
@@ -29,12 +31,16 @@ const Sidebar = () => {
                                     expand={expands.includes(menu.title)}
                                     onClick={onFirstMenuClick.bind(null, menu.title)}
                                 >
-                                    {menu.title}
+                                    {themeController.languagePack?.[menu.title]}
                                 </FirstMenuItem>
                                 {expands.includes(menu.title) && menu.children && menu.children.length > 0 && (
                                     <SubMenu>
                                         {menu.children?.map((submenu, index) => {
-                                            return <MenuItem key={index}>{submenu.title}</MenuItem>;
+                                            return (
+                                                <MenuItem key={index} style={{ paddingLeft: "42px" }}>
+                                                    {themeController.languagePack?.[submenu.title]}
+                                                </MenuItem>
+                                            );
                                         })}
                                     </SubMenu>
                                 )}
@@ -67,7 +73,7 @@ const FirstMenuItem = ({ icon, children, expand, onClick }: IFirstMenuItemProps)
 };
 
 const SidebarLayout = BaseStyled(styled.div<DivProps>`
-    width: 280px;
+    width: 250px;
     height: 100%;
     background-color: ${(props) => props.primarycolors?.[9]};
     box-shadow: 6px 0 16px 0 rgba(0, 0, 0, 0.16);
