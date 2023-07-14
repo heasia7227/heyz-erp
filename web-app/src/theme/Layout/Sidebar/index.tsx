@@ -1,34 +1,46 @@
+import React, { useState } from "react";
 import styled from "styled-components";
+import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import { BaseStyled, DivProps } from "@/components/BaseStyled";
-import { DownOutlined } from "@ant-design/icons";
+import { menus } from "./menu";
 
 const Sidebar = () => {
+    const [expands, setExpands] = useState<Array<string>>([]);
+
+    const onFirstMenuClick = (title: string) => {
+        if (expands.includes(title)) {
+            setExpands([...expands.filter((item) => item !== title)]);
+        } else {
+            expands.push(title);
+            setExpands([...expands]);
+        }
+    };
+
     return (
         <>
             <SidebarLayout>
                 <Logo>Heyz-ERP</Logo>
                 <Menu>
-                    <FirstMenuItem>Production Management</FirstMenuItem>
-                    <FirstMenuItem>Inventory Management</FirstMenuItem>
-                    <SubMenu>
-                        <MenuItem>Materials Management</MenuItem>
-                        <MenuItem>Warehouse Management</MenuItem>
-                        <MenuItem>Inventory Counting</MenuItem>
-                        <MenuItem>Inventory Transfer</MenuItem>
-                        <MenuItem>Inventory Scrap</MenuItem>
-                        <MenuItem>Inventory Early Warning</MenuItem>
-                    </SubMenu>
-                    <FirstMenuItem>Purchasing Management</FirstMenuItem>
-                    <FirstMenuItem>Sales Management</FirstMenuItem>
-                    <FirstMenuItem>Supplier Management</FirstMenuItem>
-                    <FirstMenuItem>Financial Management</FirstMenuItem>
-                    <FirstMenuItem>Accounting</FirstMenuItem>
-                    <FirstMenuItem>Project Management</FirstMenuItem>
-                    <FirstMenuItem>Assets Management</FirstMenuItem>
-                    <FirstMenuItem>Quality Management</FirstMenuItem>
-                    <FirstMenuItem>Office Automation</FirstMenuItem>
-                    <FirstMenuItem>Human Resource</FirstMenuItem>
-                    <FirstMenuItem>Customer Relation Management</FirstMenuItem>
+                    {menus.map((menu, key) => {
+                        return (
+                            <React.Fragment key={key}>
+                                <FirstMenuItem
+                                    icon={menu.icon}
+                                    expand={expands.includes(menu.title)}
+                                    onClick={onFirstMenuClick.bind(null, menu.title)}
+                                >
+                                    {menu.title}
+                                </FirstMenuItem>
+                                {expands.includes(menu.title) && menu.children && menu.children.length > 0 && (
+                                    <SubMenu>
+                                        {menu.children?.map((submenu, index) => {
+                                            return <MenuItem key={index}>{submenu.title}</MenuItem>;
+                                        })}
+                                    </SubMenu>
+                                )}
+                            </React.Fragment>
+                        );
+                    })}
                 </Menu>
             </SidebarLayout>
         </>
@@ -37,13 +49,19 @@ const Sidebar = () => {
 
 export default Sidebar;
 
-const FirstMenuItem = ({ children }: any) => {
+interface IFirstMenuItemProps {
+    icon?: React.ReactNode;
+    children: React.ReactNode;
+    expand?: boolean;
+    onClick: () => void;
+}
+
+const FirstMenuItem = ({ icon, children, expand, onClick }: IFirstMenuItemProps) => {
     return (
-        <MenuItem>
+        <MenuItem style={{ borderTop: "1px solid rgba(255, 255, 255, 0.05)" }} onClick={onClick}>
+            <span style={{ marginRight: "8px" }}>{icon}</span>
             <span>{children}</span>
-            <MenuArrow>
-                <DownOutlined />
-            </MenuArrow>
+            <MenuArrow>{expand ? <UpOutlined /> : <DownOutlined />}</MenuArrow>
         </MenuItem>
     );
 };
@@ -53,7 +71,6 @@ const SidebarLayout = BaseStyled(styled.div<DivProps>`
     height: 100%;
     background-color: ${(props) => props.primarycolors?.[9]};
     box-shadow: 6px 0 16px 0 rgba(0, 0, 0, 0.16);
-    overflow-y: auto;
 `);
 
 const Logo = styled.div`
@@ -66,8 +83,14 @@ const Logo = styled.div`
 `;
 
 const Menu = styled.div`
+    font-size: 16px;
     user-select: none;
     color: #ffffff70;
+    max-height: calc(100% - 50px);
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 const MenuItem = styled.div`
@@ -87,5 +110,5 @@ const SubMenu = styled.div`
 
 const MenuArrow = styled.span`
     position: absolute;
-    right: 20px;
+    right: 12px;
 `;
