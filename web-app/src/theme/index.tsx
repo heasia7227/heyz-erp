@@ -3,6 +3,8 @@ import { generate } from "@ant-design/colors";
 import { createContext, useContext, useEffect, useState } from "react";
 import { languageEnglish } from "./languages/languageEnglish";
 import { languageChinese } from "./languages/languageChinese";
+import { BaseStyled, DivProps } from "@/components/BaseStyled";
+import { styled } from "styled-components";
 
 export interface IThemeContext {
     primarycolor?: string;
@@ -44,11 +46,13 @@ const ThemeProvider = ({ children }: IProps) => {
         setSetting({ ...setting, language, languagePack: languageMapping[language] });
     };
 
-    const themeConfig = { token: { colorPrimary: themeDefaultSetting.primarycolor } };
+    const themeConfig = { token: { colorPrimary: themeDefaultSetting.primarycolor, borderRadius: 0 } };
 
     return (
         <ThemeContext.Provider value={{ ...setting, setLanguage }}>
-            <ConfigProvider theme={themeConfig}>{children}</ConfigProvider>
+            <ConfigProvider theme={themeConfig}>
+                <ThemeContent {...setting}>{children}</ThemeContent>
+            </ConfigProvider>
         </ThemeContext.Provider>
     );
 };
@@ -62,3 +66,18 @@ export const useThemeController = () => {
     }
     return context;
 };
+
+const ThemeContent = BaseStyled(styled.div<DivProps>`
+    .ant-tabs,
+    .ant-tabs-content,
+    .ant-tabs-tabpane {
+        height: 100% !important;
+    }
+    .ant-table-thead > tr > th {
+        background-color: ${(props) => props.primarycolors?.[9]} !important;
+        color: #ffffff !important;
+    }
+    .ant-table-container .ant-table-tbody > tr:nth-child(2n + 1) > td {
+        background-color: ${(props) => `${props.primarycolors?.[0]}80`} !important;
+    }
+`);

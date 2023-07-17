@@ -48,5 +48,9 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "@types/mockjs": "^1.0.7",
+        "mockjs": "^1.1.0"
     }
 }

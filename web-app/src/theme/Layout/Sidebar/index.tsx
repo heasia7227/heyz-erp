@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import { useThemeController } from "@/theme";
 import { BaseStyled, DivProps } from "@/components/BaseStyled";
@@ -7,6 +8,7 @@ import { menus } from "./menu";
 
 const Sidebar = () => {
     const themeController = useThemeController();
+    const navigate = useNavigate();
     const [expands, setExpands] = useState<Array<string>>([]);
 
     const onFirstMenuClick = (title: string) => {
@@ -16,6 +18,10 @@ const Sidebar = () => {
             expands.push(title);
             setExpands([...expands]);
         }
+    };
+
+    const onSubMenuClick = (url: string) => {
+        navigate(url);
     };
 
     return (
@@ -37,7 +43,11 @@ const Sidebar = () => {
                                     <SubMenu>
                                         {menu.children?.map((submenu, index) => {
                                             return (
-                                                <MenuItem key={index} style={{ paddingLeft: "42px" }}>
+                                                <MenuItem
+                                                    key={index}
+                                                    style={{ paddingLeft: "42px" }}
+                                                    onClick={onSubMenuClick.bind(null, submenu.url)}
+                                                >
                                                     {themeController.languagePack?.[submenu.title]}
                                                 </MenuItem>
                                             );
@@ -73,6 +83,7 @@ const FirstMenuItem = ({ icon, children, expand, onClick }: IFirstMenuItemProps)
 };
 
 const SidebarLayout = BaseStyled(styled.div<DivProps>`
+    min-width: 250px;
     width: 250px;
     height: 100%;
     background-color: ${(props) => props.primarycolors?.[9]};

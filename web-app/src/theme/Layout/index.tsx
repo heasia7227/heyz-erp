@@ -33,4 +33,5 @@ const Section = styled.div`
 const Content = styled.div`
     height: calc(100vh - 49px);
     overflow: auto;
+    padding: 8px 16px;
 `;

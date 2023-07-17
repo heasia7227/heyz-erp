@@ -23,7 +23,7 @@ export const menus = [
         children: [
             {
                 title: LANGUAGE_KEYS.SUB_MENU_MATERIALS,
-                url: "",
+                url: "/inventory/materials",
             },
             {
                 title: LANGUAGE_KEYS.SUB_MENU_WAREHOUSE,
