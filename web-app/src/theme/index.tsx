@@ -78,6 +78,6 @@ const ThemeContent = BaseStyled(styled.div<DivProps>`
         color: #ffffff !important;
     }
     .ant-table-container .ant-table-tbody > tr:nth-child(2n + 1) > td {
-        background-color: ${(props) => `${props.primarycolors?.[0]}80`} !important;
+        background-color: ${(props) => `${props.primarycolors?.[0]}`} !important;
     }
 `);
