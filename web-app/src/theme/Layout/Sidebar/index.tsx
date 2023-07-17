@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
@@ -10,6 +10,16 @@ const Sidebar = () => {
     const themeController = useThemeController();
     const navigate = useNavigate();
     const [expands, setExpands] = useState<Array<string>>([]);
+    const [selectedFirstMenu, setSelectedFirstMenu] = useState<any>();
+
+    useEffect(() => {
+        const menu = menus.find((menu) => menu.children?.find((submenu) => submenu.url === location.pathname));
+        if (menu) {
+            expands.push(menu.title);
+            setExpands([...expands]);
+            setSelectedFirstMenu(menu);
+        }
+    }, [location.pathname]);
 
     const onFirstMenuClick = (title: string) => {
         if (expands.includes(title)) {
@@ -33,6 +43,7 @@ const Sidebar = () => {
                         return (
                             <React.Fragment key={key}>
                                 <FirstMenuItem
+                                    className={selectedFirstMenu?.title === menu.title ? "active" : ""}
                                     icon={menu.icon}
                                     expand={expands.includes(menu.title)}
                                     onClick={onFirstMenuClick.bind(null, menu.title)}
@@ -44,6 +55,7 @@ const Sidebar = () => {
                                         {menu.children?.map((submenu, index) => {
                                             return (
                                                 <MenuItem
+                                                    className={location.pathname === submenu.url ? "sub-active" : ""}
                                                     key={index}
                                                     style={{ paddingLeft: "42px" }}
                                                     onClick={onSubMenuClick.bind(null, submenu.url)}
@@ -70,11 +82,12 @@ interface IFirstMenuItemProps {
     children: React.ReactNode;
     expand?: boolean;
     onClick: () => void;
+    className?: string;
 }
 
-const FirstMenuItem = ({ icon, children, expand, onClick }: IFirstMenuItemProps) => {
+const FirstMenuItem = ({ icon, children, expand, onClick, className }: IFirstMenuItemProps) => {
     return (
-        <MenuItem style={{ borderTop: "1px solid rgba(255, 255, 255, 0.05)" }} onClick={onClick}>
+        <MenuItem className={className} style={{ borderTop: "1px solid rgba(255, 255, 255, 0.05)" }} onClick={onClick}>
             <span style={{ marginRight: "8px" }}>{icon}</span>
             <span>{children}</span>
             <MenuArrow>{expand ? <UpOutlined /> : <DownOutlined />}</MenuArrow>
@@ -110,15 +123,22 @@ const Menu = styled.div`
     }
 `;
 
-const MenuItem = styled.div`
+const MenuItem = BaseStyled(styled.div<DivProps>`
     position: relative;
     padding: 12px 20px;
     cursor: pointer;
+    &.active {
+        color: #ffffff;
+    }
+    &.sub-active {
+        color: #ffffff;
+        background-color: ${(props) => props.primarycolor};
+    }
     &:hover {
         color: #ffffff;
         background-color: rgba(255, 255, 255, 0.08);
     }
-`;
+`);
 
 const SubMenu = styled.div`
     background-color: rgba(0, 0, 0, 0.4);

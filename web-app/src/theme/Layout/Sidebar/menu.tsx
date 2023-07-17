@@ -56,11 +56,11 @@ export const menus = [
         icon: <GoldOutlined />,
         children: [
             {
-                title: "Suppliers",
+                title: LANGUAGE_KEYS.SUB_MENU_SUPPLIERS,
                 url: "",
             },
             {
-                title: "Purchasing",
+                title: LANGUAGE_KEYS.SUB_MENU_PURCHASING,
                 url: "",
             },
         ],
@@ -70,15 +70,15 @@ export const menus = [
         icon: <LineChartOutlined />,
         children: [
             {
-                title: "CRM",
+                title: LANGUAGE_KEYS.SUB_MENU_CRM,
                 url: "",
             },
             {
-                title: "Sales",
+                title: LANGUAGE_KEYS.SUB_MENU_SALES,
                 url: "",
             },
             {
-                title: "Rental",
+                title: LANGUAGE_KEYS.SUB_MENU_RENTAL,
                 url: "",
             },
         ],
@@ -88,19 +88,19 @@ export const menus = [
         icon: <AuditOutlined />,
         children: [
             {
-                title: "Accounting",
+                title: LANGUAGE_KEYS.SUB_MENU_ACCOUNTING,
                 url: "",
             },
             {
-                title: "Invoicing",
+                title: LANGUAGE_KEYS.SUB_MENU_INVOICING,
                 url: "",
             },
             {
-                title: "Expenses",
+                title: LANGUAGE_KEYS.SUB_MENU_EXPENSES,
                 url: "",
             },
             {
-                title: "Spreadsheet",
+                title: LANGUAGE_KEYS.SUB_MENU_SPREADSHEET,
                 url: "",
             },
         ],
@@ -125,19 +125,19 @@ export const menus = [
         icon: <TeamOutlined />,
         children: [
             {
-                title: "Employees",
+                title: LANGUAGE_KEYS.SUB_MENU_EMPLOYEES,
                 url: "",
             },
             {
-                title: "Salaries",
+                title: LANGUAGE_KEYS.SUB_MENU_SALARIES,
                 url: "",
             },
             {
-                title: "Performance",
+                title: LANGUAGE_KEYS.SUB_MENU_PERFORMANCE,
                 url: "",
             },
             {
-                title: "Training",
+                title: LANGUAGE_KEYS.SUB_MENU_TRAINING,
                 url: "",
             },
         ],
