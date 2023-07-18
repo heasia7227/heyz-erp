@@ -45,6 +45,8 @@ export const languageEnglish: { [key: string]: string } = {
     [LANGUAGE_KEYS.INVENTORY_MATERIALS_STATUS]: "Materials Status",
 
     [LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORIES]: "Categories",
+    [LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORY_TITLE]: "Category Title",
+    [LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORY_CODE]: "Category Code",
 
     [LANGUAGE_KEYS.COMMON_OPERATION]: "Operation",
     [LANGUAGE_KEYS.COMMON_CREATE]: "Create",

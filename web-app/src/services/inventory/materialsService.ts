@@ -5,11 +5,13 @@ export const materialsService = {
         return mockjs.mock({
             "categories|20": [
                 {
-                    key: "@guid()",
+                    key: "@id",
+                    code: "@id",
                     title: "@title(3)",
                     "children|10": [
                         {
-                            key: "@guid()",
+                            key: "@id",
+                            code: "@id",
                             title: "@title(3)",
                             isLeaf: true,
                         },
