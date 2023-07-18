@@ -27,7 +27,7 @@ export const menus = [
             },
             {
                 title: LANGUAGE_KEYS.SUB_MENU_WAREHOUSE,
-                url: "",
+                url: "/inventory/warehouse",
             },
             {
                 title: LANGUAGE_KEYS.SUB_MENU_COUNTING,

@@ -81,9 +81,12 @@ const ThemeContent = BaseStyled(styled.div<DivProps>`
         background-color: ${(props) => `${props.primarycolors?.[0]}`} !important;
     }
     a.ant-typography {
+        border-radius: 4px;
+        padding: 4px;
         color: #333333 !important;
         &:hover {
             color: ${(props) => props.primarycolor} !important;
+            background-color: rgba(0, 0, 0, 0.06);
         }
     }
 `);

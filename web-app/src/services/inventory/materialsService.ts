@@ -32,11 +32,7 @@ export const materialsService = {
                     name: "@title(3)",
                     category: "@title(3)",
                     department: "@title(3)",
-                    warehouse: "@title(3)",
-                    inventoryNumber: 1,
-                    usedNumber: 1,
                     regularMaintenanceFrequency: "",
-                    scrapDateTime: "@datetime('yyyy-MM-dd HH:mm:ss')",
                 },
             ],
         });

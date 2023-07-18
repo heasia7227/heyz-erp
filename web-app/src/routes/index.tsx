@@ -1,6 +1,7 @@
 import Layout from "@/theme/Layout";
 import Home from "@/pages/Home";
 import Materials from "@/pages/Inventory/Materials";
+import Warehouse from "@/pages/Inventory/Warehouse";
 
 const routes = [
     {
@@ -14,6 +15,10 @@ const routes = [
             {
                 path: "/inventory/materials",
                 element: <Materials />,
+            },
+            {
+                path: "/inventory/warehouse",
+                element: <Warehouse />,
             },
         ],
     },

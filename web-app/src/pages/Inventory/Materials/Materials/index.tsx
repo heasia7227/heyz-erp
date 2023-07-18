@@ -71,7 +71,7 @@ const Materials = () => {
             render: () => {
                 return (
                     <>
-                        <Space split={<Divider type="vertical" />} size={2}>
+                        <Space split={<Divider type="vertical" />} size={0}>
                             <Typography.Link>
                                 <Space size={4}>
                                     <EditOutlined />
