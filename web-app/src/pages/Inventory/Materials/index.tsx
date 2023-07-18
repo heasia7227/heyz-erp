@@ -4,7 +4,6 @@ import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import PageCard from "@/components/PageCard";
 import SubMaterials from "./Materials";
 import SubCategories from "./Categories";
-import SubProperties from "./Properties";
 
 const Materials = () => {
     const themeController = useThemeController();
@@ -30,11 +29,6 @@ const Materials = () => {
                             key: "2",
                             label: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORIES],
                             children: <SubCategories />,
-                        },
-                        {
-                            key: "3",
-                            label: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_PROPERTIES],
-                            children: <SubProperties />,
                         },
                     ]}
                 />
