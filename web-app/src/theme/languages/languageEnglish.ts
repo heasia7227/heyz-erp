@@ -11,6 +11,7 @@ export const languageEnglish: { [key: string]: string } = {
     [LANGUAGE_KEYS.FIRST_MENU_OFFICE_AUTOMATION]: "OFFICE AUTOMATION",
     [LANGUAGE_KEYS.FIRST_MENU_HUMAN_RESOURCE]: "HUMAN RESOURCE",
 
+    [LANGUAGE_KEYS.SUB_MENU_SUPPLIERS]: "Suppliers",
     [LANGUAGE_KEYS.SUB_MENU_MATERIALS]: "Materials",
     [LANGUAGE_KEYS.SUB_MENU_WAREHOUSE]: "Warehouse",
     [LANGUAGE_KEYS.SUB_MENU_COUNTING]: "Counting",
@@ -19,8 +20,9 @@ export const languageEnglish: { [key: string]: string } = {
     [LANGUAGE_KEYS.SUB_MENU_EARLY_WARNING]: "Early Warning",
     [LANGUAGE_KEYS.SUB_MENU_QUALITY]: "Quality",
 
-    [LANGUAGE_KEYS.SUB_MENU_SUPPLIERS]: "Suppliers",
-    [LANGUAGE_KEYS.SUB_MENU_PURCHASING]: "Purchasing",
+    [LANGUAGE_KEYS.SUB_MENU_PLAN]: "Plan",
+    [LANGUAGE_KEYS.SUB_MENU_ORDER]: "Order",
+    [LANGUAGE_KEYS.SUB_MENU_TAKE_DELIVERY]: "Take Delivery",
 
     [LANGUAGE_KEYS.SUB_MENU_CRM]: "CRM",
     [LANGUAGE_KEYS.SUB_MENU_SALES]: "Sales",

@@ -22,6 +22,10 @@ export const menus = [
         icon: <BankOutlined />,
         children: [
             {
+                title: LANGUAGE_KEYS.SUB_MENU_SUPPLIERS,
+                url: "",
+            },
+            {
                 title: LANGUAGE_KEYS.SUB_MENU_MATERIALS,
                 url: "/inventory/materials",
             },
@@ -56,11 +60,15 @@ export const menus = [
         icon: <GoldOutlined />,
         children: [
             {
-                title: LANGUAGE_KEYS.SUB_MENU_SUPPLIERS,
+                title: LANGUAGE_KEYS.SUB_MENU_PLAN,
                 url: "",
             },
             {
-                title: LANGUAGE_KEYS.SUB_MENU_PURCHASING,
+                title: LANGUAGE_KEYS.SUB_MENU_ORDER,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_TAKE_DELIVERY,
                 url: "",
             },
         ],

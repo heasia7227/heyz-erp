@@ -11,6 +11,7 @@ export const languageChinese: { [key: string]: string } = {
     [LANGUAGE_KEYS.FIRST_MENU_OFFICE_AUTOMATION]: "OA",
     [LANGUAGE_KEYS.FIRST_MENU_HUMAN_RESOURCE]: "人力资源管理",
 
+    [LANGUAGE_KEYS.SUB_MENU_SUPPLIERS]: "供应商管理",
     [LANGUAGE_KEYS.SUB_MENU_MATERIALS]: "物资管理",
     [LANGUAGE_KEYS.SUB_MENU_WAREHOUSE]: "库房管理",
     [LANGUAGE_KEYS.SUB_MENU_COUNTING]: "库存盘点",
@@ -19,8 +20,9 @@ export const languageChinese: { [key: string]: string } = {
     [LANGUAGE_KEYS.SUB_MENU_EARLY_WARNING]: "库存预警",
     [LANGUAGE_KEYS.SUB_MENU_QUALITY]: "质量管理",
 
-    [LANGUAGE_KEYS.SUB_MENU_SUPPLIERS]: "供应商管理",
-    [LANGUAGE_KEYS.SUB_MENU_PURCHASING]: "采购管理",
+    [LANGUAGE_KEYS.SUB_MENU_PLAN]: "采购计划",
+    [LANGUAGE_KEYS.SUB_MENU_ORDER]: "采购订单",
+    [LANGUAGE_KEYS.SUB_MENU_TAKE_DELIVERY]: "采购收货",
 
     [LANGUAGE_KEYS.SUB_MENU_CRM]: "CRM",
     [LANGUAGE_KEYS.SUB_MENU_SALES]: "销售管理",
