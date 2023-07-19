@@ -5,11 +5,13 @@ export const materialsService = {
         return mockjs.mock({
             "categories|20": [
                 {
-                    key: "@guid()",
+                    key: "@id",
+                    code: "@id",
                     title: "@title(3)",
                     "children|10": [
                         {
-                            key: "@guid()",
+                            key: "@id",
+                            code: "@id",
                             title: "@title(3)",
                             isLeaf: true,
                         },
@@ -30,11 +32,7 @@ export const materialsService = {
                     name: "@title(3)",
                     category: "@title(3)",
                     department: "@title(3)",
-                    warehouse: "@title(3)",
-                    inventoryNumber: 1,
-                    usedNumber: 1,
                     regularMaintenanceFrequency: "",
-                    scrapDateTime: "@datetime('yyyy-MM-dd HH:mm:ss')",
                 },
             ],
         });

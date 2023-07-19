@@ -71,7 +71,7 @@ const Materials = () => {
             render: () => {
                 return (
                     <>
-                        <Space split={<Divider type="vertical" />} size={2}>
+                        <Space split={<Divider type="vertical" />} size={0}>
                             <Typography.Link>
                                 <Space size={4}>
                                     <EditOutlined />
@@ -109,7 +109,7 @@ const Materials = () => {
                 <ColumnCategories>
                     <CategoriesTree />
                 </ColumnCategories>
-                <Col style={{ maxWidth: "calc(100vw - 612px)" }}>
+                <Col style={{ maxWidth: "calc(100vw - 615px)" }}>
                     <Row style={{ marginBottom: "10px" }}>
                         <Col style={{ flex: 1 }}>
                             <Search
