@@ -80,4 +80,13 @@ const ThemeContent = BaseStyled(styled.div<DivProps>`
     .ant-table-container .ant-table-tbody > tr:nth-child(2n + 1) > td {
         background-color: ${(props) => `${props.primarycolors?.[0]}`} !important;
     }
+    a.ant-typography {
+        border-radius: 4px;
+        padding: 4px;
+        color: #333333 !important;
+        &:hover {
+            color: ${(props) => props.primarycolor} !important;
+            background-color: rgba(0, 0, 0, 0.06);
+        }
+    }
 `);

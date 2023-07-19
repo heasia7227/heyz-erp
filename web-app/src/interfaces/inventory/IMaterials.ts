@@ -2,6 +2,7 @@ import { IPage } from "../ICommon";
 
 export interface IMaterialsCategory {
     key: string;
+    code: string;
     title: string;
     children: Array<IMaterialsCategory>;
 }
