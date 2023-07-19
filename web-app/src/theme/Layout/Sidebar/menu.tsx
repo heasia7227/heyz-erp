@@ -13,9 +13,42 @@ import {
 
 export const menus = [
     {
-        title: LANGUAGE_KEYS.FIRST_MENU_PRODUCTION,
+        title: LANGUAGE_KEYS.FIRST_MENU_MANUFACTURE,
         icon: <DeploymentUnitOutlined />,
-        children: [],
+        children: [
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_MANUFACTURE_PLAN,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_MATERIALS_PLAN,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_ABILITY_PLAN,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_PLANT_CONTROL,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_MANUFACTURE_STANDARD,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_MANUFACTURE_ORDER,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_MANUFACTURE_PROGRESS,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_MANUFACTURE_COST,
+                url: "",
+            },
+        ],
     },
     {
         title: LANGUAGE_KEYS.FIRST_MENU_INVENTORY,
@@ -47,10 +80,6 @@ export const menus = [
             },
             {
                 title: LANGUAGE_KEYS.SUB_MENU_EARLY_WARNING,
-                url: "",
-            },
-            {
-                title: LANGUAGE_KEYS.SUB_MENU_QUALITY,
                 url: "",
             },
         ],
@@ -111,22 +140,85 @@ export const menus = [
                 title: LANGUAGE_KEYS.SUB_MENU_SPREADSHEET,
                 url: "",
             },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_BUDGET,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_ANALYSIS,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_AUDIT,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_DECISION,
+                url: "",
+            },
         ],
     },
     {
         title: LANGUAGE_KEYS.FIRST_MENU_PROJECTS,
         icon: <FolderOpenOutlined />,
-        children: [],
+        children: [
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_PROJECTS_PLAN,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_PROJECTS_PROGRESS,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_PROJECTS_ACHIEVEMENT,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_PROJECTS_RISK,
+                url: "",
+            },
+        ],
     },
     {
         title: LANGUAGE_KEYS.FIRST_MENU_ASSETS,
         icon: <UngroupOutlined />,
-        children: [],
+        children: [
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_ASSETS_ARCHIVES,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_ASSETS_DEPRECIATION,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_ASSETS_MAINTENANCE,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_ASSETS_RETIREMENT,
+                url: "",
+            },
+        ],
     },
     {
         title: LANGUAGE_KEYS.FIRST_MENU_OFFICE_AUTOMATION,
         icon: <LaptopOutlined />,
-        children: [],
+        children: [
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_PROCESS_MANAGEMENT,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_OFFICIAL_DOCUMENTS,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_TEAMWORK,
+                url: "",
+            },
+        ],
     },
     {
         title: LANGUAGE_KEYS.FIRST_MENU_HUMAN_RESOURCE,
@@ -146,6 +238,32 @@ export const menus = [
             },
             {
                 title: LANGUAGE_KEYS.SUB_MENU_TRAINING,
+                url: "",
+            },
+        ],
+    },
+    {
+        title: LANGUAGE_KEYS.FIRST_MENU_SYSTEM_MANAGEMENT,
+        icon: <TeamOutlined />,
+        children: [
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_USERS,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_ROLES,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_DEPARTMENTS,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_MENUS,
+                url: "",
+            },
+            {
+                title: LANGUAGE_KEYS.SUB_MENU_LOGS,
                 url: "",
             },
         ],
