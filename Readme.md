@@ -1,6 +1,7 @@
 # Open Source ERP (Enterprise Resource Planning)
 
 **Frontend and Backend separation**
+
 **Frontend React (Ant Design)**
 **Backend Golang (Beego)**
 **English and Chinese**
