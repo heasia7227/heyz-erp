@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Divider, Input, Row, Space, Table, Typography } from "antd";
-import { CheckCircleOutlined, DeleteOutlined, EditOutlined, PlusOutlined, StopOutlined } from "@ant-design/icons";
+import { Col, Divider, Input, Row, Space, Table, Typography } from "antd";
+import { CheckCircleOutlined, DeleteOutlined, StopOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import { IMaterials } from "@/interfaces/inventory/IMaterials";
 import { materialsService } from "@/services/inventory/materialsService";
 import CategoriesTree from "./CategoriesTree";
+import Create from "./Create";
 
 const { Search } = Input;
 
@@ -68,16 +69,11 @@ const Materials = () => {
             key: "operation",
             width: 330,
             fixed: "right" as const,
-            render: () => {
+            render: (text: any, record: any) => {
                 return (
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <EditOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_EDIT]}
-                                </Space>
-                            </Typography.Link>
+                            <Create isEdit materialInfo={record} />
                             <Typography.Link>
                                 <Space size={4}>
                                     <DeleteOutlined />
@@ -122,9 +118,7 @@ const Materials = () => {
                             />
                         </Col>
                         <Col>
-                            <Button icon={<PlusOutlined />} type="primary">
-                                {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_CREATE]}
-                            </Button>
+                            <Create />
                         </Col>
                     </Row>
                     <Table
