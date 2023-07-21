@@ -67,8 +67,8 @@ const Create = ({ isEdit, categoryInfo }: IProps) => {
             <Modal
                 title={
                     isEdit
-                        ? themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_EDIT_CATEGORY]
-                        : themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CREATE_CATEGORY]
+                        ? themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORY_CREATE]
+                        : themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORY_EDIT]
                 }
                 open={open}
                 onCancel={onCancel}

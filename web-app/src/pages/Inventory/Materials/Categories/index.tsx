@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
 import { Col, Divider, Input, Row, Space, Table, Typography } from "antd";
-import {
-    CheckCircleOutlined,
-    DeleteOutlined,
-    FolderOpenFilled,
-    MinusSquareOutlined,
-    PlusSquareOutlined,
-    StopOutlined,
-} from "@ant-design/icons";
+import { FolderOpenFilled, MinusSquareOutlined, PlusSquareOutlined } from "@ant-design/icons";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import { IMaterialsCategory } from "@/interfaces/inventory/IMaterials";
 import { materialsService } from "@/services/inventory/materialsService";
 import Create from "./Create";
+import Remove from "./Remove";
+import Enable from "./Enable";
+import Disable from "./Disable";
 
 const { Search } = Input;
 
@@ -69,24 +65,9 @@ const Categories = () => {
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
                             <Create isEdit categoryInfo={record} />
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <DeleteOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_REMOVE]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <CheckCircleOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_ENABLE]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <StopOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_DISABLE]}
-                                </Space>
-                            </Typography.Link>
+                            <Remove categoryInfo={record} />
+                            <Enable categoryInfo={record} />
+                            <Disable categoryInfo={record} />
                         </Space>
                     </>
                 );
