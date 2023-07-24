@@ -15,3 +15,13 @@ export interface ISupplierArchive {
 export interface ISupplierArchives extends IPage {
     archives: Array<ISupplierArchive>;
 }
+
+export interface ISupplierContract {
+    id: string;
+    title: string;
+    attachment: string;
+}
+
+export interface ISupplierContracts extends IPage {
+    contracts: Array<ISupplierContract>;
+}

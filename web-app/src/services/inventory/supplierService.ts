@@ -21,4 +21,18 @@ export const supplierService = {
             ],
         });
     },
+    getContracts: () => {
+        return mockjs.mock({
+            total: 100,
+            current: 1,
+            pageSize: 10,
+            "contracts|10": [
+                {
+                    id: "@id",
+                    title: "@title(5)",
+                    attachment: "@title(3).pdf",
+                },
+            ],
+        });
+    },
 };

@@ -34,7 +34,7 @@ const Suppliers = () => {
                         },
                         {
                             key: "3",
-                            label: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_CONTRACT],
+                            label: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_CONTRACTS],
                             children: <Contract />,
                         },
                         {

@@ -55,7 +55,9 @@ const ThemeProvider = ({ children }: IProps) => {
     return (
         <ThemeContext.Provider value={{ ...setting, setLanguage }}>
             <ConfigProvider theme={themeConfig} locale={setting.language === "English" ? enUS : zhCN}>
-                <ThemeContent {...setting}>{children}</ThemeContent>
+                <ThemeContent id="theme" {...setting}>
+                    {children}
+                </ThemeContent>
             </ConfigProvider>
         </ThemeContext.Provider>
     );

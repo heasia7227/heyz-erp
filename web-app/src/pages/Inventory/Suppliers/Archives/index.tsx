@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Divider, Input, Row, Space, Table, Typography } from "antd";
-import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { Col, Divider, Input, Row, Space, Table } from "antd";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import { ISupplierArchives } from "@/interfaces/inventory/ISupplier";
 import { supplierService } from "@/services/inventory/supplierService";
+import Create from "./Create";
 
 const { Search } = Input;
 
@@ -31,38 +31,38 @@ const Archives = () => {
             fixed: "left" as const,
         },
         {
-            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVES_TITLE],
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_TITLE],
             dataIndex: "title",
             key: "title",
             width: 350,
             fixed: "left" as const,
         },
         {
-            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVES_RESPONSIBLE_PERSON],
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_RESPONSIBLE_PERSON],
             dataIndex: "responsiblePerson",
             key: "responsiblePerson",
             width: 100,
         },
         {
-            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVES_GENDER],
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_GENDER],
             dataIndex: "gender",
             key: "gender",
             width: 80,
         },
         {
-            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVES_CONTACT_NUMBER],
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_CONTACT_NUMBER],
             dataIndex: "contactNumber",
             key: "contactNumber",
             width: 200,
         },
         {
-            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVES_ADDRESS],
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_ADDRESS],
             dataIndex: "address",
             key: "address",
             width: 400,
         },
         {
-            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVES_CREATE_DATE_TIME],
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_CREATE_DATE_TIME],
             dataIndex: "createDateTime",
             key: "createDateTime",
             width: 180,
@@ -72,22 +72,11 @@ const Archives = () => {
             key: "operation",
             width: 150,
             fixed: "right" as const,
-            render: () => {
+            render: (text: any, record: any) => {
                 return (
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <EditOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_EDIT]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <DeleteOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_REMOVE]}
-                                </Space>
-                            </Typography.Link>
+                            <Create isEdit supplierArchive={record} />
                         </Space>
                     </>
                 );
@@ -101,19 +90,15 @@ const Archives = () => {
                 <Col style={{ flex: 1 }}>
                     <Search
                         placeholder={`${
-                            themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVES_TITLE]
+                            themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_TITLE]
                         }/${
-                            themeController.languagePack?.[
-                                LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVES_RESPONSIBLE_PERSON
-                            ]
-                        }/${themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVES_CONTACT_NUMBER]}`}
+                            themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_RESPONSIBLE_PERSON]
+                        }/${themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_CONTACT_NUMBER]}`}
                         style={{ width: 500 }}
                     />
                 </Col>
                 <Col>
-                    <Button icon={<PlusOutlined />} type="primary">
-                        {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_CREATE]}
-                    </Button>
+                    <Create />
                 </Col>
             </Row>
             <Table
