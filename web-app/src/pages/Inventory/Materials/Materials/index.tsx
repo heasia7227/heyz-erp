@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Col, Divider, Input, Row, Space, Table, Typography } from "antd";
-import { CheckCircleOutlined, DeleteOutlined, StopOutlined } from "@ant-design/icons";
+import { Col, Divider, Input, Row, Space, Table } from "antd";
 import styled from "styled-components";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
@@ -8,6 +7,9 @@ import { IMaterials } from "@/interfaces/inventory/IMaterials";
 import { materialsService } from "@/services/inventory/materialsService";
 import CategoriesTree from "./CategoriesTree";
 import Create from "./Create";
+import Remove from "./Remove";
+import Enable from "./Enable";
+import Disable from "./Disable";
 
 const { Search } = Input;
 
@@ -74,24 +76,9 @@ const Materials = () => {
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
                             <Create isEdit materialInfo={record} />
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <DeleteOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_REMOVE]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <CheckCircleOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_ENABLE]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <StopOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_DISABLE]}
-                                </Space>
-                            </Typography.Link>
+                            <Remove materialInfo={record} />
+                            <Enable materialInfo={record} />
+                            <Disable materialInfo={record} />
                         </Space>
                     </>
                 );
