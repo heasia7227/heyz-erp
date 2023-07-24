@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Divider, Input, Row, Space, Table, Typography } from "antd";
-import { CheckCircleOutlined, DeleteOutlined, EditOutlined, PlusOutlined, StopOutlined } from "@ant-design/icons";
+import { Col, Divider, Input, Row, Space, Table } from "antd";
 import { useThemeController } from "@/theme";
 import PageCard from "@/components/PageCard";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import { IWarehouses } from "@/interfaces/inventory/IWarehouse";
 import { warehouseService } from "@/services/inventory/warehouseService";
+import Create from "./Create";
+import Remove from "./Remove";
+import Enable from "./Enable";
+import Disable from "./Disable";
 
 const { Search } = Input;
 
@@ -79,34 +82,14 @@ const Warehouse = () => {
             key: "operation",
             width: 330,
             fixed: "right" as const,
-            render: () => {
+            render: (text: any, record: any) => {
                 return (
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <EditOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_EDIT]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <DeleteOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_REMOVE]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <CheckCircleOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_ENABLE]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <StopOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_DISABLE]}
-                                </Space>
-                            </Typography.Link>
+                            <Create isEdit warehouse={record} />
+                            <Remove warehouse={record} />
+                            <Enable warehouse={record} />
+                            <Disable warehouse={record} />
                         </Space>
                     </>
                 );
@@ -132,9 +115,7 @@ const Warehouse = () => {
                         />
                     </Col>
                     <Col>
-                        <Button icon={<PlusOutlined />} type="primary">
-                            {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_CREATE]}
-                        </Button>
+                        <Create />
                     </Col>
                 </Row>
                 <Table
