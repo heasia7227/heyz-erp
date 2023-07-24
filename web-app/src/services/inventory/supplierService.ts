@@ -35,4 +35,25 @@ export const supplierService = {
             ],
         });
     },
+    getEvaluations: () => {
+        return mockjs.mock({
+            total: 100,
+            current: 1,
+            pageSize: 10,
+            "evaluations|10": [
+                {
+                    id: "@id",
+                    title: "@title(5)",
+                    "evaluationScore|1-100": 100,
+                    responsiblePerson: "@first",
+                    gender: "male",
+                    contactNumber: "@id",
+                    address: "@title(3)",
+                    remarks: "",
+                    webUrl: "https://www.google.com",
+                    createDateTime: '@datetime("yyyy-MM-dd HH:mm:ss")',
+                },
+            ],
+        });
+    },
 };

@@ -19,9 +19,18 @@ export interface ISupplierArchives extends IPage {
 export interface ISupplierContract {
     id: string;
     title: string;
+    totalPrice: number;
     attachment: string;
 }
 
 export interface ISupplierContracts extends IPage {
     contracts: Array<ISupplierContract>;
+}
+
+export interface ISupplierEvaluation extends ISupplierArchive {
+    evaluationScore: number;
+}
+
+export interface ISupplierEvaluations extends IPage {
+    evaluations: Array<ISupplierEvaluation>;
 }

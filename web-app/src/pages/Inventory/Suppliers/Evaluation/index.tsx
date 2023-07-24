@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
-import { Col, Divider, Input, Row, Space, Table } from "antd";
+import { Col, Divider, Input, Row, Space, Table, Typography } from "antd";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
-import { ISupplierArchives } from "@/interfaces/inventory/ISupplier";
+import { ISupplierEvaluations } from "@/interfaces/inventory/ISupplier";
+import { useEffect, useState } from "react";
 import { supplierService } from "@/services/inventory/supplierService";
-import Create from "./Create";
+import { MenuOutlined, PlusOutlined } from "@ant-design/icons";
 
 const { Search } = Input;
 
-const Archives = () => {
+const Evaluation = () => {
     const themeController = useThemeController();
-    const [archives, setArchives] = useState<ISupplierArchives>();
+    const [evaluations, setEvaluations] = useState<ISupplierEvaluations>();
 
     useEffect(() => {
-        getArchives();
+        getEvaluations();
     }, []);
 
-    const getArchives = async () => {
-        const result = await supplierService.getArchives();
-        setArchives(result);
+    const getEvaluations = async () => {
+        const result = await supplierService.getEvaluations();
+        setEvaluations(result);
     };
 
     const columns = [
@@ -35,6 +35,13 @@ const Archives = () => {
             dataIndex: "title",
             key: "title",
             width: 350,
+            fixed: "left" as const,
+        },
+        {
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_EVALUATION_SCORE],
+            dataIndex: "evaluationScore",
+            key: "evaluationScore",
+            width: 100,
             fixed: "left" as const,
         },
         {
@@ -70,13 +77,28 @@ const Archives = () => {
         {
             title: themeController.languagePack?.[LANGUAGE_KEYS.COMMON_OPERATION],
             key: "operation",
-            width: 80,
+            width: 280,
             fixed: "right" as const,
             render: (text: any, record: any) => {
                 return (
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
-                            <Create isEdit supplierArchive={record} />
+                            <Typography.Link>
+                                <Space size={4}>
+                                    <MenuOutlined />
+                                    {themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_EVALUATION_LIST]}
+                                </Space>
+                            </Typography.Link>
+                            <Typography.Link>
+                                <Space size={4}>
+                                    <PlusOutlined />
+                                    {
+                                        themeController.languagePack?.[
+                                            LANGUAGE_KEYS.INVENTORY_SUPPLIERS_EVALUATION_CREATE
+                                        ]
+                                    }
+                                </Space>
+                            </Typography.Link>
                         </Space>
                     </>
                 );
@@ -97,21 +119,18 @@ const Archives = () => {
                         style={{ width: 500 }}
                     />
                 </Col>
-                <Col>
-                    <Create />
-                </Col>
             </Row>
             <Table
                 columns={columns}
-                dataSource={archives?.archives}
+                dataSource={evaluations?.evaluations}
                 bordered
                 size="small"
                 rowKey="id"
                 scroll={{ x: columns.map((col) => col.width).reduce((pre, cur) => pre + cur) }}
                 pagination={{
-                    total: archives?.total,
-                    pageSize: archives?.pageSize,
-                    current: archives?.current,
+                    total: evaluations?.total,
+                    pageSize: evaluations?.pageSize,
+                    current: evaluations?.current,
                     size: "default",
                 }}
             />
@@ -119,4 +138,4 @@ const Archives = () => {
     );
 };
 
-export default Archives;
+export default Evaluation;

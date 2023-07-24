@@ -49,6 +49,11 @@ const List = ({ supplierArchive }: IProps) => {
             key: "title",
         },
         {
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_CONTRACT_TOTAL_PRICE],
+            dataIndex: "totalPrice",
+            key: "totalPrice",
+        },
+        {
             title: themeController.languagePack?.[LANGUAGE_KEYS.COMMON_OPERATION],
             key: "operation",
             render: (text: any, record: any) => {
@@ -93,7 +98,7 @@ const List = ({ supplierArchive }: IProps) => {
                 open={open}
                 onCancel={onCancel}
                 footer={null}
-                width={900}
+                width={1000}
                 getContainer={document.getElementById("theme")!}
             >
                 <Row style={{ marginBottom: "10px", justifyContent: "right" }}>

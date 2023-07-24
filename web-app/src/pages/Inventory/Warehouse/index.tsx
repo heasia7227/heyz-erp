@@ -36,8 +36,8 @@ const Warehouse = () => {
         },
         {
             title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_WAREHOUSE_TITLE],
-            dataIndex: "name",
-            key: "name",
+            dataIndex: "title",
+            key: "title",
             width: 200,
             fixed: "left" as const,
         },

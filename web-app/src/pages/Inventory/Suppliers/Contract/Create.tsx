@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { Button, Form, Input, Modal, Upload, UploadFile } from "antd";
+import { Button, Form, Input, Modal, Space, Typography, Upload, UploadFile } from "antd";
 import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import { ISupplierArchive } from "@/interfaces/inventory/ISupplier";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 
 interface IProps {
+    isLink?: boolean;
     supplierArchive: ISupplierArchive;
 }
 
-const Create = ({ supplierArchive }: IProps) => {
+const Create = ({ isLink, supplierArchive }: IProps) => {
     const themeController = useThemeController();
     const [form] = Form.useForm();
 
@@ -47,9 +48,18 @@ const Create = ({ supplierArchive }: IProps) => {
 
     return (
         <>
-            <Button icon={<PlusOutlined />} type="primary" onClick={onCreateClick}>
-                {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_CREATE]}
-            </Button>
+            {isLink ? (
+                <Typography.Link onClick={onCreateClick}>
+                    <Space size={4}>
+                        <PlusOutlined />
+                        {themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_CONTRACT_CREATE]}
+                    </Space>
+                </Typography.Link>
+            ) : (
+                <Button icon={<PlusOutlined />} type="primary" onClick={onCreateClick}>
+                    {themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_CONTRACT_CREATE]}
+                </Button>
+            )}
             <Modal
                 title={themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_CONTRACT_CREATE]}
                 open={open}
@@ -67,6 +77,13 @@ const Create = ({ supplierArchive }: IProps) => {
                     <Form.Item
                         name="title"
                         label={themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_CONTRACT_TITLE]}
+                        rules={[{ required: true }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name="totalPrice"
+                        label={themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_CONTRACT_TOTAL_PRICE]}
                         rules={[{ required: true }]}
                     >
                         <Input />

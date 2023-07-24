@@ -5,6 +5,7 @@ import { supplierService } from "@/services/inventory/supplierService";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import List from "./List";
+import Create from "./Create";
 
 const { Search } = Input;
 
@@ -70,13 +71,14 @@ const Contract = () => {
         {
             title: themeController.languagePack?.[LANGUAGE_KEYS.COMMON_OPERATION],
             key: "operation",
-            width: 150,
+            width: 260,
             fixed: "right" as const,
             render: (text: any, record: any) => {
                 return (
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
                             <List supplierArchive={record} />
+                            <Create isLink supplierArchive={record} />
                         </Space>
                     </>
                 );

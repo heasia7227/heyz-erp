@@ -3,7 +3,7 @@ import PageCard from "@/components/PageCard";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import Archives from "./Archives";
-import Evaluate from "./Evaluate";
+import Evaluation from "./Evaluation";
 import Contract from "./Contract";
 import Payment from "./Payment";
 
@@ -29,8 +29,8 @@ const Suppliers = () => {
                         },
                         {
                             key: "2",
-                            label: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_EVALUATE],
-                            children: <Evaluate />,
+                            label: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_EVALUATION],
+                            children: <Evaluation />,
                         },
                         {
                             key: "3",
