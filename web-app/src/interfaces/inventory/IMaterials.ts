@@ -4,6 +4,7 @@ export interface IMaterialsCategory {
     key: string;
     code: string;
     title: string;
+    parentId: string;
     children: Array<IMaterialsCategory>;
 }
 

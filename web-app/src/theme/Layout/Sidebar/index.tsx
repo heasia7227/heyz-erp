@@ -99,7 +99,7 @@ const SidebarLayout = BaseStyled(styled.div<DivProps>`
     min-width: 250px;
     width: 250px;
     height: 100%;
-    background-color: ${(props) => props.primarycolors?.[9]};
+    background-color: ${(props) => props.theme?.primarycolors?.[9]};
     box-shadow: 6px 0 16px 0 rgba(0, 0, 0, 0.16);
 `);
 
@@ -132,7 +132,7 @@ const MenuItem = BaseStyled(styled.div<DivProps>`
     }
     &.sub-active {
         color: #ffffff;
-        background-color: ${(props) => props.primarycolor};
+        background-color: ${(props) => props.theme?.primarycolor};
     }
     &:hover {
         color: #ffffff;

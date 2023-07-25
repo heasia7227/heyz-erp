@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Divider, Input, Row, Space, Table, Typography } from "antd";
-import { CheckCircleOutlined, DeleteOutlined, EditOutlined, PlusOutlined, StopOutlined } from "@ant-design/icons";
+import { Col, Divider, Input, Row, Space, Table } from "antd";
 import styled from "styled-components";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import { IMaterials } from "@/interfaces/inventory/IMaterials";
 import { materialsService } from "@/services/inventory/materialsService";
 import CategoriesTree from "./CategoriesTree";
+import Create from "./Create";
+import Remove from "./Remove";
+import Enable from "./Enable";
+import Disable from "./Disable";
 
 const { Search } = Input;
 
@@ -33,32 +36,32 @@ const Materials = () => {
             fixed: "left" as const,
         },
         {
-            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_NAME],
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_NAME],
             dataIndex: "name",
             key: "name",
             width: 200,
             fixed: "left" as const,
         },
         {
-            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CODE],
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_CODE],
             dataIndex: "code",
             key: "code",
             width: 200,
         },
         {
-            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORY],
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_CATEGORY],
             dataIndex: "category",
             key: "category",
             width: 200,
         },
         {
-            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_DEPARTMENT],
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_DEPARTMENT],
             dataIndex: "department",
             key: "department",
             width: 200,
         },
         {
-            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_REGULAR_MAINTENANCE_FREQUENCY],
+            title: themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_REGULAR_MAINTENANCE_FREQUENCY],
             dataIndex: "regularMaintenanceFrequency",
             key: "regularMaintenanceFrequency",
             width: 240,
@@ -68,34 +71,14 @@ const Materials = () => {
             key: "operation",
             width: 330,
             fixed: "right" as const,
-            render: () => {
+            render: (text: any, record: any) => {
                 return (
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <EditOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_EDIT]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <DeleteOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_REMOVE]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <CheckCircleOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_ENABLE]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <StopOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_DISABLE]}
-                                </Space>
-                            </Typography.Link>
+                            <Create isEdit materialInfo={record} />
+                            <Remove materialInfo={record} />
+                            <Enable materialInfo={record} />
+                            <Disable materialInfo={record} />
                         </Space>
                     </>
                 );
@@ -114,17 +97,15 @@ const Materials = () => {
                         <Col style={{ flex: 1 }}>
                             <Search
                                 placeholder={`${
-                                    themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CODE]
-                                }/${themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_NAME]}/${
-                                    themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORY]
-                                }/${themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_DEPARTMENT]}`}
+                                    themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_CODE]
+                                }/${themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_NAME]}/${
+                                    themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_CATEGORY]
+                                }/${themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_DEPARTMENT]}`}
                                 style={{ width: 500 }}
                             />
                         </Col>
                         <Col>
-                            <Button icon={<PlusOutlined />} type="primary">
-                                {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_CREATE]}
-                            </Button>
+                            <Create />
                         </Col>
                     </Row>
                     <Table

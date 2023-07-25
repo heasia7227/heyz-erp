@@ -28,6 +28,7 @@ const Screen = styled.div`
 
 const Section = styled.div`
     flex: 1;
+    width: calc(100vw - 250px);
 `;
 
 const Content = styled.div`
