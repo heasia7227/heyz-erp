@@ -1,10 +1,9 @@
-import { Col, Divider, Input, Row, Space, Table, Typography } from "antd";
+import { useEffect, useState } from "react";
+import { Col, Divider, Input, Row, Space, Table } from "antd";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import { ISupplierEvaluations } from "@/interfaces/inventory/ISupplier";
-import { useEffect, useState } from "react";
 import { supplierService } from "@/services/inventory/supplierService";
-import { PlusOutlined } from "@ant-design/icons";
 import List from "./List";
 import Create from "./Create";
 

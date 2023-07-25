@@ -45,3 +45,25 @@ export interface ISupplierEvaluationRecords extends IPage {
     averageScore: number;
     evaluationRecords: Array<ISupplierEvaluationRecord>;
 }
+
+export interface ISupplierPayment extends ISupplierArchive {
+    contractTotalPrice: number;
+    paidTotalPrice: number;
+}
+
+export interface ISupplierPayments extends IPage {
+    payments: Array<ISupplierPayment>;
+}
+
+export interface ISupplierPaymentRecord {
+    id: string;
+    paidAmount: number;
+    notes: string;
+    attachment: string;
+}
+
+export interface ISupplierPaymentRecords extends IPage {
+    contractTotalPrice: number;
+    paidTotalPrice: number;
+    paymentRecords: Array<ISupplierPaymentRecord>;
+}
