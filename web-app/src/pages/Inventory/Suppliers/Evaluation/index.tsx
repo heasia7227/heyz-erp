@@ -4,7 +4,9 @@ import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import { ISupplierEvaluations } from "@/interfaces/inventory/ISupplier";
 import { useEffect, useState } from "react";
 import { supplierService } from "@/services/inventory/supplierService";
-import { MenuOutlined, PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
+import List from "./List";
+import Create from "./Create";
 
 const { Search } = Input;
 
@@ -83,22 +85,8 @@ const Evaluation = () => {
                 return (
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <MenuOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_EVALUATION_LIST]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <PlusOutlined />
-                                    {
-                                        themeController.languagePack?.[
-                                            LANGUAGE_KEYS.INVENTORY_SUPPLIERS_EVALUATION_CREATE
-                                        ]
-                                    }
-                                </Space>
-                            </Typography.Link>
+                            <List supplierEvaluation={record} />
+                            <Create isLink supplierEvaluation={record} />
                         </Space>
                     </>
                 );

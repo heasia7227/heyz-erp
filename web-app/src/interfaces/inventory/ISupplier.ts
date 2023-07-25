@@ -34,3 +34,14 @@ export interface ISupplierEvaluation extends ISupplierArchive {
 export interface ISupplierEvaluations extends IPage {
     evaluations: Array<ISupplierEvaluation>;
 }
+
+export interface ISupplierEvaluationRecord {
+    id: string;
+    notes: string;
+    score: number;
+}
+
+export interface ISupplierEvaluationRecords extends IPage {
+    averageScore: number;
+    evaluationRecords: Array<ISupplierEvaluationRecord>;
+}

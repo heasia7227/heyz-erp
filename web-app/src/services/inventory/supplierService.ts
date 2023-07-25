@@ -56,4 +56,19 @@ export const supplierService = {
             ],
         });
     },
+    getEvaluationRecords: () => {
+        return mockjs.mock({
+            total: 100,
+            current: 1,
+            pageSize: 10,
+            "averageScore|1-100": 100,
+            "evaluationRecords|10": [
+                {
+                    id: "@id",
+                    notes: "@title(5)",
+                    "score|1-100": 100,
+                },
+            ],
+        });
+    },
 };
