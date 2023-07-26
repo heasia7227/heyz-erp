@@ -172,12 +172,16 @@ export const languageEnglish: { [key: string]: string } = {
     [LANGUAGE_KEYS.INVENTORY_WAREHOUSE_DISABLE]: "Disable Warehouse",
     [LANGUAGE_KEYS.INVENTORY_WAREHOUSE_DISABLE_DESCRIPTION]: "Are you sure to disable this warehouse?",
 
+    //INVENTORY -> INVENTORY
+    [LANGUAGE_KEYS.INVENTORY_MATERIAL_COUNT]: "Material Count",
+
     [LANGUAGE_KEYS.COMMON_OPERATION]: "Operation",
     [LANGUAGE_KEYS.COMMON_CREATE]: "Create",
     [LANGUAGE_KEYS.COMMON_EDIT]: "Edit",
     [LANGUAGE_KEYS.COMMON_REMOVE]: "Remove",
     [LANGUAGE_KEYS.COMMON_ENABLE]: "Enable",
     [LANGUAGE_KEYS.COMMON_DISABLE]: "Disable",
+    [LANGUAGE_KEYS.COMMON_DETAILS]: "Details",
     [LANGUAGE_KEYS.COMMON_PREVIEW]: "Priview",
     [LANGUAGE_KEYS.COMMON_DOWNLOAD]: "Download",
     [LANGUAGE_KEYS.COMMON_SELECT_FILE]: "Select File",

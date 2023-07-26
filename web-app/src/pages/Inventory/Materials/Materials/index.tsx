@@ -5,7 +5,7 @@ import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import { IMaterials } from "@/interfaces/inventory/IMaterials";
 import { materialsService } from "@/services/inventory/materialsService";
-import CategoriesTree from "./CategoriesTree";
+import CategoriesTree, { ColumnCategories } from "../Categories/Tree";
 import Create from "./Create";
 import Remove from "./Remove";
 import Enable from "./Enable";
@@ -133,15 +133,4 @@ export default Materials;
 const RowMaterials = styled(Row)`
     height: 100%;
     gap: 12px;
-`;
-
-const ColumnCategories = styled(Col)`
-    width: 280px;
-    border: 1px solid #eeeeee;
-    overflow-y: auto;
-    height: 100%;
-    padding: 8px;
-    &::-webkit-scrollbar {
-        display: none;
-    }
 `;

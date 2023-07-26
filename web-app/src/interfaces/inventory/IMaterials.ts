@@ -19,8 +19,4 @@ export interface IMaterial {
     category: string;
     department: string;
     warehouse: string;
-    inventoryNumber: number;
-    usedNumber: number;
-    regularMaintenanceFrequency: string;
-    scrapDateTime: string;
 }
