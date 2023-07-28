@@ -56,7 +56,7 @@ export const menus = [
         children: [
             {
                 title: LANGUAGE_KEYS.SUB_MENU_SUPPLIERS,
-                url: "",
+                url: "/inventory/suppliers",
             },
             {
                 title: LANGUAGE_KEYS.SUB_MENU_MATERIALS,
@@ -67,20 +67,24 @@ export const menus = [
                 url: "/inventory/warehouse",
             },
             {
+                title: LANGUAGE_KEYS.SUB_MENU_INVENTORY,
+                url: "/inventory/inventory",
+            },
+            {
                 title: LANGUAGE_KEYS.SUB_MENU_COUNTING,
-                url: "",
+                url: "/inventory/counting",
             },
             {
                 title: LANGUAGE_KEYS.SUB_MENU_TRANSFER,
-                url: "",
+                url: "/inventory/transfer",
             },
             {
                 title: LANGUAGE_KEYS.SUB_MENU_SCRAP,
-                url: "",
+                url: "/inventory/scrap",
             },
             {
                 title: LANGUAGE_KEYS.SUB_MENU_EARLY_WARNING,
-                url: "",
+                url: "/inventory/early-warning",
             },
         ],
     },

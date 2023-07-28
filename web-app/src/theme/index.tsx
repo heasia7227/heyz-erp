@@ -1,22 +1,26 @@
+import { createContext, useContext, useEffect, useState } from "react";
 import { ConfigProvider } from "antd";
 import { generate } from "@ant-design/colors";
-import { createContext, useContext, useEffect, useState } from "react";
+import enUS from "antd/locale/en_US";
+import zhCN from "antd/locale/zh_CN";
+import { styled } from "styled-components";
+import { BaseStyled, DivProps } from "@/components/BaseStyled";
 import { languageEnglish } from "./languages/languageEnglish";
 import { languageChinese } from "./languages/languageChinese";
-import { BaseStyled, DivProps } from "@/components/BaseStyled";
-import { styled } from "styled-components";
 
 export interface IThemeContext {
-    primarycolor?: string;
-    primarycolors?: Array<string>;
-    language?: string;
-    languagePack?: { [key: string]: string };
+    primarycolor: string;
+    primarycolors: Array<string>;
+    language: string;
+    languagePack: { [key: string]: string };
     setLanguage?: (language: string) => void;
 }
 
 const themeDefaultSetting = {
     primarycolor: "#096dd9",
+    primarycolors: [],
     language: "English",
+    languagePack: {},
 };
 
 const languageMapping: { [key: string]: { [key: string]: string } } = {
@@ -50,8 +54,10 @@ const ThemeProvider = ({ children }: IProps) => {
 
     return (
         <ThemeContext.Provider value={{ ...setting, setLanguage }}>
-            <ConfigProvider theme={themeConfig}>
-                <ThemeContent {...setting}>{children}</ThemeContent>
+            <ConfigProvider theme={themeConfig} locale={setting.language === "English" ? enUS : zhCN}>
+                <ThemeContent id="theme" {...setting}>
+                    {children}
+                </ThemeContent>
             </ConfigProvider>
         </ThemeContext.Provider>
     );
@@ -74,18 +80,18 @@ const ThemeContent = BaseStyled(styled.div<DivProps>`
         height: 100% !important;
     }
     .ant-table-thead > tr > th {
-        background-color: ${(props) => props.primarycolors?.[9]} !important;
+        background-color: ${(props) => props.theme?.primarycolors?.[9]} !important;
         color: #ffffff !important;
     }
     .ant-table-container .ant-table-tbody > tr:nth-child(2n + 1) > td {
-        background-color: ${(props) => `${props.primarycolors?.[0]}`} !important;
+        background-color: ${(props) => `${props.theme?.primarycolors?.[0]}`} !important;
     }
     a.ant-typography {
         border-radius: 4px;
         padding: 4px;
         color: #333333 !important;
         &:hover {
-            color: ${(props) => props.primarycolor} !important;
+            color: ${(props) => props.theme?.primarycolor} !important;
             background-color: rgba(0, 0, 0, 0.06);
         }
     }

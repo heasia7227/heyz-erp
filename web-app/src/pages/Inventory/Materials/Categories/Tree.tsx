@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Tree } from "antd";
+import styled from "styled-components";
+import { Col, Tree } from "antd";
 import { DataNode } from "antd/es/tree";
 import { DirectoryTreeProps } from "antd/es/tree/DirectoryTree";
 import { materialsService } from "@/services/inventory/materialsService";
@@ -42,3 +43,14 @@ const CategoriesTree = () => {
 };
 
 export default CategoriesTree;
+
+export const ColumnCategories = styled(Col)`
+    width: 280px;
+    border: 1px solid #eeeeee;
+    overflow-y: auto;
+    height: 100%;
+    padding: 8px;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`;

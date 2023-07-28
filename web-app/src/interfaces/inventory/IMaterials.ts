@@ -4,6 +4,7 @@ export interface IMaterialsCategory {
     key: string;
     code: string;
     title: string;
+    parentId: string;
     children: Array<IMaterialsCategory>;
 }
 
@@ -18,8 +19,4 @@ export interface IMaterial {
     category: string;
     department: string;
     warehouse: string;
-    inventoryNumber: number;
-    usedNumber: number;
-    regularMaintenanceFrequency: string;
-    scrapDateTime: string;
 }

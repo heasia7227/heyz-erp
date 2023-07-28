@@ -1,19 +1,14 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Divider, Input, Row, Space, Table, Typography } from "antd";
-import {
-    CheckCircleOutlined,
-    DeleteOutlined,
-    EditOutlined,
-    FolderOpenFilled,
-    MinusSquareOutlined,
-    PlusOutlined,
-    PlusSquareOutlined,
-    StopOutlined,
-} from "@ant-design/icons";
+import { Col, Divider, Input, Row, Space, Table, Typography } from "antd";
+import { FolderOpenFilled, MinusSquareOutlined, PlusSquareOutlined } from "@ant-design/icons";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import { IMaterialsCategory } from "@/interfaces/inventory/IMaterials";
 import { materialsService } from "@/services/inventory/materialsService";
+import Create from "./Create";
+import Remove from "./Remove";
+import Enable from "./Enable";
+import Disable from "./Disable";
 
 const { Search } = Input;
 
@@ -65,34 +60,14 @@ const Categories = () => {
         {
             title: themeController.languagePack?.[LANGUAGE_KEYS.COMMON_OPERATION],
             key: "operation",
-            render: () => {
+            render: (text: any, record: any) => {
                 return (
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <EditOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_EDIT]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <DeleteOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_REMOVE]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <CheckCircleOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_ENABLE]}
-                                </Space>
-                            </Typography.Link>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <StopOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_DISABLE]}
-                                </Space>
-                            </Typography.Link>
+                            <Create isEdit categoryInfo={record} />
+                            <Remove categoryInfo={record} />
+                            <Enable categoryInfo={record} />
+                            <Disable categoryInfo={record} />
                         </Space>
                     </>
                 );
@@ -112,9 +87,7 @@ const Categories = () => {
                     />
                 </Col>
                 <Col>
-                    <Button icon={<PlusOutlined />} type="primary">
-                        {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_CREATE]}
-                    </Button>
+                    <Create />
                 </Col>
             </Row>
             <Table
@@ -141,7 +114,7 @@ const Categories = () => {
                     ),
                 }}
                 pagination={false}
-                scroll={{ y: "calc(100vh - 230px)" }}
+                scroll={{ y: "calc(100vh - 260px)" }}
             />
         </>
     );
