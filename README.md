@@ -4,7 +4,7 @@
 
 **Frontend React (Ant Design)**
 
-**Backend NodeJs (Express)**
+**Backend NodeJs (NestJs)**
 
 **English and Chinese**
 
