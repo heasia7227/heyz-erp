@@ -4,7 +4,7 @@
 
 **Frontend React (Ant Design)**
 
-**Backend Golang (Beego)**
+**Backend NodeJs (NestJs)**
 
 **English and Chinese**
 
