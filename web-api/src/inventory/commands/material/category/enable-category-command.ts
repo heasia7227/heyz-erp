@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { ResultData } from "src/utils/result-data";
-import { Category } from "src/inventory/domains/material/category";
+import { MaterialCategory } from "src/inventory/domains/material/category";
 
 export class EnableCategoryCommand {
     constructor(public readonly id: string) {}
@@ -10,13 +10,15 @@ export class EnableCategoryCommand {
 
 @CommandHandler(EnableCategoryCommand)
 export class EnableCategoryCommandHandler implements ICommandHandler<EnableCategoryCommand> {
-    constructor(@InjectRepository(Category) private readonly categoryRepository: Repository<Category>) {}
+    constructor(
+        @InjectRepository(MaterialCategory) private readonly categoryRepository: Repository<MaterialCategory>
+    ) {}
 
     async execute(command: EnableCategoryCommand) {
         await this.categoryRepository.manager.transaction(async () => {
             await this.enable(command.id);
         });
-        return ResultData.ok<Category>(null, "Enabled success.");
+        return ResultData.ok<MaterialCategory>(null, "Enabled success.");
     }
 
     async enable(id: string) {

@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
-import { Category } from "./category";
+import { MaterialCategory } from "./category";
 
 @Entity({ name: "t_inventory_material" })
 export class Material {
@@ -12,9 +12,9 @@ export class Material {
     @Column()
     name: string;
 
-    @ManyToOne(() => Category)
+    @ManyToOne(() => MaterialCategory)
     @JoinColumn({ name: "category_id" })
-    category: Category;
+    category: MaterialCategory;
 
     //TODO Department Table
     @Column()

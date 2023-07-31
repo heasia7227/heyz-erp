@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { ResultData } from "src/utils/result-data";
-import { Category } from "src/inventory/domains/material/category";
+import { MaterialCategory } from "src/inventory/domains/material/category";
 
 export class UpdateCategoryCommand {
     constructor(
@@ -16,7 +16,9 @@ export class UpdateCategoryCommand {
 
 @CommandHandler(UpdateCategoryCommand)
 export class UpdateCategoryCommandHandler implements ICommandHandler<UpdateCategoryCommand> {
-    constructor(@InjectRepository(Category) private readonly categoryRepository: Repository<Category>) {}
+    constructor(
+        @InjectRepository(MaterialCategory) private readonly categoryRepository: Repository<MaterialCategory>
+    ) {}
 
     async execute(command: UpdateCategoryCommand) {
         const temporary = await this.categoryRepository.findOne({ where: { id: command.id } });
@@ -27,6 +29,6 @@ export class UpdateCategoryCommandHandler implements ICommandHandler<UpdateCateg
         temporary.status = command.status;
 
         const category = await this.categoryRepository.save(temporary);
-        return ResultData.ok<Category>(category, "Updated success.");
+        return ResultData.ok<MaterialCategory>(category, "Updated success.");
     }
 }

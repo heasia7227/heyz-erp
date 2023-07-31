@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { ResultData } from "src/utils/result-data";
-import { Category } from "src/inventory/domains/material/category";
+import { MaterialCategory } from "src/inventory/domains/material/category";
 
 export class RemoveCategoryCommand {
     constructor(public readonly id: string) {}
@@ -10,7 +10,9 @@ export class RemoveCategoryCommand {
 
 @CommandHandler(RemoveCategoryCommand)
 export class RemoveCategoryCommandHandler implements ICommandHandler<RemoveCategoryCommand> {
-    constructor(@InjectRepository(Category) private readonly categoryRepository: Repository<Category>) {}
+    constructor(
+        @InjectRepository(MaterialCategory) private readonly categoryRepository: Repository<MaterialCategory>
+    ) {}
 
     async execute(command: RemoveCategoryCommand) {
         // TODO find materials by category id
@@ -18,7 +20,7 @@ export class RemoveCategoryCommandHandler implements ICommandHandler<RemoveCateg
         //find category children by category id
         const categories = await this.categoryRepository.find({ where: { parentId: command.id } });
         if (categories.length > 0) {
-            return ResultData.failure<Category>(
+            return ResultData.failure<MaterialCategory>(
                 null,
                 "Removed failure, Has children categories that cannot be remove."
             );
@@ -26,6 +28,6 @@ export class RemoveCategoryCommandHandler implements ICommandHandler<RemoveCateg
 
         const temporary = await this.categoryRepository.findOne({ where: { id: command.id } });
         await this.categoryRepository.delete(temporary);
-        return ResultData.ok<Category>(temporary, "Removed success.");
+        return ResultData.ok<MaterialCategory>(temporary, "Removed success.");
     }
 }

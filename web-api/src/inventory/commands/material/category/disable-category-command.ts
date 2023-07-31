@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { ResultData } from "src/utils/result-data";
-import { Category } from "src/inventory/domains/material/category";
+import { MaterialCategory } from "src/inventory/domains/material/category";
 
 export class DisableCategoryCommand {
     constructor(public readonly id: string) {}
@@ -10,13 +10,15 @@ export class DisableCategoryCommand {
 
 @CommandHandler(DisableCategoryCommand)
 export class DisableCategoryCommandHandler implements ICommandHandler<DisableCategoryCommand> {
-    constructor(@InjectRepository(Category) private readonly categoryRepository: Repository<Category>) {}
+    constructor(
+        @InjectRepository(MaterialCategory) private readonly categoryRepository: Repository<MaterialCategory>
+    ) {}
 
     async execute(command: DisableCategoryCommand) {
         await this.categoryRepository.manager.transaction(async () => {
             await this.disable(command.id);
         });
-        return ResultData.ok<Category>(null, "Disable success.");
+        return ResultData.ok<MaterialCategory>(null, "Disable success.");
     }
 
     async disable(id: string) {

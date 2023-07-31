@@ -6,8 +6,7 @@ export interface IInventory {
     name: string;
     category: string;
     department: string;
-    warehouse: string;
-    suplierTitle: string;
+    supplierTitle: string;
     warehouseTitle: string;
     materialCount: number;
 }

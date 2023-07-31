@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
-import { Category } from "src/inventory/domains/material/category";
+import { MaterialCategory } from "src/inventory/domains/material/category";
 import { Material } from "src/inventory/domains/material/material";
 import { ResultData } from "src/utils/result-data";
 
@@ -21,7 +21,7 @@ export class UpdateMaterialCommand {
 export class UpdateMaterialCommandHandler implements ICommandHandler<UpdateMaterialCommand> {
     constructor(
         @InjectRepository(Material) private readonly materialRepository: Repository<Material>,
-        @InjectRepository(Category) private readonly categoryRepository: Repository<Category>
+        @InjectRepository(MaterialCategory) private readonly categoryRepository: Repository<MaterialCategory>
     ) {}
 
     async execute(command: UpdateMaterialCommand) {
