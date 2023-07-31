@@ -1,3 +1,3 @@
-import { GetCategoriesHandler } from "./material/category/get-categories-handler";
+import { GetCategoriesQueryHandler } from "./material/category/get-categories-query-handler";
 
-export const queries = [GetCategoriesHandler];
+export const queries = [GetCategoriesQueryHandler];

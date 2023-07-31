@@ -1,0 +1,1 @@
+{"version":3,"file":"create-category-command.js","sourceRoot":"","sources":["../../../../../src/inventory/commands/material/category/create-category-command.ts"],"names":[],"mappings":";;;AAAA,MAAa,qBAAqB;IAC9B,YAA4B,IAAY,EAAkB,KAAa,EAAkB,QAAgB;QAA7E,SAAI,GAAJ,IAAI,CAAQ;QAAkB,UAAK,GAAL,KAAK,CAAQ;QAAkB,aAAQ,GAAR,QAAQ,CAAQ;IAAG,CAAC;CAChH;AAFD,sDAEC"}

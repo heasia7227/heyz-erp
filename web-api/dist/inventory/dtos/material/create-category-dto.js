@@ -9,27 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Category = void 0;
-const typeorm_1 = require("typeorm");
-let Category = exports.Category = class Category {
-};
+exports.CreateCategoryDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
+class CreateCategoryDto {
+    constructor(code, title, parentId) {
+        this.code = code;
+        this.title = title;
+        this.parentId = parentId;
+    }
+}
+exports.CreateCategoryDto = CreateCategoryDto;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
-], Category.prototype, "id", void 0);
+], CreateCategoryDto.prototype, "code", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
-], Category.prototype, "code", void 0);
+], CreateCategoryDto.prototype, "title", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
-], Category.prototype, "title", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: "parent_id" }),
-    __metadata("design:type", String)
-], Category.prototype, "parentId", void 0);
-exports.Category = Category = __decorate([
-    (0, typeorm_1.Entity)({ name: "t_category" })
-], Category);
-//# sourceMappingURL=category.js.map
+], CreateCategoryDto.prototype, "parentId", void 0);
+//# sourceMappingURL=create-category-dto.js.map

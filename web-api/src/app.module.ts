@@ -1,20 +1,21 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { InventoryModule } from "./inventory/inventory.module";
+import { InventoryEntities } from "./inventory/domains";
 
 @Module({
     imports: [
-        // TypeOrmModule.forRoot({
-        //     type: "mysql",
-        //     host: "192.168.1.211",
-        //     port: 3306,
-        //     username: "arthur",
-        //     password: "arthur2023",
-        //     database: "erp",
-        //     entities: [],
-        //     synchronize: true,
-        //     logging: true,
-        // }),
+        TypeOrmModule.forRoot({
+            type: "mysql",
+            host: "localhost",
+            port: 3306,
+            username: "root",
+            password: "arthur2023",
+            database: "erp",
+            entities: [...InventoryEntities],
+            synchronize: true,
+            logging: false,
+        }),
         InventoryModule,
     ],
 })

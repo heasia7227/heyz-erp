@@ -9,14 +9,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.InventoryModule = void 0;
 const common_1 = require("@nestjs/common");
 const cqrs_1 = require("@nestjs/cqrs");
+const typeorm_1 = require("@nestjs/typeorm");
 const commands_1 = require("./commands");
 const queries_1 = require("./queries");
 const controllers_1 = require("./controllers");
+const domains_1 = require("./domains");
 let InventoryModule = exports.InventoryModule = class InventoryModule {
 };
 exports.InventoryModule = InventoryModule = __decorate([
     (0, common_1.Module)({
-        imports: [cqrs_1.CqrsModule],
+        imports: [typeorm_1.TypeOrmModule.forFeature([...domains_1.InventoryEntities]), cqrs_1.CqrsModule],
         controllers: [...controllers_1.controllers],
         providers: [...commands_1.commands, ...queries_1.queries],
     })
