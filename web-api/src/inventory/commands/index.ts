@@ -1,8 +1,8 @@
-import { CreateCategoryCommandHandler } from "./material/category/create-category-command-handler";
-import { DisableCategoryCommandHandler } from "./material/category/disable-category-command-handler";
-import { EnableCategoryCommandHandler } from "./material/category/enable-category-command-handler";
-import { RemoveCategoryCommandHandler } from "./material/category/remove-category-command-handler";
-import { UpdateCategoryCommandHandler } from "./material/category/update-category-command-handler";
+import { CreateCategoryCommandHandler } from "./material/category/create-category-command";
+import { DisableCategoryCommandHandler } from "./material/category/disable-category-command";
+import { EnableCategoryCommandHandler } from "./material/category/enable-category-command";
+import { RemoveCategoryCommandHandler } from "./material/category/remove-category-command";
+import { UpdateCategoryCommandHandler } from "./material/category/update-category-command";
 
 export const commands = [
     CreateCategoryCommandHandler,
