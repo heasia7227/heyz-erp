@@ -12,10 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateCategoryDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 class CreateCategoryDto {
-    constructor(code, title, parentId) {
+    constructor(code, title, parentId, status) {
         this.code = code;
         this.title = title;
         this.parentId = parentId;
+        this.status = status;
     }
 }
 exports.CreateCategoryDto = CreateCategoryDto;
@@ -31,4 +32,8 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], CreateCategoryDto.prototype, "parentId", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ enum: ["Enable", "Disable"] }),
+    __metadata("design:type", String)
+], CreateCategoryDto.prototype, "status", void 0);
 //# sourceMappingURL=create-category-dto.js.map

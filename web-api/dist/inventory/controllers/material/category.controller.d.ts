@@ -6,4 +6,6 @@ export declare class CategoryController extends BaseController {
     create(createCategoryDto: CreateCategoryDto): Promise<any>;
     update(updateCategoryDto: UpdateCategoryDto): Promise<any>;
     remove(id: string): Promise<any>;
+    enable(id: string): Promise<any>;
+    disable(id: string): Promise<any>;
 }

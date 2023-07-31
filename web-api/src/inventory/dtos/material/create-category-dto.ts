@@ -1,10 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateCategoryDto {
-    constructor(code: string, title: string, parentId: string) {
+    constructor(code: string, title: string, parentId: string, status: string) {
         this.code = code;
         this.title = title;
         this.parentId = parentId;
+        this.status = status;
     }
 
     @ApiProperty()
@@ -15,4 +16,7 @@ export class CreateCategoryDto {
 
     @ApiProperty()
     parentId: string;
+
+    @ApiProperty({ enum: ["Enable", "Disable"] })
+    status: string;
 }

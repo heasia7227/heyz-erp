@@ -29,6 +29,10 @@ __decorate([
     (0, typeorm_1.Column)({ name: "parent_id" }),
     __metadata("design:type", String)
 ], Category.prototype, "parentId", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: "Enable" }),
+    __metadata("design:type", String)
+], Category.prototype, "status", void 0);
 exports.Category = Category = __decorate([
     (0, typeorm_1.Entity)({ name: "t_category" })
 ], Category);

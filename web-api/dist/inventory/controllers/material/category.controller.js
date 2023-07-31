@@ -22,18 +22,26 @@ const create_category_command_1 = require("../../commands/material/category/crea
 const update_category_command_1 = require("../../commands/material/category/update-category-command");
 const get_categories_query_1 = require("../../queries/material/category/get-categories-query");
 const remove_category_command_1 = require("../../commands/material/category/remove-category-command");
+const enable_category_command_1 = require("../../commands/material/category/enable-category-command");
+const disable_category_command_1 = require("../../commands/material/category/disable-category-command");
 let CategoryController = exports.CategoryController = class CategoryController extends base_controller_1.BaseController {
     async list() {
         return this.queryBus.execute(new get_categories_query_1.GetCategoriesQuery());
     }
     async create(createCategoryDto) {
-        return this.commandBus.execute(new create_category_command_1.CreateCategoryCommand(createCategoryDto.code, createCategoryDto.title, createCategoryDto.parentId));
+        return this.commandBus.execute(new create_category_command_1.CreateCategoryCommand(createCategoryDto.code, createCategoryDto.title, createCategoryDto.parentId, createCategoryDto.status));
     }
     async update(updateCategoryDto) {
-        return this.commandBus.execute(new update_category_command_1.UpdateCategoryCommand(updateCategoryDto.id, updateCategoryDto.code, updateCategoryDto.title, updateCategoryDto.parentId));
+        return this.commandBus.execute(new update_category_command_1.UpdateCategoryCommand(updateCategoryDto.id, updateCategoryDto.code, updateCategoryDto.title, updateCategoryDto.parentId, updateCategoryDto.status));
     }
     async remove(id) {
         return this.commandBus.execute(new remove_category_command_1.RemoveCategoryCommand(id));
+    }
+    async enable(id) {
+        return this.commandBus.execute(new enable_category_command_1.EnableCategoryCommand(id));
+    }
+    async disable(id) {
+        return this.commandBus.execute(new disable_category_command_1.DisableCategoryCommand(id));
     }
 };
 __decorate([
@@ -63,6 +71,20 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], CategoryController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Put)("enable/:id"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], CategoryController.prototype, "enable", null);
+__decorate([
+    (0, common_1.Put)("disable/:id"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], CategoryController.prototype, "disable", null);
 exports.CategoryController = CategoryController = __decorate([
     (0, swagger_1.ApiTags)("inventory/material/category"),
     (0, common_1.Controller)("inventory/material/category")

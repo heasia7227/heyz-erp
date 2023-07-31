@@ -3,4 +3,5 @@ export declare class Category {
     code: string;
     title: string;
     parentId: string;
+    status: string;
 }

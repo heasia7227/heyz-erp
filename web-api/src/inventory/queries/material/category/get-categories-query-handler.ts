@@ -10,7 +10,7 @@ export class GetCategoriesQueryHandler implements IQueryHandler<GetCategoriesQue
     constructor(@InjectRepository(Category) private readonly categoryRepository: Repository<Category>) {}
 
     async execute(query: GetCategoriesQuery) {
-        const categories = await this.categoryRepository.find();
+        const categories = await this.categoryRepository.find({ where: { status: "Enable" } });
         return ResultData.ok<Array<Category>>(categories);
     }
 }

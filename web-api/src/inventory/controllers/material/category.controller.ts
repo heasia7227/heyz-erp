@@ -7,6 +7,8 @@ import { CreateCategoryCommand } from "src/inventory/commands/material/category/
 import { UpdateCategoryCommand } from "src/inventory/commands/material/category/update-category-command";
 import { GetCategoriesQuery } from "src/inventory/queries/material/category/get-categories-query";
 import { RemoveCategoryCommand } from "src/inventory/commands/material/category/remove-category-command";
+import { EnableCategoryCommand } from "src/inventory/commands/material/category/enable-category-command";
+import { DisableCategoryCommand } from "src/inventory/commands/material/category/disable-category-command";
 
 @ApiTags("inventory/material/category")
 @Controller("inventory/material/category")
@@ -19,7 +21,12 @@ export class CategoryController extends BaseController {
     @Post()
     async create(@Body() createCategoryDto: CreateCategoryDto) {
         return this.commandBus.execute(
-            new CreateCategoryCommand(createCategoryDto.code, createCategoryDto.title, createCategoryDto.parentId)
+            new CreateCategoryCommand(
+                createCategoryDto.code,
+                createCategoryDto.title,
+                createCategoryDto.parentId,
+                createCategoryDto.status
+            )
         );
     }
 
@@ -30,7 +37,8 @@ export class CategoryController extends BaseController {
                 updateCategoryDto.id,
                 updateCategoryDto.code,
                 updateCategoryDto.title,
-                updateCategoryDto.parentId
+                updateCategoryDto.parentId,
+                updateCategoryDto.status
             )
         );
     }
@@ -38,5 +46,15 @@ export class CategoryController extends BaseController {
     @Delete(":id")
     async remove(@Param("id") id: string) {
         return this.commandBus.execute(new RemoveCategoryCommand(id));
+    }
+
+    @Put("enable/:id")
+    async enable(@Param("id") id: string) {
+        return this.commandBus.execute(new EnableCategoryCommand(id));
+    }
+
+    @Put("disable/:id")
+    async disable(@Param("id") id: string) {
+        return this.commandBus.execute(new DisableCategoryCommand(id));
     }
 }

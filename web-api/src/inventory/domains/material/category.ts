@@ -13,4 +13,7 @@ export class Category {
 
     @Column({ name: "parent_id" })
     parentId: string;
+
+    @Column({ default: "Enable" })
+    status: string;
 }

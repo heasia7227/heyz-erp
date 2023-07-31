@@ -12,25 +12,34 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetCategoriesQueryHandler = void 0;
+exports.EnableCategoryCommandHandler = void 0;
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
 const cqrs_1 = require("@nestjs/cqrs");
 const result_data_1 = require("../../../../utils/result-data");
 const category_1 = require("../../../domains/material/category");
-const get_categories_query_1 = require("./get-categories-query");
-let GetCategoriesQueryHandler = exports.GetCategoriesQueryHandler = class GetCategoriesQueryHandler {
+const enable_category_command_1 = require("./enable-category-command");
+let EnableCategoryCommandHandler = exports.EnableCategoryCommandHandler = class EnableCategoryCommandHandler {
     constructor(categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
-    async execute(query) {
-        const categories = await this.categoryRepository.find({ where: { status: "Enable" } });
-        return result_data_1.ResultData.ok(categories);
+    async execute(command) {
+        await this.categoryRepository.manager.transaction(async () => {
+            await this.enable(command.id);
+        });
+        return result_data_1.ResultData.ok(null, "Enabled success.");
+    }
+    async enable(id) {
+        const category = await this.categoryRepository.findOne({ where: { id } });
+        category.status = "Enable";
+        await this.categoryRepository.save(category);
+        const children = await this.categoryRepository.find({ where: { parentId: id } });
+        children.length > 0 && children.forEach((child) => this.enable(child.id));
     }
 };
-exports.GetCategoriesQueryHandler = GetCategoriesQueryHandler = __decorate([
-    (0, cqrs_1.QueryHandler)(get_categories_query_1.GetCategoriesQuery),
+exports.EnableCategoryCommandHandler = EnableCategoryCommandHandler = __decorate([
+    (0, cqrs_1.CommandHandler)(enable_category_command_1.EnableCategoryCommand),
     __param(0, (0, typeorm_2.InjectRepository)(category_1.Category)),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], GetCategoriesQueryHandler);
-//# sourceMappingURL=get-categories-query-handler.js.map
+], EnableCategoryCommandHandler);
+//# sourceMappingURL=enable-category-command-handler.js.map

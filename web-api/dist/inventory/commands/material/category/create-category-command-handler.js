@@ -30,6 +30,7 @@ let CreateCategoryCommandHandler = exports.CreateCategoryCommandHandler = class 
         temporary.title = command.title;
         temporary.code = command.code;
         temporary.parentId = command.parentId || "";
+        temporary.status = command.status;
         const category = await this.categoryRepository.save(temporary);
         return result_data_1.ResultData.ok(category, "Created success.");
     }

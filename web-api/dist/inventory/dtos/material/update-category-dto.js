@@ -12,11 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateCategoryDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 class UpdateCategoryDto {
-    constructor(id, code, title, parentId) {
+    constructor(id, code, title, parentId, status) {
         this.id = id;
         this.code = code;
         this.title = title;
         this.parentId = parentId;
+        this.status = status;
     }
 }
 exports.UpdateCategoryDto = UpdateCategoryDto;
@@ -36,4 +37,8 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], UpdateCategoryDto.prototype, "parentId", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ enum: ["Enable", "Disable"] }),
+    __metadata("design:type", String)
+], UpdateCategoryDto.prototype, "status", void 0);
 //# sourceMappingURL=update-category-dto.js.map

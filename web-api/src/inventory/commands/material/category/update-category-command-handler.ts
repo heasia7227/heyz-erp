@@ -15,6 +15,7 @@ export class UpdateCategoryCommandHandler implements ICommandHandler<UpdateCateg
         temporary.title = command.title;
         temporary.code = command.code;
         temporary.parentId = command.parentId || "";
+        temporary.status = command.status;
 
         const category = await this.categoryRepository.save(temporary);
         return ResultData.ok<Category>(category, "Updated success.");
