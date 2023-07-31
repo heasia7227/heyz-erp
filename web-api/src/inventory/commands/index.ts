@@ -4,6 +4,10 @@ import { EnableCategoryCommandHandler } from "./material/category/enable-categor
 import { RemoveCategoryCommandHandler } from "./material/category/remove-category-command";
 import { UpdateCategoryCommandHandler } from "./material/category/update-category-command";
 import { CreateMaterialCommandHandler } from "./material/material/create-material-command";
+import { DisableMaterialCommandHandler } from "./material/material/disable-material-command";
+import { EnableMaterialCommandHandler } from "./material/material/enable-material-command";
+import { RemoveMaterialCommandHandler } from "./material/material/remove-material-command";
+import { UpdateMaterialCommandHandler } from "./material/material/update-material-command";
 
 export const commands = [
     CreateCategoryCommandHandler,
@@ -12,4 +16,8 @@ export const commands = [
     EnableCategoryCommandHandler,
     DisableCategoryCommandHandler,
     CreateMaterialCommandHandler,
+    UpdateMaterialCommandHandler,
+    RemoveMaterialCommandHandler,
+    EnableMaterialCommandHandler,
+    DisableMaterialCommandHandler,
 ];

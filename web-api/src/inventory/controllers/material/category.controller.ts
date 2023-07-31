@@ -32,7 +32,7 @@ export class CategoryController extends BaseController {
 
     @Put()
     async update(@Body() updateCategoryDto: UpdateCategoryDto) {
-        return this.commandBus.execute(
+        const result = this.commandBus.execute(
             new UpdateCategoryCommand(
                 updateCategoryDto.id,
                 updateCategoryDto.code,
@@ -41,6 +41,15 @@ export class CategoryController extends BaseController {
                 updateCategoryDto.status
             )
         );
+
+        const resultData = await result;
+        if (resultData.code === 200) {
+            updateCategoryDto.status === "Enable"
+                ? await this.commandBus.execute(new EnableCategoryCommand(updateCategoryDto.id))
+                : await this.commandBus.execute(new DisableCategoryCommand(updateCategoryDto.id));
+        }
+
+        return result;
     }
 
     @Delete(":id")

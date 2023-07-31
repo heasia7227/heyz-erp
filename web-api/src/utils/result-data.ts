@@ -6,10 +6,13 @@ export class ResultData<T> {
         this.msg = msg || "ok";
         this.data = data || null;
     }
+
     @ApiProperty({ type: "number", default: 200 })
     code: number;
+
     @ApiProperty({ type: "string", default: "ok" })
     msg?: string;
+
     @ApiProperty({ default: null })
     data?: T;
 
