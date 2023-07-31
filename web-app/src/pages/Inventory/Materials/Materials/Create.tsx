@@ -105,14 +105,14 @@ const Create = ({ isEdit, materialInfo }: IProps) => {
                         <Input />
                     </Form.Item>
                     <Form.Item
-                        name="category"
+                        name="categoryId"
                         label={themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_CATEGORY]}
                         rules={[{ required: true }]}
                     >
                         <TreeSelect></TreeSelect>
                     </Form.Item>
                     <Form.Item
-                        name="department"
+                        name="departmentId"
                         label={themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_DEPARTMENT]}
                         rules={[{ required: true }]}
                     >
