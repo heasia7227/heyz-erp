@@ -17,7 +17,7 @@ export class ResultData<T> {
         return new ResultData<T>(200, msg, data);
     }
 
-    static fail<T>(data?: T, msg?: string): ResultData<T> {
-        return new ResultData<T>(500, msg || "fail", data);
+    static failure<T>(data?: T, msg?: string): ResultData<T> {
+        return new ResultData<T>(500, msg || "failure", data);
     }
 }

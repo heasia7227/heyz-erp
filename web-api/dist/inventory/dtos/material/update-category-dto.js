@@ -9,32 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ResultData = void 0;
+exports.UpdateCategoryDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
-class ResultData {
-    constructor(code = 200, msg, data) {
+class UpdateCategoryDto {
+    constructor(id, code, title, parentId) {
+        this.id = id;
         this.code = code;
-        this.msg = msg || "ok";
-        this.data = data || null;
-    }
-    static ok(data, msg) {
-        return new ResultData(200, msg, data);
-    }
-    static failure(data, msg) {
-        return new ResultData(500, msg || "failure", data);
+        this.title = title;
+        this.parentId = parentId;
     }
 }
-exports.ResultData = ResultData;
+exports.UpdateCategoryDto = UpdateCategoryDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: "number", default: 200 }),
-    __metadata("design:type", Number)
-], ResultData.prototype, "code", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ type: "string", default: "ok" }),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
-], ResultData.prototype, "msg", void 0);
+], UpdateCategoryDto.prototype, "id", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: null }),
-    __metadata("design:type", Object)
-], ResultData.prototype, "data", void 0);
-//# sourceMappingURL=result-data.js.map
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], UpdateCategoryDto.prototype, "code", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], UpdateCategoryDto.prototype, "title", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], UpdateCategoryDto.prototype, "parentId", void 0);
+//# sourceMappingURL=update-category-dto.js.map
