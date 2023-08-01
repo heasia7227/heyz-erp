@@ -26,6 +26,6 @@ export class Supplier {
     @Column({ name: "web_url" })
     webUrl: string;
 
-    @Column({ type: "datetime", name: "create_date_time" })
+    @Column({ type: "datetime", name: "create_date_time", default: () => "CURRENT_TIMESTAMP" })
     createDateTime: string;
 }

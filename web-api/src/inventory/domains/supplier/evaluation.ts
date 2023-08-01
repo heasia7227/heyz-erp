@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Supplier } from "./supplier";
 
 @Entity({ name: "t_supplier_evaluation" })
 export class SupplierEvaluation {
@@ -10,4 +11,8 @@ export class SupplierEvaluation {
 
     @Column()
     score: number;
+
+    @ManyToOne(() => Supplier)
+    @JoinColumn({ name: "supplier_id" })
+    supplier: Supplier;
 }
