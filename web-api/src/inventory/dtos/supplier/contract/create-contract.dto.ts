@@ -15,4 +15,7 @@ export class CreateSupplierContractDto {
 
     @ApiProperty()
     supplierId: string;
+
+    @ApiProperty({ type: "string", format: "binary" })
+    file: any;
 }

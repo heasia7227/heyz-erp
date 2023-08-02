@@ -12,6 +12,7 @@
 .vscode
 /dist
 /build
+/uploads
 
 # misc
 .DS_Store
