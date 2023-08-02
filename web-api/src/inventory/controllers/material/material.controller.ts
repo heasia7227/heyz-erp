@@ -2,14 +2,14 @@ import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/
 import { ApiTags } from "@nestjs/swagger";
 import { BaseController } from "src/base.controller";
 import { GetPageDto } from "src/base.query.dto";
-import { CreateMaterialCommand } from "src/inventory/commands/material/material/create-material-command";
-import { DisableMaterialCommand } from "src/inventory/commands/material/material/disable-material-command";
-import { EnableMaterialCommand } from "src/inventory/commands/material/material/enable-material-command";
-import { RemoveMaterialCommand } from "src/inventory/commands/material/material/remove-material-command";
-import { UpdateMaterialCommand } from "src/inventory/commands/material/material/update-material-command";
-import { CreateMaterialDto } from "src/inventory/dtos/material/material/create-material-dto";
-import { UpdateMaterialDto } from "src/inventory/dtos/material/material/update-material-dto";
-import { GetMaterialsQuery } from "src/inventory/queries/material/material/get-materials-query";
+import { CreateMaterialCommand } from "src/inventory/commands/material/material/create-material.command";
+import { DisableMaterialCommand } from "src/inventory/commands/material/material/disable-material.command";
+import { EnableMaterialCommand } from "src/inventory/commands/material/material/enable-material.command";
+import { RemoveMaterialCommand } from "src/inventory/commands/material/material/remove-material.command";
+import { UpdateMaterialCommand } from "src/inventory/commands/material/material/update-material.command";
+import { CreateMaterialDto } from "src/inventory/dtos/material/material/create-material.dto";
+import { UpdateMaterialDto } from "src/inventory/dtos/material/material/update-material.dto";
+import { GetMaterialsQuery } from "src/inventory/queries/material/material/get-materials.query";
 
 @ApiTags("inventory/material")
 @Controller("inventory/material")

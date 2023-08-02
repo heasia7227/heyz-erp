@@ -1,14 +1,14 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { BaseController } from "src/base.controller";
-import { CreateCategoryDto } from "src/inventory/dtos/material/category/create-category-dto";
-import { UpdateCategoryDto } from "src/inventory/dtos/material/category/update-category-dto";
-import { CreateCategoryCommand } from "src/inventory/commands/material/category/create-category-command";
-import { UpdateCategoryCommand } from "src/inventory/commands/material/category/update-category-command";
-import { GetCategoriesQuery } from "src/inventory/queries/material/category/get-categories-query";
-import { RemoveCategoryCommand } from "src/inventory/commands/material/category/remove-category-command";
-import { EnableCategoryCommand } from "src/inventory/commands/material/category/enable-category-command";
-import { DisableCategoryCommand } from "src/inventory/commands/material/category/disable-category-command";
+import { CreateCategoryDto } from "src/inventory/dtos/material/category/create-category.dto";
+import { UpdateCategoryDto } from "src/inventory/dtos/material/category/update-category.dto";
+import { CreateCategoryCommand } from "src/inventory/commands/material/category/create-category.command";
+import { UpdateCategoryCommand } from "src/inventory/commands/material/category/update-category.command";
+import { GetCategoriesQuery } from "src/inventory/queries/material/category/get-categories.query";
+import { RemoveCategoryCommand } from "src/inventory/commands/material/category/remove-category.command";
+import { EnableCategoryCommand } from "src/inventory/commands/material/category/enable-category.command";
+import { DisableCategoryCommand } from "src/inventory/commands/material/category/disable-category.command";
 
 @ApiTags("inventory/material/category")
 @Controller("inventory/material/category")

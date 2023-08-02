@@ -2,11 +2,11 @@ import { Body, Controller, Get, Post, Put, Query } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { BaseController } from "src/base.controller";
 import { GetPageDto } from "src/base.query.dto";
-import { CreateSupplierCommand } from "src/inventory/commands/supplier/supplier/create-supplier-command";
-import { UpdateSupplierCommand } from "src/inventory/commands/supplier/supplier/update-supplier-command";
-import { CreateSupplierDto } from "src/inventory/dtos/supplier/supplier/create-supplier-dto";
-import { UpdateSupplierDto } from "src/inventory/dtos/supplier/supplier/update-supplier-dto";
-import { GetSuppliersQuery } from "src/inventory/queries/supplier/supplier/get-suppliers-query";
+import { CreateSupplierCommand } from "src/inventory/commands/supplier/supplier/create-supplier.command";
+import { UpdateSupplierCommand } from "src/inventory/commands/supplier/supplier/update-supplier.command";
+import { CreateSupplierDto } from "src/inventory/dtos/supplier/supplier/create-supplier.dto";
+import { UpdateSupplierDto } from "src/inventory/dtos/supplier/supplier/update-supplier.dto";
+import { GetSuppliersQuery } from "src/inventory/queries/supplier/supplier/get-suppliers.query";
 
 @ApiTags("supplier")
 @Controller("supplier")
