@@ -13,6 +13,11 @@ import { CreateSupplierEvaluationCommandHandler } from "./supplier/evaluation/cr
 import { CreateSupplierPaymentCommandHandler } from "./supplier/payment/create-payment.command";
 import { CreateSupplierCommandHandler } from "./supplier/supplier/create-supplier.command";
 import { UpdateSupplierCommandHandler } from "./supplier/supplier/update-supplier.command";
+import { CreateWarehouseCommandHandler } from "./warehouse/create-warehouse.command";
+import { DisableWarehouseCommandHandler } from "./warehouse/disable-warehouse.command";
+import { EnableWarehouseCommandHandler } from "./warehouse/enable-warehouse.command";
+import { RemoveWarehouseCommandHandler } from "./warehouse/remove-warehouse.command";
+import { UpdateWarehouseCommandHandler } from "./warehouse/update-warehouse.command";
 
 export const commands = [
     CreateCategoryCommandHandler,
@@ -30,4 +35,9 @@ export const commands = [
     CreateSupplierContractCommandHandler,
     CreateSupplierEvaluationCommandHandler,
     CreateSupplierPaymentCommandHandler,
+    CreateWarehouseCommandHandler,
+    UpdateWarehouseCommandHandler,
+    RemoveWarehouseCommandHandler,
+    EnableWarehouseCommandHandler,
+    DisableWarehouseCommandHandler,
 ];

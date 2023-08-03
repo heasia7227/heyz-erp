@@ -26,4 +26,7 @@ export class Warehouse {
 
     @Column({ name: "contact_number" })
     contactNumber: string;
+
+    @Column({ default: "Enable" })
+    status: string;
 }

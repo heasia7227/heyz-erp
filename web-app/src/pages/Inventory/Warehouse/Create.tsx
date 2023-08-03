@@ -67,8 +67,8 @@ const Create = ({ isEdit, warehouse }: IProps) => {
             <Modal
                 title={
                     isEdit
-                        ? themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_WAREHOUSE_CREATE]
-                        : themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_WAREHOUSE_EDIT]
+                        ? themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_WAREHOUSE_EDIT]
+                        : themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_WAREHOUSE_CREATE]
                 }
                 open={open}
                 onCancel={onCancel}

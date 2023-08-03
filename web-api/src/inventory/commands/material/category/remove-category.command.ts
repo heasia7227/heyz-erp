@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { ResultData } from "src/utils/result-data";
 import { MaterialCategory } from "src/inventory/domains/material/category";
+import { Material } from "src/inventory/domains/material/material";
 
 export class RemoveCategoryCommand {
     constructor(public readonly id: string) {}
@@ -11,11 +12,20 @@ export class RemoveCategoryCommand {
 @CommandHandler(RemoveCategoryCommand)
 export class RemoveCategoryCommandHandler implements ICommandHandler<RemoveCategoryCommand> {
     constructor(
-        @InjectRepository(MaterialCategory) private readonly categoryRepository: Repository<MaterialCategory>
+        @InjectRepository(MaterialCategory) private readonly categoryRepository: Repository<MaterialCategory>,
+        @InjectRepository(Material) private readonly materialRepository: Repository<Material>
     ) {}
 
     async execute(command: RemoveCategoryCommand) {
-        // TODO find materials by category id
+        const category = await this.categoryRepository.findOne({ where: { id: command.id } });
+        // find materials by category id
+        const materials = await this.materialRepository.find({ where: { category } });
+        if (materials.length > 0) {
+            return ResultData.failure<MaterialCategory>(
+                null,
+                "Removed failure, Has children materials that cannot be remove."
+            );
+        }
 
         //find category children by category id
         const categories = await this.categoryRepository.find({ where: { parentId: command.id } });
@@ -26,8 +36,7 @@ export class RemoveCategoryCommandHandler implements ICommandHandler<RemoveCateg
             );
         }
 
-        const temporary = await this.categoryRepository.findOne({ where: { id: command.id } });
-        await this.categoryRepository.delete(temporary);
-        return ResultData.ok<MaterialCategory>(temporary, "Removed success.");
+        await this.categoryRepository.delete(category);
+        return ResultData.ok<MaterialCategory>(category, "Removed success.");
     }
 }

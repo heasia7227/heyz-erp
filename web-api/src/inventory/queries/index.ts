@@ -4,6 +4,7 @@ import { GetSupplierContractsQueryHandler } from "./supplier/contract/get-contra
 import { GetSupplierEvaluationsQueryHandler } from "./supplier/evaluation/get-evaluation.query";
 import { GetSupplierPaymentsQueryHandler } from "./supplier/payment/get-payment.query";
 import { GetSuppliersQueryHandler } from "./supplier/supplier/get-suppliers.query";
+import { GetWarehousesQueryHandler } from "./warehouse/get-warehouse.query";
 
 export const queries = [
     GetCategoriesQueryHandler,
@@ -12,4 +13,5 @@ export const queries = [
     GetSupplierContractsQueryHandler,
     GetSupplierEvaluationsQueryHandler,
     GetSupplierPaymentsQueryHandler,
+    GetWarehousesQueryHandler,
 ];
