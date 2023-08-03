@@ -119,7 +119,7 @@ const List = ({ supplierPayment }: IProps) => {
                                 }
                                 :
                             </span>
-                            <span>{paymentRecords?.paidTotalPrice}</span>
+                            <span>{paymentRecords?.paidTotalAmount}</span>
                         </Statistic>
                     </Col>
                     <Col>

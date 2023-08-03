@@ -64,6 +64,6 @@ export interface ISupplierPaymentRecord {
 
 export interface ISupplierPaymentRecords extends IPage {
     contractTotalPrice: number;
-    paidTotalPrice: number;
+    paidTotalAmount: number;
     paymentRecords: Array<ISupplierPaymentRecord>;
 }

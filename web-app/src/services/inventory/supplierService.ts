@@ -99,7 +99,7 @@ export const supplierService = {
             current: 1,
             pageSize: 10,
             "contractTotalPrice|1-100": 100,
-            "paidTotalPrice|1-100": 100,
+            "paidTotalAmount|1-100": 100,
             "paymentRecords|10": [
                 {
                     id: "@id",

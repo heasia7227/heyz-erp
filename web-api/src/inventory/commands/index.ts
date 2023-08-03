@@ -10,6 +10,7 @@ import { RemoveMaterialCommandHandler } from "./material/material/remove-materia
 import { UpdateMaterialCommandHandler } from "./material/material/update-material.command";
 import { CreateSupplierContractCommandHandler } from "./supplier/contract/create-contract.command";
 import { CreateSupplierEvaluationCommandHandler } from "./supplier/evaluation/create-evaluation.command";
+import { CreateSupplierPaymentCommandHandler } from "./supplier/payment/create-payment.command";
 import { CreateSupplierCommandHandler } from "./supplier/supplier/create-supplier.command";
 import { UpdateSupplierCommandHandler } from "./supplier/supplier/update-supplier.command";
 
@@ -28,4 +29,5 @@ export const commands = [
     UpdateSupplierCommandHandler,
     CreateSupplierContractCommandHandler,
     CreateSupplierEvaluationCommandHandler,
+    CreateSupplierPaymentCommandHandler,
 ];
