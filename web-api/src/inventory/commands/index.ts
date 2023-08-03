@@ -9,6 +9,7 @@ import { EnableMaterialCommandHandler } from "./material/material/enable-materia
 import { RemoveMaterialCommandHandler } from "./material/material/remove-material.command";
 import { UpdateMaterialCommandHandler } from "./material/material/update-material.command";
 import { CreateSupplierContractCommandHandler } from "./supplier/contract/create-contract.command";
+import { CreateSupplierEvaluationCommandHandler } from "./supplier/evaluation/create-evaluation.command";
 import { CreateSupplierCommandHandler } from "./supplier/supplier/create-supplier.command";
 import { UpdateSupplierCommandHandler } from "./supplier/supplier/update-supplier.command";
 
@@ -26,4 +27,5 @@ export const commands = [
     CreateSupplierCommandHandler,
     UpdateSupplierCommandHandler,
     CreateSupplierContractCommandHandler,
+    CreateSupplierEvaluationCommandHandler,
 ];

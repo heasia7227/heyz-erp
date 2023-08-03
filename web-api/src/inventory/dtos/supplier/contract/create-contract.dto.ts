@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateSupplierContractDto {
-    constructor(title: string, totalPrice: number, attachment: string, supplierId: string) {
+    constructor(title: string, totalPrice: number, supplierId: string) {
         this.title = title;
         this.totalPrice = totalPrice;
         this.supplierId = supplierId;
