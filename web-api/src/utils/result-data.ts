@@ -20,8 +20,8 @@ export class ResultData<T> {
         return new ResultData<T>(200, msg, data);
     }
 
-    static okList<T>(data?: T, page?: IPage, msg?: string): ResultData<{ data: T } & IPage> {
-        return new ResultData<{ data: T } & IPage>(200, msg, { data, ...page });
+    static okList<T>(data?: T, page?: IPage, msg?: string): ResultData<T & IPage> {
+        return new ResultData<T & IPage>(200, msg, { ...data, ...page });
     }
 
     static failure<T>(data?: T, msg?: string): ResultData<T> {

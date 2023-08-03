@@ -17,10 +17,13 @@ export class GetSuppliersQueryHandler implements IQueryHandler<GetSuppliersQuery
             take: query.pageSize,
         });
 
-        return ResultData.okList<Array<Supplier>>(suppliers, {
-            total,
-            current: query.current,
-            pageSize: query.pageSize,
-        });
+        return ResultData.okList<{ data: Array<Supplier> }>(
+            { data: suppliers },
+            {
+                total,
+                current: query.current,
+                pageSize: query.pageSize,
+            }
+        );
     }
 }

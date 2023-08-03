@@ -18,10 +18,13 @@ export class GetMaterialsQueryHandler implements IQueryHandler<GetMaterialsQuery
             take: query.pageSize,
         });
 
-        return ResultData.okList<Array<Material>>(materials, {
-            total,
-            current: query.current,
-            pageSize: query.pageSize,
-        });
+        return ResultData.okList<{ data: Array<Material> }>(
+            { data: materials },
+            {
+                total,
+                current: query.current,
+                pageSize: query.pageSize,
+            }
+        );
     }
 }

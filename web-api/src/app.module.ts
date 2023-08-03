@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { InventoryModule } from "./inventory/inventory.module";
 import { InventoryEntities } from "./inventory/domains";
+import { SystemModule } from "./system/system.module";
 
 @Module({
     imports: [
@@ -17,6 +18,7 @@ import { InventoryEntities } from "./inventory/domains";
             logging: false,
         }),
         InventoryModule,
+        SystemModule,
     ],
 })
 export class AppModule {}
