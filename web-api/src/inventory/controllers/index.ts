@@ -1,3 +1,4 @@
+import { InventoryController } from "./inventory/inventory.controller";
 import { CategoryController } from "./material/category.controller";
 import { MaterialController } from "./material/material.controller";
 import { SupplierContractController } from "./supplier/contract.controller";
@@ -11,6 +12,7 @@ export const controllers = [
     SupplierContractController,
     SupplierEvaluationController,
     SupplierPaymentController,
+    InventoryController,
     MaterialController,
     CategoryController,
     WarehouseController,

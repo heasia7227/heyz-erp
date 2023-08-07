@@ -9,7 +9,7 @@ import { RemoveWarehouseCommand } from "src/inventory/commands/warehouse/remove-
 import { UpdateWarehouseCommand } from "src/inventory/commands/warehouse/update-warehouse.command";
 import { CreateWarehouseDto } from "src/inventory/dtos/warehouse/create-warehouse.dto";
 import { UpdateWarehouseDto } from "src/inventory/dtos/warehouse/update-warehouse.dto";
-import { GetWarehousesQuery } from "src/inventory/queries/warehouse/get-warehouse.query";
+import { GetWarehousesQuery } from "src/inventory/queries/warehouse/get-warehouses.query";
 
 @ApiTags("inventory/warehouse")
 @Controller("inventory/warehouse")
