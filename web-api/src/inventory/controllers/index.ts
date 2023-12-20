@@ -1,3 +1,5 @@
+import { RegularController } from "./counting/regular/regular.controller";
+import { TemporaryController } from "./counting/temporary/temporary.controller";
 import { InventoryController } from "./inventory/inventory.controller";
 import { CategoryController } from "./material/category.controller";
 import { MaterialController } from "./material/material.controller";
@@ -16,4 +18,6 @@ export const controllers = [
     MaterialController,
     CategoryController,
     WarehouseController,
+    TemporaryController,
+    RegularController,
 ];

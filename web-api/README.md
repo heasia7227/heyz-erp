@@ -19,3 +19,5 @@ npm install --save @nestjs/swagger swagger-ui-express
 https://www.nestjs.com.cn/techniques/sql
 npm install --save @nestjs/typeorm typeorm mysql2
 ```
+
+browser http://localhost:8000/api open swagger

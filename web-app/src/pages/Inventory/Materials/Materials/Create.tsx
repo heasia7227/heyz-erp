@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { Button, Form, Input, Modal, Space, TreeSelect, Typography } from "antd";
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import { useThemeController } from "@/theme";
-import { useState } from "react";
 import { IMaterial } from "@/interfaces/inventory/IMaterials";
 
 interface IProps {
@@ -38,28 +38,6 @@ const Create = ({ isEdit, materialInfo }: IProps) => {
             });
     };
 
-    const enFormItemLayout = {
-        labelCol: {
-            xs: { span: 24 },
-            sm: { span: 10 },
-        },
-        wrapperCol: {
-            xs: { span: 24 },
-            sm: { span: 14 },
-        },
-    };
-
-    const zhFormItemLayout = {
-        labelCol: {
-            xs: { span: 24 },
-            sm: { span: 6 },
-        },
-        wrapperCol: {
-            xs: { span: 24 },
-            sm: { span: 18 },
-        },
-    };
-
     return (
         <>
             {isEdit ? (
@@ -85,11 +63,7 @@ const Create = ({ isEdit, materialInfo }: IProps) => {
                 onOk={onFinish}
                 width={600}
             >
-                <Form
-                    {...(themeController.language === "English" ? enFormItemLayout : zhFormItemLayout)}
-                    form={form}
-                    style={{ marginTop: "20px" }}
-                >
+                <Form {...themeController.formItemLayout} form={form} style={{ marginTop: "20px" }}>
                     <Form.Item
                         name="name"
                         label={themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_NAME]}

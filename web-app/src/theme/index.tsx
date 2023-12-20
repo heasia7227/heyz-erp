@@ -7,19 +7,35 @@ import { styled } from "styled-components";
 import { BaseStyled, DivProps } from "@/components/BaseStyled";
 import { languageEnglish } from "./languages/languageEnglish";
 import { languageChinese } from "./languages/languageChinese";
+import { IThemeContext } from "./interface";
 
-export interface IThemeContext {
-    primarycolor: string;
-    primarycolors: Array<string>;
-    language: string;
-    languagePack: { [key: string]: string };
-    setLanguage?: (language: string) => void;
-}
+const enFormItemLayout = {
+    labelCol: {
+        xs: { span: 24 },
+        sm: { span: 10 },
+    },
+    wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 14 },
+    },
+};
+
+const zhFormItemLayout = {
+    labelCol: {
+        xs: { span: 24 },
+        sm: { span: 6 },
+    },
+    wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 18 },
+    },
+};
 
 const themeDefaultSetting = {
     primarycolor: "#096dd9",
     primarycolors: [],
     language: "English",
+    formItemLayout: enFormItemLayout,
     languagePack: {},
 };
 
@@ -47,7 +63,12 @@ const ThemeProvider = ({ children }: IProps) => {
     }, []);
 
     const setLanguage = (language: string) => {
-        setSetting({ ...setting, language, languagePack: languageMapping[language] });
+        setSetting({
+            ...setting,
+            language,
+            languagePack: languageMapping[language],
+            formItemLayout: language === "English" ? enFormItemLayout : zhFormItemLayout,
+        });
     };
 
     const themeConfig = { token: { colorPrimary: themeDefaultSetting.primarycolor, borderRadius: 0 } };

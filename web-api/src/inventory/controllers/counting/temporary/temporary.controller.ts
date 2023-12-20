@@ -6,7 +6,7 @@ import { GetCountingTemporariesQuery } from "src/inventory/queries/counting/temp
 
 @ApiTags("inventory/counting/temporary")
 @Controller("inventory/counting/temporary")
-export class WarehouseController extends BaseController {
+export class TemporaryController extends BaseController {
     @Get("list")
     async list(@Query() getPageDto: GetPageDto) {
         return this.queryBus.execute(new GetCountingTemporariesQuery(getPageDto.current, getPageDto.pageSize));

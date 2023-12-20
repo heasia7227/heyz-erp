@@ -8,6 +8,7 @@ import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
 import { IInventories } from "@/interfaces/inventory/IInventory";
 import { inventoryService } from "@/services/inventory/inventoryService";
 import CategoriesTree, { ColumnCategories } from "../Materials/Categories/Tree";
+import Details from "./Details";
 
 const { Search } = Input;
 
@@ -87,12 +88,7 @@ const Inventory = () => {
                 return (
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
-                            <Typography.Link>
-                                <Space size={4}>
-                                    <FileTextOutlined />
-                                    {themeController.languagePack?.[LANGUAGE_KEYS.COMMON_DETAILS]}
-                                </Space>
-                            </Typography.Link>
+                            <Details inventory={record} />
                         </Space>
                     </>
                 );

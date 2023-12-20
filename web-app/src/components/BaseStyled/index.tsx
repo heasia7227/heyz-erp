@@ -1,4 +1,5 @@
-import { IThemeContext, useThemeController } from "@/theme";
+import { useThemeController } from "@/theme";
+import { IThemeContext } from "@/theme/interface";
 
 export const BaseStyled = <T,>(WrapComponent: React.ComponentType<T>) => {
     return (props: T): JSX.Element => {

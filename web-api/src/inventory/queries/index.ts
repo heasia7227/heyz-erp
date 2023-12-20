@@ -1,3 +1,4 @@
+import { GetCountingRegularsQueryHandler } from "./counting/regular/get-regulars.query";
 import { GetCountingTemporariesQueryHandler } from "./counting/temporary/get-temporaries.query";
 import { GetInventoriesQueryHandler } from "./inventory/get-inventories.query";
 import { GetCategoriesQueryHandler } from "./material/category/get-categories.query";
@@ -18,4 +19,5 @@ export const queries = [
     GetWarehousesQueryHandler,
     GetInventoriesQueryHandler,
     GetCountingTemporariesQueryHandler,
+    GetCountingRegularsQueryHandler,
 ];
