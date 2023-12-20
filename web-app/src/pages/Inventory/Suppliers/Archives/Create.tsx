@@ -50,6 +50,8 @@ const Create = ({ isEdit, supplierArchive }: IProps) => {
         },
     };
 
+    console.log("isEdit: ", isEdit);
+
     return (
         <>
             {isEdit ? (
@@ -67,8 +69,8 @@ const Create = ({ isEdit, supplierArchive }: IProps) => {
             <Modal
                 title={
                     isEdit
-                        ? themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_CREATE]
-                        : themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_EDIT]
+                        ? themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_EDIT]
+                        : themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_SUPPLIERS_ARCHIVE_CREATE]
                 }
                 open={open}
                 onCancel={onCancel}
