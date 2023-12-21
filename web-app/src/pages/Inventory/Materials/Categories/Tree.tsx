@@ -16,7 +16,7 @@ const CategoriesTree = () => {
 
     const getCategories = async () => {
         const result = await materialsService.getCategories();
-        setTreeData(result.categories);
+        setTreeData(result);
     };
 
     const onSelect: DirectoryTreeProps["onSelect"] = (keys, info) => {

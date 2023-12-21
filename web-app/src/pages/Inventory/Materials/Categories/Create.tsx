@@ -8,9 +8,10 @@ import { IMaterialsCategory } from "@/interfaces/inventory/IMaterials";
 interface IProps {
     isEdit?: boolean;
     categoryInfo?: IMaterialsCategory;
+    refresh: () => void;
 }
 
-const Create = ({ isEdit, categoryInfo }: IProps) => {
+const Create = ({ isEdit, categoryInfo, refresh }: IProps) => {
     const themeController = useThemeController();
     const [form] = Form.useForm();
 
@@ -32,6 +33,7 @@ const Create = ({ isEdit, categoryInfo }: IProps) => {
     const onFinish = () => {
         form.validateFields()
             .then((values) => {
+                refresh();
                 console.log("Received values of form: ", values);
             })
             .catch((errorInfo) => {
@@ -67,8 +69,8 @@ const Create = ({ isEdit, categoryInfo }: IProps) => {
             <Modal
                 title={
                     isEdit
-                        ? themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORY_CREATE]
-                        : themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORY_EDIT]
+                        ? themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORY_EDIT]
+                        : themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIALS_CATEGORY_CREATE]
                 }
                 open={open}
                 onCancel={onCancel}

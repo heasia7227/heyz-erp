@@ -1,40 +1,11 @@
-import mockjs from "mockjs";
+import { API } from "@/api/httpClient";
+import { IMaterialQuery } from "@/interfaces/inventory/IMaterials";
 
 export const materialsService = {
-    getCategories: () => {
-        return mockjs.mock({
-            "categories|20": [
-                {
-                    key: "@id",
-                    code: "@id",
-                    title: "@title(3)",
-                    "children|10": [
-                        {
-                            key: "@id",
-                            code: "@id",
-                            title: "@title(3)",
-                            isLeaf: true,
-                        },
-                    ],
-                },
-            ],
-        });
+    getCategories: async () => {
+        return await API.get(`/inventory/material/category/list`);
     },
-    getMaterials: () => {
-        return mockjs.mock({
-            total: 100,
-            current: 1,
-            pageSize: 10,
-            "materials|10": [
-                {
-                    id: "@id",
-                    code: "@id",
-                    name: "@title(3)",
-                    category: "@title(3)",
-                    department: "@title(3)",
-                    regularMaintenanceFrequency: "",
-                },
-            ],
-        });
+    getMaterials: async (params: IMaterialQuery) => {
+        return await API.get(`/inventory/material/list`, { params });
     },
 };

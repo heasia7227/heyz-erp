@@ -22,7 +22,7 @@ const Categories = () => {
 
     const getCategories = async () => {
         const result = await materialsService.getCategories();
-        setCategories(result.categories);
+        setCategories(result);
     };
 
     const columns = [
@@ -64,7 +64,7 @@ const Categories = () => {
                 return (
                     <>
                         <Space split={<Divider type="vertical" />} size={0}>
-                            <Create isEdit categoryInfo={record} />
+                            <Create isEdit categoryInfo={record} refresh={getCategories} />
                             <Remove categoryInfo={record} />
                             <Enable categoryInfo={record} />
                             <Disable categoryInfo={record} />
@@ -87,7 +87,7 @@ const Categories = () => {
                     />
                 </Col>
                 <Col>
-                    <Create />
+                    <Create refresh={getCategories} />
                 </Col>
             </Row>
             <Table

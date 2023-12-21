@@ -3,3 +3,8 @@ export interface IPage {
     current: number;
     pageSize: number;
 }
+
+export interface IPageQuery {
+    current: number;
+    pageSize: number;
+}

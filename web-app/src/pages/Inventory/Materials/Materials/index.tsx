@@ -3,7 +3,7 @@ import { Col, Divider, Input, Row, Space, Table } from "antd";
 import styled from "styled-components";
 import { useThemeController } from "@/theme";
 import { LANGUAGE_KEYS } from "@/theme/languages/languageKeys";
-import { IMaterials } from "@/interfaces/inventory/IMaterials";
+import { IMaterialQuery, IMaterials } from "@/interfaces/inventory/IMaterials";
 import { materialsService } from "@/services/inventory/materialsService";
 import CategoriesTree, { ColumnCategories } from "../Categories/Tree";
 import Create from "./Create";
@@ -16,13 +16,19 @@ const { Search } = Input;
 const Materials = () => {
     const themeController = useThemeController();
     const [materials, setMaterials] = useState<IMaterials>();
+    const [keyWord, setKeyWord] = useState<string>("");
 
     useEffect(() => {
         getMaterials();
     }, []);
 
     const getMaterials = async () => {
-        const result = await materialsService.getMaterials();
+        const query: IMaterialQuery = {
+            keyWord,
+            current: (materials?.current || 0) + 1,
+            pageSize: 10,
+        };
+        const result = await materialsService.getMaterials(query);
         setMaterials(result);
     };
 
@@ -102,6 +108,8 @@ const Materials = () => {
                                     themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_CATEGORY]
                                 }/${themeController.languagePack?.[LANGUAGE_KEYS.INVENTORY_MATERIAL_DEPARTMENT]}`}
                                 style={{ width: 500 }}
+                                value={keyWord}
+                                onChange={(e) => setKeyWord(e.target.value)}
                             />
                         </Col>
                         <Col>

@@ -28,7 +28,7 @@ const requestHandler = (request: InternalAxiosRequestConfig) => {
 };
 
 const responseHandler = (response: AxiosResponse) => {
-    return response?.data;
+    return response?.data?.data;
 };
 
 const errorHandler = async (error: any) => {
