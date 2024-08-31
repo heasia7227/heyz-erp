@@ -3,25 +3,37 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+    color: rgb(var(--foreground-rgb));
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+/* 自定义滚动条整体样式 */
+::-webkit-scrollbar {
+    width: 8px; /* 滚动条宽度 */
+    background-color: #eee; /* 滚动条背景色 */
+}
+
+/* 自定义滚动条滑块样式 */
+::-webkit-scrollbar-thumb {
+    border-radius: 5px; /* 滑块圆角 */
+    background-color: #ccc; /* 滑块颜色 */
 }
