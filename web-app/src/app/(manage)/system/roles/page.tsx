@@ -1,7 +1,9 @@
+import RoleList from "@/views/system/roles/List";
+
 const Roles = () => {
     return (
         <>
-            <div>Roles</div>
+            <RoleList />
         </>
     );
 };

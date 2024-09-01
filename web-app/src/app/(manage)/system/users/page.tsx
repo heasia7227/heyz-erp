@@ -1,7 +1,9 @@
+import UserList from "@/views/system/users/List";
+
 const Users = () => {
     return (
         <>
-            <div>Users</div>
+            <UserList />
         </>
     );
 };

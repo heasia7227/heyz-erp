@@ -1,7 +1,9 @@
+import DepartmentList from "@/views/system/departments/List";
+
 const Departments = () => {
     return (
         <>
-            <div>Departments</div>
+            <DepartmentList />
         </>
     );
 };

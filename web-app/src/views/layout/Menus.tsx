@@ -1,14 +1,25 @@
 "use client";
 
 import { Menu, MenuProps } from "antd";
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from "@ant-design/icons";
+import {
+    FolderOpenOutlined,
+    MoneyCollectOutlined,
+    AppstoreAddOutlined,
+    SettingOutlined,
+    TruckOutlined,
+    ShareAltOutlined,
+    BankOutlined,
+    DeploymentUnitOutlined,
+    NodeExpandOutlined,
+    UserSwitchOutlined,
+} from "@ant-design/icons";
 import { useState } from "react";
 
 type MenuItem = Required<MenuProps>["items"][number];
 const items: MenuItem[] = [
     {
         key: "01",
-        icon: <MailOutlined />,
+        icon: <FolderOpenOutlined />,
         label: "项目管理",
         children: [
             { key: "0101", label: "项目计划" },
@@ -19,7 +30,7 @@ const items: MenuItem[] = [
     },
     {
         key: "02",
-        icon: <MailOutlined />,
+        icon: <MoneyCollectOutlined />,
         label: "财务管理",
         children: [
             { key: "0201", label: "会计核算" },
@@ -34,7 +45,7 @@ const items: MenuItem[] = [
     },
     {
         key: "03",
-        icon: <MailOutlined />,
+        icon: <AppstoreAddOutlined />,
         label: "生产管理",
         children: [
             { key: "0301", label: "生产计划" },
@@ -49,7 +60,7 @@ const items: MenuItem[] = [
     },
     {
         key: "04",
-        icon: <MailOutlined />,
+        icon: <TruckOutlined />,
         label: "采购管理",
         children: [
             { key: "0401", label: "采购计划" },
@@ -59,7 +70,7 @@ const items: MenuItem[] = [
     },
     {
         key: "05",
-        icon: <MailOutlined />,
+        icon: <ShareAltOutlined />,
         label: "销售管理",
         children: [
             {
@@ -86,7 +97,7 @@ const items: MenuItem[] = [
     },
     {
         key: "06",
-        icon: <MailOutlined />,
+        icon: <BankOutlined />,
         label: "库存管理",
         children: [
             { key: "0601", label: "供应商管理" },
@@ -101,7 +112,7 @@ const items: MenuItem[] = [
     },
     {
         key: "07",
-        icon: <MailOutlined />,
+        icon: <DeploymentUnitOutlined />,
         label: "资产管理",
         children: [
             { key: "0701", label: "资产档案" },
@@ -112,7 +123,7 @@ const items: MenuItem[] = [
     },
     {
         key: "08",
-        icon: <MailOutlined />,
+        icon: <NodeExpandOutlined />,
         label: "综合办公",
         children: [
             { key: "0801", label: "流程管理" },
@@ -122,7 +133,7 @@ const items: MenuItem[] = [
     },
     {
         key: "09",
-        icon: <MailOutlined />,
+        icon: <UserSwitchOutlined />,
         label: "人力资源管理",
         children: [
             { key: "0901", label: "员工档案" },
@@ -133,7 +144,7 @@ const items: MenuItem[] = [
     },
     {
         key: "10",
-        icon: <MailOutlined />,
+        icon: <SettingOutlined />,
         label: "系统管理",
         children: [
             { key: "1001", label: "用户管理" },
