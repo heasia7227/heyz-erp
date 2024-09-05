@@ -91,11 +91,11 @@ const Search = () => {
                 <div className="flex-1">
                     <Button icon={<SearchOutlined />}>查询</Button>
                 </div>
-                <div>
+                {/* <div>
                     <Button type="primary" icon={<PlusOutlined />}>
                         新增用户
                     </Button>
-                </div>
+                </div> */}
             </Form>
         </>
     );

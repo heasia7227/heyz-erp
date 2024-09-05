@@ -136,10 +136,11 @@ const items: MenuItem[] = [
         icon: <UserSwitchOutlined />,
         label: "人力资源管理",
         children: [
-            { key: "0901", label: "员工档案" },
+            { key: "0901", label: "档案管理" },
             { key: "0902", label: "薪资管理" },
-            { key: "0903", label: "绩效管理" },
+            { key: "0903", label: "绩效考核" },
             { key: "0904", label: "培训管理" },
+            { key: "0904", label: "招聘管理" },
         ],
     },
     {
