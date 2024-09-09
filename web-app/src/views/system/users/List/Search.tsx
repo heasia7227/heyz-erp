@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form, Input, TreeSelect, TreeSelectProps } from "antd";
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
+import httpFetch from "@/utils/http-fetch";
 
 const treeData = [
     {
@@ -56,6 +57,15 @@ const treeData = [
 const Search = () => {
     const [form] = Form.useForm();
     const [departmentId, setDepartmentId] = useState<string>();
+
+    useEffect(() => {
+        getDepartments();
+    }, []);
+
+    const getDepartments = async () => {
+        const result = await httpFetch("/api/system/departments/trees");
+        console.log("departments: ", result);
+    };
 
     const onChange = (newValue: string) => {
         setDepartmentId(newValue);

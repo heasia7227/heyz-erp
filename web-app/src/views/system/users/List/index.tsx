@@ -1,95 +1,109 @@
 "use client";
 
-import { Space, Table, TableProps, Tag } from "antd";
+import { useEffect, useState } from "react";
+import { Divider, Space, Switch, Table } from "antd";
+import httpFetch from "@/utils/http-fetch";
 import Search from "./Search";
 
-interface DataType {
-    key: string;
-    departmentName: string;
-    userId: string;
-    userName: string;
-    account: string;
-    status: string;
-}
-
-const columns: TableProps<DataType>["columns"] = [
+const columns = [
     {
         title: "所属部门",
-        dataIndex: "departmentName",
-        key: "departmentName",
-    },
-    {
-        title: "用户编号",
-        dataIndex: "userId",
-        key: "userId",
+        dataIndex: "departmentTitle",
+        key: "departmentTitle",
     },
     {
         title: "用户姓名",
-        dataIndex: "userName",
-        key: "userName",
+        dataIndex: "name",
+        key: "name",
     },
     {
-        title: "登录账号",
-        dataIndex: "account",
-        key: "account",
+        title: "出生年月",
+        dataIndex: "birthday",
+        key: "birthday",
+    },
+    {
+        title: "性别",
+        dataIndex: "gender",
+        key: "gender",
+    },
+    {
+        title: "手机号",
+        dataIndex: "phoneNumber",
+        key: "phoneNumber",
+    },
+    {
+        title: "邮件",
+        dataIndex: "email",
+        key: "email",
     },
     {
         title: "状态",
         key: "status",
         dataIndex: "status",
-        render: (_, { status }) => (
-            <Tag color={status === "Enable" ? "processing" : "warning"} key={status}>
-                {status}
-            </Tag>
+        render: (status: string) => (
+            <Switch checkedChildren="已启用" unCheckedChildren="已禁用" checked={status === "enable"} />
         ),
+    },
+    {
+        title: "创建人",
+        dataIndex: "createUserName",
+        key: "createUserName",
+    },
+    {
+        title: "创建时间",
+        dataIndex: "createDate",
+        key: "createDate",
+    },
+    {
+        title: "修改人",
+        dataIndex: "updateUserName",
+        key: "updateUserName",
+    },
+    {
+        title: "修改时间",
+        dataIndex: "updateDate",
+        key: "updateDate",
     },
     {
         title: "操作",
         key: "action",
-        render: (_, record) => (
-            <Space size="middle">
+        render: (_: any, record: any) => (
+            <Space size={0} split={<Divider type="vertical" />}>
                 <a>编辑</a>
-                <a>禁用</a>
-                <a>启用</a>
+                <a>分配权限</a>
                 <a>重置密码</a>
             </Space>
         ),
     },
 ];
 
-const data: DataType[] = [
-    {
-        key: "1",
-        departmentName: "科技部门",
-        userId: "10001",
-        userName: "Arthur",
-        account: "admin",
-        status: "Disable",
-    },
-    {
-        key: "2",
-        departmentName: "科技部门",
-        userId: "10002",
-        userName: "John",
-        account: "sys01",
-        status: "Enable",
-    },
-    {
-        key: "3",
-        departmentName: "科技部门",
-        userId: "10003",
-        userName: "Jake",
-        account: "sys02",
-        status: "Enable",
-    },
-];
-
 const UserList = () => {
+    const [data, setData] = useState<any>({});
+    const [loading, setLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        getUsers();
+    }, []);
+
+    const getUsers = async () => {
+        setLoading(true);
+        const result = await httpFetch("/api/system/users");
+        setData(result);
+        setLoading(false);
+    };
+
     return (
         <>
             <div className="flex flex-col gap-3">
                 <Search />
-                <Table size="small" bordered columns={columns} dataSource={data} />
+                <Table
+                    size="small"
+                    bordered
+                    rowKey={"id"}
+                    columns={columns}
+                    dataSource={data?.items}
+                    loading={loading}
+                />
             </div>
         </>
     );

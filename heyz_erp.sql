@@ -11,7 +11,7 @@
  Target Server Version : 90001
  File Encoding         : 65001
 
- Date: 06/09/2024 22:58:28
+ Date: 09/09/2024 17:44:35
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sys_departments`;
 CREATE TABLE `t_sys_departments`  (
-  `id` int(0) NOT NULL,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `parent_id` int(0) NULL DEFAULT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
@@ -31,7 +31,13 @@ CREATE TABLE `t_sys_departments`  (
   `update_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_sys_departments
+-- ----------------------------
+INSERT INTO `t_sys_departments` VALUES (1, '111', NULL, '111111', NULL, NULL, NULL, NULL);
+INSERT INTO `t_sys_departments` VALUES (2, '222', 1, '222222', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_sys_menus
@@ -149,6 +155,16 @@ CREATE TABLE `t_sys_role_menu`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of t_sys_role_menu
+-- ----------------------------
+INSERT INTO `t_sys_role_menu` VALUES (1, '10', '1', '2024-09-08 17:29:22');
+INSERT INTO `t_sys_role_menu` VALUES (1, '1001', '1', '2024-09-08 17:30:03');
+INSERT INTO `t_sys_role_menu` VALUES (1, '1002', '1', '2024-09-08 17:30:19');
+INSERT INTO `t_sys_role_menu` VALUES (1, '1003', '1', '2024-09-08 17:31:29');
+INSERT INTO `t_sys_role_menu` VALUES (1, '1004', '1', '2024-09-08 17:31:37');
+INSERT INTO `t_sys_role_menu` VALUES (1, '1005', '1', '2024-09-08 17:31:51');
+
+-- ----------------------------
 -- Table structure for t_sys_role_user
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sys_role_user`;
@@ -161,11 +177,16 @@ CREATE TABLE `t_sys_role_user`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of t_sys_role_user
+-- ----------------------------
+INSERT INTO `t_sys_role_user` VALUES (1, 1, '1', '2024-09-08 17:28:46');
+
+-- ----------------------------
 -- Table structure for t_sys_roles
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sys_roles`;
 CREATE TABLE `t_sys_roles`  (
-  `id` int(0) NOT NULL,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `create_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -173,14 +194,19 @@ CREATE TABLE `t_sys_roles`  (
   `update_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_sys_roles
+-- ----------------------------
+INSERT INTO `t_sys_roles` VALUES (1, '系统管理员', '拥有系统管理权限', '1', '2024-09-08 17:28:32', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_sys_users
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sys_users`;
 CREATE TABLE `t_sys_users`  (
-  `id` int(0) NOT NULL,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `department_id` int(0) NULL DEFAULT NULL,
   `birthday` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -189,11 +215,16 @@ CREATE TABLE `t_sys_users`  (
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `create_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
-  `update_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_sys_users
+-- ----------------------------
+INSERT INTO `t_sys_users` VALUES (1, 'Admin', NULL, NULL, NULL, '15398027227', '515382435@qq.com', 'enable', 'e10adc3949ba59abbe56e057f20f883e', 1, '2024-09-08 17:25:33', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
