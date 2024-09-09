@@ -11,7 +11,7 @@
  Target Server Version : 90001
  File Encoding         : 65001
 
- Date: 09/09/2024 17:44:35
+ Date: 09/09/2024 23:31:26
 */
 
 SET NAMES utf8mb4;
@@ -26,6 +26,7 @@ CREATE TABLE `t_sys_departments`  (
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `parent_id` int(0) NULL DEFAULT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `create_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
   `update_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -36,8 +37,8 @@ CREATE TABLE `t_sys_departments`  (
 -- ----------------------------
 -- Records of t_sys_departments
 -- ----------------------------
-INSERT INTO `t_sys_departments` VALUES (1, '111', NULL, '111111', NULL, NULL, NULL, NULL);
-INSERT INTO `t_sys_departments` VALUES (2, '222', 1, '222222', NULL, NULL, NULL, NULL);
+INSERT INTO `t_sys_departments` VALUES (1, '生产部', NULL, '111111', 'enable', '1', '2024-09-09 22:31:52', NULL, NULL);
+INSERT INTO `t_sys_departments` VALUES (2, '1号车间', 1, '222222', 'enable', '1', '2024-09-09 22:31:56', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_sys_menus

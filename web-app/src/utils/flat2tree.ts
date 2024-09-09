@@ -13,6 +13,7 @@ export default function flat2tree(data: Array<any>, dataExplain: IDataExplain) {
                 item.key = item[dataExplain.keyColumnName];
                 item.value = item[dataExplain.keyColumnName];
                 item.title = item[dataExplain.titleColumnName];
+                item.label = item[dataExplain.titleColumnName];
                 item.originTitle = item[dataExplain.titleColumnName];
                 const firstData = getFirstData(item[dataExplain.parentKeyColumnName], data, dataExplain, item);
                 const index = tree.findIndex((item) => item.key === firstData.key);

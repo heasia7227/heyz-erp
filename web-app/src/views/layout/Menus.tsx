@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Menu, MenuProps } from "antd";
 import * as Icons from "@ant-design/icons";
+import { useRouter } from "next/navigation";
 
 const getIcon = (iconName: string) => {
     const CustomIcon = (Icons as any)[iconName];
@@ -178,7 +179,8 @@ interface IProps {
 }
 
 const Menus = ({ collapsed }: IProps) => {
-    const [stateOpenKeys, setStateOpenKeys] = useState<string[]>(["2", "23"]);
+    const router = useRouter();
+    const [stateOpenKeys, setStateOpenKeys] = useState<string[]>([]);
 
     const onOpenChange: MenuProps["onOpenChange"] = (openKeys) => {
         const currentOpenKey = openKeys.find((key) => stateOpenKeys.indexOf(key) === -1);
@@ -201,16 +203,23 @@ const Menus = ({ collapsed }: IProps) => {
         }
     };
 
+    const onClick = (e: any) => {
+        const path = e?.item?.props?.path;
+        if (path) {
+            router.push(path);
+        }
+    };
+
     return (
         <>
             <Menu
                 mode="inline"
-                defaultSelectedKeys={["231"]}
                 openKeys={stateOpenKeys}
                 onOpenChange={onOpenChange}
+                onClick={onClick}
                 items={items}
                 inlineCollapsed={collapsed}
-                className="h-full"
+                className="h-full overflow-y-hidden hover:overflow-y-auto"
             />
         </>
     );

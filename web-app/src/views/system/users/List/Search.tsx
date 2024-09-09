@@ -2,60 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { Button, Form, Input, TreeSelect, TreeSelectProps } from "antd";
-import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import httpFetch from "@/utils/http-fetch";
-
-const treeData = [
-    {
-        value: "parent 1",
-        title: "parent 1",
-        children: [
-            {
-                value: "parent 1-0",
-                title: "parent 1-0",
-                children: [
-                    {
-                        value: "leaf1",
-                        title: "leaf1",
-                    },
-                    {
-                        value: "leaf2",
-                        title: "leaf2",
-                    },
-                    {
-                        value: "leaf3",
-                        title: "leaf3",
-                    },
-                    {
-                        value: "leaf4",
-                        title: "leaf4",
-                    },
-                    {
-                        value: "leaf5",
-                        title: "leaf5",
-                    },
-                    {
-                        value: "leaf6",
-                        title: "leaf6",
-                    },
-                ],
-            },
-            {
-                value: "parent 1-1",
-                title: "parent 1-1",
-                children: [
-                    {
-                        value: "leaf11",
-                        title: <b style={{ color: "#08c" }}>leaf11</b>,
-                    },
-                ],
-            },
-        ],
-    },
-];
 
 const Search = () => {
     const [form] = Form.useForm();
+    const [departmentTrees, setDepartmentTress] = useState<any>();
     const [departmentId, setDepartmentId] = useState<string>();
 
     useEffect(() => {
@@ -64,15 +16,11 @@ const Search = () => {
 
     const getDepartments = async () => {
         const result = await httpFetch("/api/system/departments/trees");
-        console.log("departments: ", result);
+        setDepartmentTress(result);
     };
 
     const onChange = (newValue: string) => {
         setDepartmentId(newValue);
-    };
-
-    const onPopupScroll: TreeSelectProps["onPopupScroll"] = (e) => {
-        console.log("onPopupScroll", e);
     };
 
     const onFinish = (values: any) => {
@@ -84,15 +32,14 @@ const Search = () => {
             <Form form={form} name="horizontal_login" layout="inline" onFinish={onFinish}>
                 <Form.Item name="departmentName">
                     <TreeSelect
-                        style={{ width: "100%" }}
+                        style={{ width: "180px" }}
                         value={departmentId}
                         dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
                         placeholder="请选择部门"
                         allowClear
                         treeDefaultExpandAll
                         onChange={onChange}
-                        treeData={treeData}
-                        onPopupScroll={onPopupScroll}
+                        treeData={departmentTrees}
                     />
                 </Form.Item>
                 <Form.Item name="userName">
