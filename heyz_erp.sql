@@ -11,7 +11,7 @@
  Target Server Version : 90001
  File Encoding         : 65001
 
- Date: 09/09/2024 23:31:26
+ Date: 11/09/2024 23:01:19
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `t_sys_departments`  (
   `update_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_departments
@@ -190,6 +190,7 @@ CREATE TABLE `t_sys_roles`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `create_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
   `update_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -200,7 +201,7 @@ CREATE TABLE `t_sys_roles`  (
 -- ----------------------------
 -- Records of t_sys_roles
 -- ----------------------------
-INSERT INTO `t_sys_roles` VALUES (1, '系统管理员', '拥有系统管理权限', '1', '2024-09-08 17:28:32', NULL, NULL);
+INSERT INTO `t_sys_roles` VALUES (1, '系统管理员', '拥有系统管理权限', 'enable', '1', '2024-09-08 17:28:32', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_sys_users

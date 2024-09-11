@@ -1,26 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button, Space, Switch, Table, TableProps, Tag } from "antd";
+import { Button, Space, Switch, Table } from "antd";
 import * as Icons from "@ant-design/icons";
 import { PlusOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import httpFetch from "@/utils/http-fetch";
 import flat2tree from "@/utils/flat2tree";
 
-interface DataType {
-    key: string;
-    menuName: string;
-    menuDescription: string;
-    status: string;
-}
-
 const getIcon = (iconName: string) => {
     const CustomIcon = (Icons as any)[iconName];
     return <CustomIcon />;
 };
 
-const columns: TableProps<DataType>["columns"] = [
+const columns: any[] = [
     {
         title: "菜单名称",
         dataIndex: "title",
@@ -89,7 +82,7 @@ const columns: TableProps<DataType>["columns"] = [
         title: "操作",
         key: "action",
         width: 100,
-        render: (_, record) => (
+        render: (_: any, record: any) => (
             <Space size="middle">
                 <a>编辑</a>
             </Space>

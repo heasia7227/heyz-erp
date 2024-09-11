@@ -1,76 +1,93 @@
 "use client";
 
-import { Space, Table, TableProps, Tag } from "antd";
+import { Space, Switch, Table, Tag } from "antd";
+import { useEffect, useState } from "react";
+import httpFetch from "@/utils/http-fetch";
 import Search from "./Search";
+import dayjs from "dayjs";
 
-interface DataType {
-    key: string;
-    roleName: string;
-    roleDescription: string;
-    status: string;
-}
-
-const columns: TableProps<DataType>["columns"] = [
+const columns: any[] = [
     {
         title: "角色名称",
-        dataIndex: "roleName",
-        key: "roleName",
+        dataIndex: "title",
+        key: "title",
+        width: 180,
     },
     {
         title: "角色描述",
-        dataIndex: "roleDescription",
-        key: "roleDescription",
+        dataIndex: "description",
+        key: "description",
     },
     {
         title: "状态",
         key: "status",
         dataIndex: "status",
-        render: (_, { status }) => (
-            <Tag color={status === "Enable" ? "processing" : "warning"} key={status}>
-                {status}
-            </Tag>
+        width: 150,
+        render: (status: string) => (
+            <Switch checkedChildren="已启用" unCheckedChildren="已禁用" checked={status === "enable"} />
         ),
+    },
+    {
+        title: "创建人",
+        dataIndex: "createUserName",
+        key: "createUserName",
+        width: 120,
+        render: (_: any, record: any) => record?.createUser?.name,
+    },
+    {
+        title: "创建时间",
+        dataIndex: "createDate",
+        key: "createDate",
+        width: 150,
+        render: (_: any, record: any) =>
+            record?.createDate ? dayjs(record?.createDate).format("YYYY-MM-DD HH:mm:ss") : "-",
+    },
+    {
+        title: "修改人",
+        dataIndex: "updateUserName",
+        key: "updateUserName",
+        width: 120,
+        render: (_: any, record: any) => record?.updateUser?.name,
+    },
+    {
+        title: "修改时间",
+        dataIndex: "updateDate",
+        key: "updateDate",
+        width: 150,
+        render: (_: any, record: any) =>
+            record?.updateDate ? dayjs(record?.updateDate).format("YYYY-MM-DD HH:mm:ss") : "-",
     },
     {
         title: "操作",
         key: "action",
-        render: (_, record) => (
+        width: 250,
+        render: (_: any, record: any) => (
             <Space size="middle">
                 <a>编辑</a>
-                <a>禁用</a>
-                <a>启用</a>
+                <a>分配用户</a>
+                <a>配置菜单</a>
             </Space>
         ),
     },
 ];
 
-const data: DataType[] = [
-    {
-        key: "1",
-        roleName: "超级管理员",
-        roleDescription: "超级管理员描述",
-        status: "Enable",
-    },
-    {
-        key: "2",
-        roleName: "普通管理员",
-        roleDescription: "普通管理员描述",
-        status: "Enable",
-    },
-    {
-        key: "3",
-        roleName: "销售人员",
-        roleDescription: "销售人员描述",
-        status: "Enable",
-    },
-];
-
 const RoleList = () => {
+    const [roles, setRoles] = useState<any[]>([]);
+
+    useEffect(() => {
+        getRoles();
+    }, []);
+
+    const getRoles = async () => {
+        const result = await httpFetch("/api/system/roles");
+        setRoles(result);
+    };
+
     return (
         <>
             <div className="flex flex-col gap-3">
                 <Search />
-                <Table size="small" bordered columns={columns} dataSource={data} />
+                <Table size="small" bordered columns={columns} dataSource={roles} />
             </div>
         </>
     );
