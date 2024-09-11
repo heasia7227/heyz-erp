@@ -1,7 +1,12 @@
 "use client";
 
-import { Space, Table, TableProps, Tag } from "antd";
-import Search from "./Search";
+import { useEffect, useState } from "react";
+import { Button, Space, Switch, Table, TableProps, Tag } from "antd";
+import * as Icons from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
+import dayjs from "dayjs";
+import httpFetch from "@/utils/http-fetch";
+import flat2tree from "@/utils/flat2tree";
 
 interface DataType {
     key: string;
@@ -10,67 +15,114 @@ interface DataType {
     status: string;
 }
 
+const getIcon = (iconName: string) => {
+    const CustomIcon = (Icons as any)[iconName];
+    return <CustomIcon />;
+};
+
 const columns: TableProps<DataType>["columns"] = [
     {
         title: "菜单名称",
-        dataIndex: "menuName",
-        key: "menuName",
+        dataIndex: "title",
+        key: "title",
+        width: 200,
+        render: (_: any, record: any) => {
+            return (
+                <Space size={"small"}>
+                    {record.icon && getIcon(record.icon)}
+                    {record.title}
+                </Space>
+            );
+        },
     },
     {
-        title: "菜单描述",
-        dataIndex: "menuDescription",
-        key: "menuDescription",
+        title: "路径",
+        dataIndex: "path",
+        key: "path",
+    },
+    {
+        title: "排序",
+        dataIndex: "ranking",
+        key: "ranking",
+        width: 100,
     },
     {
         title: "状态",
         key: "status",
         dataIndex: "status",
-        render: (_, { status }) => (
-            <Tag color={status === "Enable" ? "processing" : "warning"} key={status}>
-                {status}
-            </Tag>
+        width: 150,
+        render: (status: string) => (
+            <Switch checkedChildren="已启用" unCheckedChildren="已禁用" checked={status === "enable"} />
         ),
+    },
+    {
+        title: "创建人",
+        dataIndex: "createUserName",
+        key: "createUserName",
+        width: 120,
+        render: (_: any, record: any) => record?.createUser?.name,
+    },
+    {
+        title: "创建时间",
+        dataIndex: "createDate",
+        key: "createDate",
+        width: 150,
+        render: (_: any, record: any) =>
+            record?.createDate ? dayjs(record?.createDate).format("YYYY-MM-DD HH:mm:ss") : "-",
+    },
+    {
+        title: "修改人",
+        dataIndex: "updateUserName",
+        key: "updateUserName",
+        width: 120,
+        render: (_: any, record: any) => record?.updateUser?.name,
+    },
+    {
+        title: "修改时间",
+        dataIndex: "updateDate",
+        key: "updateDate",
+        width: 150,
+        render: (_: any, record: any) =>
+            record?.updateDate ? dayjs(record?.updateDate).format("YYYY-MM-DD HH:mm:ss") : "-",
     },
     {
         title: "操作",
         key: "action",
+        width: 100,
         render: (_, record) => (
             <Space size="middle">
                 <a>编辑</a>
-                <a>禁用</a>
-                <a>启用</a>
             </Space>
         ),
     },
 ];
 
-const data: DataType[] = [
-    {
-        key: "1",
-        menuName: "项目管理",
-        menuDescription: "项目管理描述",
-        status: "Enable",
-    },
-    {
-        key: "2",
-        menuName: "销售管理",
-        menuDescription: "销售管理描述",
-        status: "Enable",
-    },
-    {
-        key: "3",
-        menuName: "财务管理",
-        menuDescription: "财务管理描述",
-        status: "Enable",
-    },
-];
-
 const MenuList = () => {
+    const [menuTrees, setMenuTrees] = useState<any[]>([]);
+
+    useEffect(() => {
+        getMenus();
+    }, []);
+
+    const getMenus = async () => {
+        const result = await httpFetch("/api/system/menus");
+        const items = flat2tree(result, {
+            parentKeyColumnName: "parentId",
+            keyColumnName: "id",
+            titleColumnName: "title",
+        });
+        setMenuTrees(items);
+    };
+
     return (
         <>
             <div className="flex flex-col gap-3">
-                <Search />
-                <Table size="small" bordered columns={columns} dataSource={data} />
+                <div className="text-right">
+                    <Button type="primary" icon={<PlusOutlined />}>
+                        新增菜单
+                    </Button>
+                </div>
+                <Table size="small" bordered columns={columns} dataSource={menuTrees} pagination={false} />
             </div>
         </>
     );
