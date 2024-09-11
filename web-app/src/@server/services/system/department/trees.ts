@@ -1,5 +1,5 @@
 import { getDataSource } from "@/@server/datasource";
-import { Department } from "@/@server/entities/department";
+import { Department } from "@/@server/entities/system/department";
 import flat2tree from "@/utils/flat2tree";
 import { Like } from "typeorm";
 

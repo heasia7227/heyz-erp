@@ -1,4 +1,4 @@
-import trees from "@/@server/services/department/trees";
+import trees from "@/@server/services/system/department/trees";
 import { NextRequest } from "next/server";
 
 // Trees

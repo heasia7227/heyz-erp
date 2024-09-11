@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToOne, JoinColumn, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, JoinColumn, ManyToOne } from "typeorm";
 
 @Entity({ name: "t_sys_users" })
 export class User extends BaseEntity {
@@ -43,14 +43,14 @@ export class User extends BaseEntity {
     @Column({ name: "status" })
     status!: string;
 
-    @OneToOne(() => User)
+    @ManyToOne(() => User)
     @JoinColumn({ name: "create_by", foreignKeyConstraintName: "id" })
     createUser?: User;
 
     @Column({ name: "create_date" })
     createDate!: string;
 
-    @OneToOne(() => User)
+    @ManyToOne(() => User)
     @JoinColumn({ name: "update_by", foreignKeyConstraintName: "id" })
     updateUser?: User;
 

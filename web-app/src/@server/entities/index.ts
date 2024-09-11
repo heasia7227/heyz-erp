@@ -1,6 +1,7 @@
-import { User } from "./user";
-import { Department } from "./department";
+import { User } from "./system/user";
+import { Department } from "./system/department";
+import { Menu } from "./system/menu";
 
-const entities = [User, Department];
+const entities = [User, Department, Menu];
 
 export default entities;

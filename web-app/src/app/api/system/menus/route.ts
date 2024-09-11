@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
-import list from "@/@server/services/system/user/list";
+import list from "@/@server/services/system/menu/list";
 
-// List
+// list
 export async function GET(request: NextRequest) {
     const result = await list();
     return Response.json({ code: 200, data: result });
