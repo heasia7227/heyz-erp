@@ -8,9 +8,9 @@ const Recruiting = () => {
                 defaultActiveKey="1"
                 items={[
                     {
-                        label: "招聘计划指定",
+                        label: "招聘计划制定",
                         key: "1",
-                        children: "招聘计划指定",
+                        children: "招聘计划制定",
                     },
                     {
                         label: "简历筛选",

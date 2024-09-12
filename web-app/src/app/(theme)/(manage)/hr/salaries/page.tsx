@@ -8,14 +8,14 @@ const Salaries = () => {
                 defaultActiveKey="1"
                 items={[
                     {
-                        label: "工资计算",
+                        label: "薪资管理",
                         key: "1",
-                        children: "工资计算",
+                        children: "薪资管理",
                     },
                     {
-                        label: "福利发放",
+                        label: "福利管理",
                         key: "2",
-                        children: "福利发放",
+                        children: "福利管理",
                     },
                 ]}
             />
