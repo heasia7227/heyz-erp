@@ -1,81 +1,22 @@
-# Open Source ERP (Enterprise Resource Planning)
+# NextJS 打造一款开源的 ERP 系统
 
-**Frontend and Backend separation**
+用法：SQL 导入 MySQL，修改数据库连接(web-app\src\@server\datasource\index.ts)，启动 web-app 项目(npm run dev)
 
-**Frontend React (Ant Design)**
+功能清单
 
-**Backend NodeJs (NestJs)**
-
-**English and Chinese**
-
----
-
-- FINANCE (财务管理)
-  - Accounting (会计核算)
-  - Invoicing (发票管理)
-  - Expenses (费用管理)
-  - Spreadsheet (财务报表)
-  - Budget (财务预算)
-  - Analysis (财务分析)
-  - Audit (财务审计)
-  - Decision (财务决策)
-- MANUFACTURE (生产管理)
-  - Manufacture Plan (生产计划)
-  - Materials Plan (物料需求计划)
-  - Ability Plan (能力需求计划)
-  - Plant Control (车间控制)
-  - Manufacture Standard (制造标准)
-  - Manufacture Order (生产订单)
-  - Manufacture Progress (生产进度)
-  - Manufacture Cost (生产成本)
-- PURCHASING (采购管理)
-  - Purchasing Plan (采购计划)
-  - PurchasingOrder (采购订单)
-  - Take Delivery (采购收货)
-- SALES (销售管理)
-  - CRM
-    - Customer Archives (客户档案)
-    - Customer Complaint (客户投诉)
-    - Customer Satisfaction Survey (客户满意度调查)
-    - Customer Care (客户关怀)
-  - Sales (销售管理)
-    - Sales Plan (销售计划)
-    - Sales Order (销售订单)
-    - Warehouse Out (销售出库)
-  - Rental (租赁管理)
-- INVENTORY (库存管理)
-  - Suppliers (供应商管理)
-  - Materials (物资管理)
-  - Warehouse (库房管理)
-  - Inventory (库存管理)
-  - Counting (库存盘点)
-  - Transfer (库存调拨)
-  - Scrap (库存报废)
-  - Early Warning (库存预警)
-- PROJECTS (项目管理)
-  - Projects Plan (项目计划)
-  - Projects Progress (项目进度)
-  - Projects Achievement (项目成果)
-  - Projects Risk (项目风险)
-- ASSETS (资产管理)
-  - Assets Archives (资产档案)
-  - Assets Depreciation (资产折旧)
-  - Assets Maintenance (资产维修)
-  - Assets Retirement (资产报废)
-- OFFICE AUTOMATION (综合办公)
-  - Process Management (流程管理)
-  - Official Documents (公文管理)
-  - Teamwork (协同工作)
-- HUMAN RESOURCE (人力资源管理)
-  - Employees (员工档案)
-  - Salaries (薪资管理)
-  - Performance (绩效管理)
-  - Training (培训管理)
-- SYSTEM MANAGEMENT (系统管理)
-  - Users (用户管理)
-  - Roles (角色管理)
-    - Operation Roles (操作权限)
-    - Data Roles (数据权限)
-  - Departments (部门管理)
-  - Menus (菜单管理)
-  - Logs (系统日志)
+<table>
+  <tr>
+    <th>一级</th>
+    <th>二级</th>
+    <th>三级</th>
+  </tr>
+  <tr>
+    <td rowSpan="2">项目管理</td>
+    <td>项目计划</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>项目进度</td>
+    <td></td>
+  </tr>
+</table>
