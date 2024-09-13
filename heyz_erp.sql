@@ -11,11 +11,127 @@
  Target Server Version : 90001
  File Encoding         : 65001
 
- Date: 11/09/2024 23:01:19
+ Date: 13/09/2024 16:38:30
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_hr_recruiting_employ_decision
+-- ----------------------------
+DROP TABLE IF EXISTS `t_hr_recruiting_employ_decision`;
+CREATE TABLE `t_hr_recruiting_employ_decision`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '决策编号',
+  `resume_id` int(0) NULL DEFAULT NULL COMMENT '简历编号',
+  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '状态(录用/不录用)',
+  `notification_status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '通知录用状态(未通知/已通知)',
+  `update_by` int(0) NULL DEFAULT NULL,
+  `update_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_hr_recruiting_employ_decision_audit
+-- ----------------------------
+DROP TABLE IF EXISTS `t_hr_recruiting_employ_decision_audit`;
+CREATE TABLE `t_hr_recruiting_employ_decision_audit`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `decision_id` int(0) NULL DEFAULT NULL COMMENT '决策编号',
+  `auditor_id` int(0) NULL DEFAULT NULL COMMENT '审批人',
+  `audit_level` int(0) NULL DEFAULT NULL COMMENT '审批级别',
+  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '审批结果(驳回/通过)',
+  `opinion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '审批意见',
+  `audit_date` datetime(0) NULL DEFAULT NULL COMMENT '审批时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_hr_recruiting_interview_planning
+-- ----------------------------
+DROP TABLE IF EXISTS `t_hr_recruiting_interview_planning`;
+CREATE TABLE `t_hr_recruiting_interview_planning`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `resume_id` int(0) NULL DEFAULT NULL COMMENT '简历编号',
+  `interview_date_time` datetime(0) NULL DEFAULT NULL COMMENT '面试时间',
+  `interviewer_id` int(0) NULL DEFAULT NULL COMMENT '面试官',
+  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '状态(爽约/已签到)',
+  `create_by` int(0) NULL DEFAULT NULL,
+  `create_date` datetime(0) NULL DEFAULT NULL,
+  `update_by` int(0) NULL DEFAULT NULL,
+  `update_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_hr_recruiting_planning
+-- ----------------------------
+DROP TABLE IF EXISTS `t_hr_recruiting_planning`;
+CREATE TABLE `t_hr_recruiting_planning`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `department_id` int(0) NULL DEFAULT NULL COMMENT '需求部门',
+  `post_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '职位名称',
+  `post_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '职位详情',
+  `education` int(0) NULL DEFAULT NULL COMMENT '学历要求',
+  `experience` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工作经验',
+  `salaries_range` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '薪资范围',
+  `technology` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '技术要求',
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '状态(草稿/审核中/待招聘/招聘中/已关闭) ',
+  `reason` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '招聘理由',
+  `hr_attache_id` int(0) NULL DEFAULT NULL COMMENT '人力专员',
+  `create_by` int(0) NULL DEFAULT NULL,
+  `create_date` datetime(0) NULL DEFAULT NULL,
+  `update_by` int(0) NULL DEFAULT NULL,
+  `update_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_hr_recruiting_planning_audit
+-- ----------------------------
+DROP TABLE IF EXISTS `t_hr_recruiting_planning_audit`;
+CREATE TABLE `t_hr_recruiting_planning_audit`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `planning_id` int(0) NULL DEFAULT NULL COMMENT '计划编号',
+  `auditor_id` int(0) NULL DEFAULT NULL COMMENT '审批人',
+  `audit_level` int(0) NULL DEFAULT NULL COMMENT '审批级别',
+  `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '审批结果(驳回/通过)',
+  `opinion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '审批意见',
+  `audit_date` datetime(0) NULL DEFAULT NULL COMMENT '审批时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_hr_recruiting_planning_audit_config
+-- ----------------------------
+DROP TABLE IF EXISTS `t_hr_recruiting_planning_audit_config`;
+CREATE TABLE `t_hr_recruiting_planning_audit_config`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `planning_id` int(0) NULL DEFAULT NULL COMMENT '计划编号',
+  `auditor_id` int(0) NULL DEFAULT NULL COMMENT '审批人',
+  `audit_level` int(0) NULL DEFAULT NULL COMMENT '审批级别',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_hr_recruiting_resume
+-- ----------------------------
+DROP TABLE IF EXISTS `t_hr_recruiting_resume`;
+CREATE TABLE `t_hr_recruiting_resume`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '简历编号',
+  `planning_id` int(0) NULL DEFAULT NULL COMMENT '计划编号',
+  `candidate_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '候选人姓名',
+  `candidate_gender` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '候选人性别',
+  `candidate_age` int(0) NULL DEFAULT NULL COMMENT '候选人年龄',
+  `candidate_phone_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '候选人手机',
+  `resume_attachment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '简历附件',
+  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '状态(新增/符合/不符合)',
+  `create_by` int(0) NULL DEFAULT NULL,
+  `create_date` datetime(0) NULL DEFAULT NULL,
+  `update_by` int(0) NULL DEFAULT NULL,
+  `update_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_sys_departments
@@ -27,18 +143,18 @@ CREATE TABLE `t_sys_departments`  (
   `parent_id` int(0) NULL DEFAULT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `create_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
-  `update_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_departments
 -- ----------------------------
-INSERT INTO `t_sys_departments` VALUES (1, '生产部', NULL, '111111', 'enable', '1', '2024-09-09 22:31:52', NULL, NULL);
-INSERT INTO `t_sys_departments` VALUES (2, '1号车间', 1, '222222', 'enable', '1', '2024-09-09 22:31:56', NULL, NULL);
+INSERT INTO `t_sys_departments` VALUES (1, '生产部', NULL, '111111', 'enable', 1, '2024-09-09 22:31:52', NULL, NULL);
+INSERT INTO `t_sys_departments` VALUES (2, '1号车间', 1, '222222', 'enable', 1, '2024-09-09 22:31:56', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_sys_menus
@@ -52,9 +168,9 @@ CREATE TABLE `t_sys_menus`  (
   `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `ranking` int(0) NULL DEFAULT NULL,
   `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `create_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
-  `update_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -120,7 +236,7 @@ INSERT INTO `t_sys_menus` VALUES ('0802', '公文管理', NULL, '08', '/oa/offic
 INSERT INTO `t_sys_menus` VALUES ('0803', '协同工作', NULL, '08', '/oa/teamwork', 3, 'enable', NULL, '2024-09-06 22:34:48', NULL, '2024-09-06 22:34:50');
 INSERT INTO `t_sys_menus` VALUES ('09', '人力资源管理', 'UserSwitchOutlined', NULL, NULL, 9, 'enable', NULL, '2024-09-06 22:35:20', NULL, '2024-09-06 22:35:22');
 INSERT INTO `t_sys_menus` VALUES ('0901', '档案管理', NULL, '09', '/hr/employee-files', 1, 'enable', NULL, '2024-09-06 22:37:43', NULL, '2024-09-06 22:37:45');
-INSERT INTO `t_sys_menus` VALUES ('0902', '薪资管理', NULL, '09', '/hr/salaries', 2, 'enable', NULL, '2024-09-06 22:38:16', NULL, '2024-09-06 22:38:18');
+INSERT INTO `t_sys_menus` VALUES ('0902', '薪资福利', NULL, '09', '/hr/salaries', 2, 'enable', NULL, '2024-09-06 22:38:16', NULL, '2024-09-06 22:38:18');
 INSERT INTO `t_sys_menus` VALUES ('0903', '绩效考核', NULL, '09', '/hr/performance-appraisal', 3, 'enable', NULL, '2024-09-06 22:38:49', NULL, '2024-09-06 22:38:50');
 INSERT INTO `t_sys_menus` VALUES ('0904', '培训管理', NULL, '09', '/hr/traning', 4, 'enable', NULL, '2024-09-06 22:39:19', NULL, '2024-09-06 22:39:21');
 INSERT INTO `t_sys_menus` VALUES ('0905', '招聘管理', NULL, '09', '/hr/recruiting', 5, 'enable', NULL, '2024-09-06 22:39:53', NULL, '2024-09-06 22:39:55');
@@ -150,7 +266,7 @@ DROP TABLE IF EXISTS `t_sys_role_menu`;
 CREATE TABLE `t_sys_role_menu`  (
   `role_id` int(0) NOT NULL,
   `menu_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `create_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`role_id`, `menu_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -158,12 +274,12 @@ CREATE TABLE `t_sys_role_menu`  (
 -- ----------------------------
 -- Records of t_sys_role_menu
 -- ----------------------------
-INSERT INTO `t_sys_role_menu` VALUES (1, '10', '1', '2024-09-08 17:29:22');
-INSERT INTO `t_sys_role_menu` VALUES (1, '1001', '1', '2024-09-08 17:30:03');
-INSERT INTO `t_sys_role_menu` VALUES (1, '1002', '1', '2024-09-08 17:30:19');
-INSERT INTO `t_sys_role_menu` VALUES (1, '1003', '1', '2024-09-08 17:31:29');
-INSERT INTO `t_sys_role_menu` VALUES (1, '1004', '1', '2024-09-08 17:31:37');
-INSERT INTO `t_sys_role_menu` VALUES (1, '1005', '1', '2024-09-08 17:31:51');
+INSERT INTO `t_sys_role_menu` VALUES (1, '10', 1, '2024-09-08 17:29:22');
+INSERT INTO `t_sys_role_menu` VALUES (1, '1001', 1, '2024-09-08 17:30:03');
+INSERT INTO `t_sys_role_menu` VALUES (1, '1002', 1, '2024-09-08 17:30:19');
+INSERT INTO `t_sys_role_menu` VALUES (1, '1003', 1, '2024-09-08 17:31:29');
+INSERT INTO `t_sys_role_menu` VALUES (1, '1004', 1, '2024-09-08 17:31:37');
+INSERT INTO `t_sys_role_menu` VALUES (1, '1005', 1, '2024-09-08 17:31:51');
 
 -- ----------------------------
 -- Table structure for t_sys_role_user
@@ -172,7 +288,7 @@ DROP TABLE IF EXISTS `t_sys_role_user`;
 CREATE TABLE `t_sys_role_user`  (
   `role_id` int(0) NOT NULL,
   `user_id` int(0) NOT NULL,
-  `create_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`role_id`, `user_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -180,7 +296,7 @@ CREATE TABLE `t_sys_role_user`  (
 -- ----------------------------
 -- Records of t_sys_role_user
 -- ----------------------------
-INSERT INTO `t_sys_role_user` VALUES (1, 1, '1', '2024-09-08 17:28:46');
+INSERT INTO `t_sys_role_user` VALUES (1, 1, 1, '2024-09-08 17:28:46');
 
 -- ----------------------------
 -- Table structure for t_sys_roles
@@ -191,17 +307,17 @@ CREATE TABLE `t_sys_roles`  (
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `create_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
-  `update_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_roles
 -- ----------------------------
-INSERT INTO `t_sys_roles` VALUES (1, '系统管理员', '拥有系统管理权限', 'enable', '1', '2024-09-08 17:28:32', NULL, NULL);
+INSERT INTO `t_sys_roles` VALUES (1, '系统管理员', '拥有系统管理权限', 'enable', 1, '2024-09-08 17:28:32', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_sys_users
@@ -222,7 +338,7 @@ CREATE TABLE `t_sys_users`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_users

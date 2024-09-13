@@ -5,6 +5,7 @@
 | 招聘计划表                             | t_hr_recruiting_planning |
 | -------------------------------------- | ------------------------ |
 | 计划编号                               | id                       |
+| 需求部门                               | department_id            |
 | 职位名称                               | post_title               |
 | 职位详情                               | post_info                |
 | 学历要求                               | education                |
@@ -28,10 +29,11 @@
 | 审批级别            | audit_level                    |
 | 审批结果(驳回/通过) | status                         |
 | 审批意见            | opinion                        |
+| 审批时间            | audit_date                     |
 
 | 简历筛选表             | t_hr_recruiting_resume |
 | ---------------------- | ---------------------- |
-| 简历编号               | resume_id              |
+| 简历编号               | id                     |
 | 计划编号               | planning_id            |
 | 候选人姓名             | candidate_name         |
 | 候选人性别             | candidate_gender       |
@@ -49,7 +51,7 @@
 
 | 录用决策表                  | t_hr_recruiting_employ_decision |
 | --------------------------- | ------------------------------- |
-| 决策编号                    | decision_id                     |
+| 决策编号                    | id                              |
 | 简历编号                    | resume_id                       |
 | 状态(录用/不录用)           | status                          |
 | 通知录用状态(未通知/已通知) | notification_status             |
@@ -61,3 +63,4 @@
 | 审批级别            | audit_level                           |
 | 审批结果(驳回/通过) | status                                |
 | 审批意见            | opinion                               |
+| 审批时间            | audit_date                            |
