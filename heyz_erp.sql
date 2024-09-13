@@ -11,7 +11,7 @@
  Target Server Version : 90001
  File Encoding         : 65001
 
- Date: 13/09/2024 16:38:30
+ Date: 13/09/2024 23:15:52
 */
 
 SET NAMES utf8mb4;
@@ -155,6 +155,8 @@ CREATE TABLE `t_sys_departments`  (
 -- ----------------------------
 INSERT INTO `t_sys_departments` VALUES (1, '生产部', NULL, '111111', 'enable', 1, '2024-09-09 22:31:52', NULL, NULL);
 INSERT INTO `t_sys_departments` VALUES (2, '1号车间', 1, '222222', 'enable', 1, '2024-09-09 22:31:56', NULL, NULL);
+INSERT INTO `t_sys_departments` VALUES (3, '研发部', NULL, '研发部1111', 'enable', 1, '2024-09-13 21:59:54', NULL, NULL);
+INSERT INTO `t_sys_departments` VALUES (4, '研发一组', 3, '研发一组', 'enable', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_sys_menus
@@ -343,6 +345,6 @@ CREATE TABLE `t_sys_users`  (
 -- ----------------------------
 -- Records of t_sys_users
 -- ----------------------------
-INSERT INTO `t_sys_users` VALUES (1, 'Admin', NULL, NULL, NULL, '15398027227', '515382435@qq.com', 'enable', 'e10adc3949ba59abbe56e057f20f883e', 1, '2024-09-08 17:25:33', NULL, NULL);
+INSERT INTO `t_sys_users` VALUES (1, 'Admin', NULL, NULL, NULL, '15398027227', '515382435@qq.com', 'enable', 'A1qg7r2PRg5OTFDofDnxVel+QCSYdhSCGrwVZwwbN8I=', 1, '2024-09-08 17:25:33', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

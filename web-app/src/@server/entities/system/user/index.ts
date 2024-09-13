@@ -37,6 +37,9 @@ export class User extends BaseEntity {
     @Column({ name: "phone_number" })
     phoneNumber!: string;
 
+    @Column({ name: "password" })
+    password!: string;
+
     @Column({ name: "email" })
     email!: string;
 

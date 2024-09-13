@@ -2,12 +2,20 @@
 
 import { Button, Card, Checkbox, Form, Input } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import aes from "@/utils/aes";
+import httpFetch from "@/utils/http-fetch";
 
 const Login = () => {
     const [form] = Form.useForm();
 
-    const onFinish = (values: any) => {
+    const onFinish = async (values: any) => {
+        values.password = aes.encrypt(values.password);
         console.log("Success:", values);
+        const result = await httpFetch("/api/system/login", {
+            method: "POST",
+            body: JSON.stringify(values),
+        });
+        console.log("result:", result);
     };
 
     return (

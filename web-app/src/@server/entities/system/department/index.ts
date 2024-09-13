@@ -10,6 +10,7 @@ export class Department extends BaseEntity {
         this.title = department?.title;
         this.parentId = department?.parentId;
         this.description = department?.description;
+        this.status = department?.status ? "enable" : "disable";
         this.createUser = department?.createUser;
         this.createDate = department?.createDate;
         this.updateUser = department?.updateUser;
@@ -27,6 +28,9 @@ export class Department extends BaseEntity {
 
     @Column({ name: "description" })
     description?: string;
+
+    @Column({ name: "status" })
+    status!: string;
 
     @ManyToOne(() => User)
     @JoinColumn({ name: "create_by", foreignKeyConstraintName: "id" })

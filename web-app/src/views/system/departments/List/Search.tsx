@@ -1,7 +1,8 @@
 "use client";
 
 import { Button, Form, Input } from "antd";
-import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
+import Add from "../Add";
 
 interface IProps {
     onSearch: (keyword: string) => void;
@@ -10,7 +11,7 @@ interface IProps {
 const Search = ({ onSearch }: IProps) => {
     const [form] = Form.useForm();
 
-    const onFinish = (values: any) => {
+    const onFinish = (values?: any) => {
         onSearch(values?.keyword);
     };
 
@@ -26,9 +27,7 @@ const Search = ({ onSearch }: IProps) => {
                     </Button>
                 </div>
                 <div>
-                    <Button type="primary" icon={<PlusOutlined />}>
-                        新增部门
-                    </Button>
+                    <Add refresh={() => onFinish()} />
                 </div>
             </Form>
         </>

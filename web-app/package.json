@@ -11,7 +11,10 @@
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.1",
     "antd": "^5.20.3",
+    "crypto-js": "^4.2.0",
     "dayjs": "^1.11.13",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "mysql2": "^3.11.0",
     "next": "14.2.5",
     "react": "^18",
@@ -20,6 +23,7 @@
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.16.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
