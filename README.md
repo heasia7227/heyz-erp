@@ -198,7 +198,9 @@
     <td></td>
   </tr>
   <tr>
-    <td rowSpan="5">人力资源管理</td>
+    <td rowSpan="5">
+      <a href="./web-app/src/docs/hr/index.md">人力资源管理</a>
+    </td>
     <td>档案管理</td>
     <td></td>
   </tr>
@@ -215,7 +217,9 @@
     <td></td>
   </tr>
   <tr>
-    <td>招聘管理</td>
+    <td>
+      <a href="./web-app/src/docs/hr/recruiting.md">招聘管理</a>
+    </td>
     <td></td>
   </tr>
   <tr>

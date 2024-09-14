@@ -1,21 +1,26 @@
 "use client";
 
-import { Button, Card, Checkbox, Form, Input } from "antd";
+import { Button, Card, Form, Input } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import aes from "@/utils/aes";
 import httpFetch from "@/utils/http-fetch";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+    const router = useRouter();
     const [form] = Form.useForm();
 
     const onFinish = async (values: any) => {
         values.password = aes.encrypt(values.password);
-        console.log("Success:", values);
-        const result = await httpFetch("/api/system/login", {
+        const result = await httpFetch("/system/login", {
             method: "POST",
             body: JSON.stringify(values),
         });
-        console.log("result:", result);
+        if (result?.token) {
+            localStorage.setItem("token", result?.token);
+            localStorage.setItem("user", JSON.stringify(result?.user));
+            router.push("/home");
+        }
     };
 
     return (

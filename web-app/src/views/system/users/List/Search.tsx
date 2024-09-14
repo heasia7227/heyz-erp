@@ -15,7 +15,7 @@ const Search = () => {
     }, []);
 
     const getDepartments = async () => {
-        const result = await httpFetch("/api/system/departments/trees");
+        const result = await httpFetch("/system/departments/trees");
         setDepartmentTress(result);
     };
 

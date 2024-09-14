@@ -1,4 +1,5 @@
 import Content from "@/views/layout/Content";
+import Header from "@/views/layout/Header";
 
 interface IProps {
     children: React.ReactNode;
@@ -7,7 +8,7 @@ interface IProps {
 const Layout = ({ children }: IProps) => {
     return (
         <section className="h-screen flex flex-col">
-            <div className="h-[56px] leading-[56px] border-b-[1px] border-slate-200 px-3">Header</div>
+            <Header />
             <Content>{children}</Content>
         </section>
     );

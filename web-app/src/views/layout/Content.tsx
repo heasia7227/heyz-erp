@@ -21,22 +21,24 @@ const Content = ({ children }: IProps) => {
     }, []);
 
     useEffect(() => {
-        console.log(`Routing to ${pathname}`);
+        // console.log(`Routing to ${pathname}`);
         if (pathname && menus?.length > 0) {
             getBreadcrumbs();
         }
     }, [pathname, menus]);
 
     const getMenus = async () => {
-        const result = await httpFetch("/api/system/menus");
+        const result = await httpFetch("/system/menus");
         setMenus(result);
     };
 
     const getBreadcrumbs = () => {
         const baseItem = menus.find((item) => item.path === pathname);
-        const parents = findParent(baseItem);
-        const _breadcrumbs = [baseItem, ...parents].reverse();
-        setBreadcrumbs(_breadcrumbs);
+        if (baseItem) {
+            const parents = findParent(baseItem);
+            const _breadcrumbs = [baseItem, ...parents].reverse();
+            setBreadcrumbs(_breadcrumbs);
+        }
     };
 
     const findParent = (currentItem: any): any[] => {
@@ -55,15 +57,17 @@ const Content = ({ children }: IProps) => {
                     <Menus menus={menus} />
                 </div>
                 <div className="flex-1 h-full p-3 flex flex-col gap-3">
-                    <Breadcrumb
-                        items={[
-                            {
-                                href: "",
-                                title: <HomeOutlined />,
-                            },
-                            ...breadcrumbs?.map((item) => ({ title: item.title })),
-                        ]}
-                    />
+                    {breadcrumbs?.length > 0 && (
+                        <Breadcrumb
+                            items={[
+                                {
+                                    href: "",
+                                    title: <HomeOutlined />,
+                                },
+                                ...breadcrumbs?.map((item) => ({ title: item.title })),
+                            ]}
+                        />
+                    )}
                     <Card size="small" className="flex-1">
                         {children}
                     </Card>

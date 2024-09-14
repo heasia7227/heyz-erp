@@ -26,7 +26,7 @@ const Add = ({ refresh }: IProps) => {
     const [departmentTrees, setDepartmentTress] = useState<any>();
 
     const getDepartments = async () => {
-        const result = await httpFetch("/api/system/departments/trees");
+        const result = await httpFetch("/system/departments/trees");
         setDepartmentTress(result);
     };
 
@@ -38,7 +38,7 @@ const Add = ({ refresh }: IProps) => {
     const handleOk = () => {
         form.validateFields().then(async (values) => {
             setSaving(true);
-            await httpFetch("/api/system/departments", {
+            await httpFetch("/system/departments", {
                 method: "POST",
                 body: JSON.stringify(values),
             });

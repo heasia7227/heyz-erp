@@ -19,7 +19,7 @@ const login = async (params: any): Promise<any> => {
         return null;
     }
 
-    // 判断用户有没有可操作的菜单，如果没有不允许登录
+    // TODO: 判断用户有没有可操作的菜单，如果没有不允许登录
 
     const token = generateToken({ ...user });
     return { token, user };

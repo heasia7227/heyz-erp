@@ -73,9 +73,9 @@ const DepartmentList = () => {
     }, []);
 
     const getDepartments = async (keyword?: string) => {
-        let url = "/api/system/departments/trees";
-        url = keyword ? `${url}?keyword=${keyword}` : url;
-        const result = await httpFetch(url);
+        const result = await httpFetch("/system/departments/trees", {
+            params: { keyword },
+        });
         setDepartmentTress(result);
     };
 
@@ -87,7 +87,7 @@ const DepartmentList = () => {
         <>
             <div className="flex flex-col gap-3">
                 <Search onSearch={onSearch} />
-                <Table size="small" bordered columns={columns} dataSource={departmentTrees} />
+                <Table rowKey={"id"} size="small" bordered columns={columns} dataSource={departmentTrees} />
             </div>
         </>
     );

@@ -98,7 +98,7 @@ const UserList = () => {
 
     const getUsers = async () => {
         setLoading(true);
-        const result = await httpFetch("/api/system/users");
+        const result = await httpFetch("/system/users");
         setData(result);
         setLoading(false);
     };

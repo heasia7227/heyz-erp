@@ -15,6 +15,7 @@ export const generateToken = (payload: any) => {
 
 export const verifyToken = (request: NextRequest) => {
     const token = request.cookies.get("token")?.value || request.headers.get("Authorization") || "";
+
     try {
         const decoded = jwtDecode(token);
         return decoded;

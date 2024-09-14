@@ -79,7 +79,7 @@ const RoleList = () => {
     }, []);
 
     const getRoles = async () => {
-        const result = await httpFetch("/api/system/roles");
+        const result = await httpFetch("/system/roles");
         setRoles(result);
     };
 
@@ -87,7 +87,7 @@ const RoleList = () => {
         <>
             <div className="flex flex-col gap-3">
                 <Search />
-                <Table size="small" bordered columns={columns} dataSource={roles} />
+                <Table rowKey={"id"} size="small" bordered columns={columns} dataSource={roles} />
             </div>
         </>
     );

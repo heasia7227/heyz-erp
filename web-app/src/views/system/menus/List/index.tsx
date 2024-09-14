@@ -98,7 +98,7 @@ const MenuList = () => {
     }, []);
 
     const getMenus = async () => {
-        const result = await httpFetch("/api/system/menus");
+        const result = await httpFetch("/system/menus");
         const items = flat2tree(result, {
             parentKeyColumnName: "parentId",
             keyColumnName: "id",
@@ -115,7 +115,14 @@ const MenuList = () => {
                         新增菜单
                     </Button>
                 </div>
-                <Table size="small" bordered columns={columns} dataSource={menuTrees} pagination={false} />
+                <Table
+                    rowKey={"id"}
+                    size="small"
+                    bordered
+                    columns={columns}
+                    dataSource={menuTrees}
+                    pagination={false}
+                />
             </div>
         </>
     );
