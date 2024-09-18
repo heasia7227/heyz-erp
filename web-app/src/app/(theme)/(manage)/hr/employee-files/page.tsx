@@ -1,5 +1,11 @@
+import EmployeeFilesView from "@/views/hr/employee-files/List";
+
 const EmployeeFiles = () => {
-    return <>employee files</>;
+    return (
+        <>
+            <EmployeeFilesView />
+        </>
+    );
 };
 
 export default EmployeeFiles;

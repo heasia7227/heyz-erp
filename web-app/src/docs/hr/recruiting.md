@@ -1,7 +1,5 @@
 # HR 人力资源管理 招聘管理
 
-### 招聘计划制定
-
 | 招聘计划表                             | t_hr_recruiting_planning |
 | -------------------------------------- | ------------------------ |
 | 计划编号                               | id                       |
@@ -16,20 +14,20 @@
 | 招聘理由                               | reason                   |
 | 人力专员                               | hr_attache_id            |
 
-| 招聘计划审批配置表 | t_hr_recruiting_planning_audit_config |
-| ------------------ | ------------------------------------- |
-| 计划编号           | planning_id                           |
-| 审批人             | auditor_id                            |
-| 审批级别           | audit_level                           |
+| 招聘计划审批配置表 | t_hr_recruiting_planning_auditing_config |
+| ------------------ | ---------------------------------------- |
+| 计划编号           | planning_id                              |
+| 审批人             | auditor_id                               |
+| 审批级别           | audit_level                              |
 
-| 招聘计划审批表      | t_hr_recruiting_planning_audit |
-| ------------------- | ------------------------------ |
-| 计划编号            | planning_id                    |
-| 审批人              | auditor_id                     |
-| 审批级别            | audit_level                    |
-| 审批结果(驳回/通过) | status                         |
-| 审批意见            | opinion                        |
-| 审批时间            | audit_date                     |
+| 招聘计划审批表      | t_hr_recruiting_planning_auditing |
+| ------------------- | --------------------------------- |
+| 计划编号            | planning_id                       |
+| 审批人              | auditor_id                        |
+| 审批级别            | audit_level                       |
+| 审批结果(驳回/通过) | status                            |
+| 审批意见            | opinion                           |
+| 审批时间            | audit_date                        |
 
 | 简历筛选表             | t_hr_recruiting_resume |
 | ---------------------- | ---------------------- |
@@ -56,11 +54,11 @@
 | 状态(录用/不录用)           | status                          |
 | 通知录用状态(未通知/已通知) | notification_status             |
 
-| 录用决策审批表      | t_hr_recruiting_employ_decision_audit |
-| ------------------- | ------------------------------------- |
-| 决策编号            | decision_id                           |
-| 审批人              | auditor_id                            |
-| 审批级别            | audit_level                           |
-| 审批结果(驳回/通过) | status                                |
-| 审批意见            | opinion                               |
-| 审批时间            | audit_date                            |
+| 录用决策审批表      | t_hr_recruiting_employ_decision_auditing |
+| ------------------- | ---------------------------------------- |
+| 决策编号            | decision_id                              |
+| 审批人              | auditor_id                               |
+| 审批级别            | audit_level                              |
+| 审批结果(驳回/通过) | status                                   |
+| 审批意见            | opinion                                  |
+| 审批时间            | audit_date                               |

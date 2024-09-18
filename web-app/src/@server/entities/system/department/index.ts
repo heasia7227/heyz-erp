@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "../user";
+import { EmployeeFiles } from "../../hr/employee-files";
 
 @Entity({ name: "t_sys_departments" })
 export class Department extends BaseEntity {
@@ -32,16 +32,16 @@ export class Department extends BaseEntity {
     @Column({ name: "status" })
     status!: string;
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => EmployeeFiles)
     @JoinColumn({ name: "create_by", foreignKeyConstraintName: "id" })
-    createUser?: User;
+    createUser?: EmployeeFiles;
 
     @Column({ name: "create_date" })
     createDate!: string;
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => EmployeeFiles)
     @JoinColumn({ name: "update_by", foreignKeyConstraintName: "id" })
-    updateUser?: User;
+    updateUser?: EmployeeFiles;
 
     @Column({ name: "update_date" })
     updateDate!: string;

@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, Card, Form, Input } from "antd";
+import { useState } from "react";
+import { Button, Card, Form, Input, notification } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import aes from "@/utils/aes";
 import httpFetch from "@/utils/http-fetch";
@@ -9,8 +10,12 @@ import { useRouter } from "next/navigation";
 const Login = () => {
     const router = useRouter();
     const [form] = Form.useForm();
+    const [notificationApi, contextHolder] = notification.useNotification();
+
+    const [loading, setLoading] = useState<boolean>(false);
 
     const onFinish = async (values: any) => {
+        setLoading(true);
         values.password = aes.encrypt(values.password);
         const result = await httpFetch("/system/login", {
             method: "POST",
@@ -20,11 +25,19 @@ const Login = () => {
             localStorage.setItem("token", result?.token);
             localStorage.setItem("user", JSON.stringify(result?.user));
             router.push("/home");
+        } else {
+            notificationApi.error({
+                message: "登录失败",
+                description: "账号或密码错误！",
+            });
         }
+
+        setLoading(false);
     };
 
     return (
         <>
+            {contextHolder}
             <div className="h-screen bg-gradient-to-br from-cyan-100 to-blue-300">
                 <div className="w-[1366px] mx-auto relative">
                     <div className="w-[300px] absolute top-80 right-0">
@@ -40,7 +53,13 @@ const Login = () => {
                                 </Form.Item>
 
                                 <div>
-                                    <Button type="primary" htmlType="submit" className="w-full">
+                                    <Button
+                                        type="primary"
+                                        htmlType="submit"
+                                        className="w-full"
+                                        loading={loading}
+                                        disabled={loading}
+                                    >
                                         登录
                                     </Button>
                                 </div>

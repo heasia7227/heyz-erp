@@ -18,16 +18,6 @@ const columns = [
         key: "name",
     },
     {
-        title: "出生年月",
-        dataIndex: "birthday",
-        key: "birthday",
-    },
-    {
-        title: "性别",
-        dataIndex: "gender",
-        key: "gender",
-    },
-    {
         title: "手机号",
         dataIndex: "phoneNumber",
         key: "phoneNumber",

@@ -11,11 +11,35 @@
  Target Server Version : 90001
  File Encoding         : 65001
 
- Date: 13/09/2024 23:15:52
+ Date: 18/09/2024 09:36:04
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_hr_employee_files
+-- ----------------------------
+DROP TABLE IF EXISTS `t_hr_employee_files`;
+CREATE TABLE `t_hr_employee_files`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '员工编号',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '姓名',
+  `gender` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '性别',
+  `birthday` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '生日',
+  `id_card` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '身份证号',
+  `phone_number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '手机号码',
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '邮件',
+  `education` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '学历',
+  `salary` decimal(10, 2) NULL DEFAULT NULL COMMENT '薪资',
+  `department_id` int(0) NULL DEFAULT NULL COMMENT '部门编号',
+  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '状态(离职/在职)',
+  `resume_id` int(0) NULL DEFAULT NULL COMMENT '简历编号',
+  `create_by` int(0) NULL DEFAULT NULL,
+  `create_date` datetime(0) NULL DEFAULT NULL,
+  `update_by` int(0) NULL DEFAULT NULL,
+  `update_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_employ_decision
@@ -32,10 +56,10 @@ CREATE TABLE `t_hr_recruiting_employ_decision`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_hr_recruiting_employ_decision_audit
+-- Table structure for t_hr_recruiting_employ_decision_auditing
 -- ----------------------------
-DROP TABLE IF EXISTS `t_hr_recruiting_employ_decision_audit`;
-CREATE TABLE `t_hr_recruiting_employ_decision_audit`  (
+DROP TABLE IF EXISTS `t_hr_recruiting_employ_decision_auditing`;
+CREATE TABLE `t_hr_recruiting_employ_decision_auditing`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `decision_id` int(0) NULL DEFAULT NULL COMMENT '决策编号',
   `auditor_id` int(0) NULL DEFAULT NULL COMMENT '审批人',
@@ -87,10 +111,10 @@ CREATE TABLE `t_hr_recruiting_planning`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_hr_recruiting_planning_audit
+-- Table structure for t_hr_recruiting_planning_auditing
 -- ----------------------------
-DROP TABLE IF EXISTS `t_hr_recruiting_planning_audit`;
-CREATE TABLE `t_hr_recruiting_planning_audit`  (
+DROP TABLE IF EXISTS `t_hr_recruiting_planning_auditing`;
+CREATE TABLE `t_hr_recruiting_planning_auditing`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `planning_id` int(0) NULL DEFAULT NULL COMMENT '计划编号',
   `auditor_id` int(0) NULL DEFAULT NULL COMMENT '审批人',
@@ -102,10 +126,10 @@ CREATE TABLE `t_hr_recruiting_planning_audit`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_hr_recruiting_planning_audit_config
+-- Table structure for t_hr_recruiting_planning_auditing_config
 -- ----------------------------
-DROP TABLE IF EXISTS `t_hr_recruiting_planning_audit_config`;
-CREATE TABLE `t_hr_recruiting_planning_audit_config`  (
+DROP TABLE IF EXISTS `t_hr_recruiting_planning_auditing_config`;
+CREATE TABLE `t_hr_recruiting_planning_auditing_config`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `planning_id` int(0) NULL DEFAULT NULL COMMENT '计划编号',
   `auditor_id` int(0) NULL DEFAULT NULL COMMENT '审批人',
@@ -148,7 +172,7 @@ CREATE TABLE `t_sys_departments`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_departments
@@ -314,7 +338,7 @@ CREATE TABLE `t_sys_roles`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_roles

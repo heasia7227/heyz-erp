@@ -5,6 +5,7 @@ export async function POST(request: Request) {
     const res = await request.json();
 
     const result = await login(res);
+    console.log("result: ", result);
     if (!result) {
         return new Response(JSON.stringify({ code: 401, message: "Invalid account or password." }), { status: 200 });
     } else if (result?.menus?.length === 0) {
