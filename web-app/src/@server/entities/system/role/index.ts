@@ -9,6 +9,7 @@ export class Role extends BaseEntity {
         this.id = role?.id;
         this.title = role?.title;
         this.description = role?.description;
+        this.status = role?.status ? "enable" : "disable";
         this.createUser = role?.createUser;
         this.createDate = role?.createDate;
         this.updateUser = role?.updateUser;

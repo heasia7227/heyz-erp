@@ -18,29 +18,15 @@ const columns = [
         key: "name",
     },
     {
-        title: "手机号",
-        dataIndex: "phoneNumber",
-        key: "phoneNumber",
-    },
-    {
-        title: "邮件",
-        dataIndex: "email",
-        key: "email",
-    },
-    {
-        title: "状态",
-        key: "status",
-        dataIndex: "status",
-        render: (status: string) => (
-            <Switch checkedChildren="已启用" unCheckedChildren="已禁用" checked={status === "enable"} />
-        ),
+        title: "账号",
+        dataIndex: "account",
+        key: "account",
     },
     {
         title: "创建人",
         dataIndex: "createUserName",
         key: "createUserName",
         width: 120,
-        render: (_: any, record: any) => record?.createUser?.name,
     },
     {
         title: "创建时间",
@@ -55,7 +41,6 @@ const columns = [
         dataIndex: "updateUserName",
         key: "updateUserName",
         width: 120,
-        render: (_: any, record: any) => record?.updateUser?.name,
     },
     {
         title: "修改时间",

@@ -10,6 +10,7 @@ import create from "@/@server/services/system/department/create";
 export async function POST(request: NextRequest) {
     // Get body params
     const res = await request.json();
+    res.createBy = request.headers.get("employeeId");
 
     const result = await create(res);
     return Response.json({ code: 200, data: result });

@@ -43,7 +43,6 @@ const Add = ({ refresh }: IProps) => {
                 method: "POST",
                 body: JSON.stringify(values),
             });
-            console.log("result: ", result);
             if (result?.id) {
                 messageApi.open({
                     type: "success",

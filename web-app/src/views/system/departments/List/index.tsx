@@ -67,16 +67,19 @@ const columns = [
 
 const DepartmentList = () => {
     const [departmentTrees, setDepartmentTress] = useState<any>();
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         getDepartments();
     }, []);
 
     const getDepartments = async (keyword?: string) => {
+        setLoading(true);
         const result = await httpFetch("/system/departments/trees", {
             params: { keyword },
         });
         setDepartmentTress(result);
+        setLoading(false);
     };
 
     const onSearch = (keyword: string) => {
@@ -87,7 +90,14 @@ const DepartmentList = () => {
         <>
             <div className="flex flex-col gap-3">
                 <Search onSearch={onSearch} />
-                <Table rowKey={"id"} size="small" bordered columns={columns} dataSource={departmentTrees} />
+                <Table
+                    rowKey={"id"}
+                    size="small"
+                    bordered
+                    columns={columns}
+                    dataSource={departmentTrees}
+                    loading={loading}
+                />
             </div>
         </>
     );

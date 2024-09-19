@@ -1,28 +1,31 @@
 "use client";
 
 import { Button, Form, Input } from "antd";
-import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
+import Add from "../Add";
 
-const Search = () => {
+interface IProps {
+    onSearch: (keyword: string) => void;
+}
+
+const Search = ({ onSearch }: IProps) => {
     const [form] = Form.useForm();
 
-    const onFinish = (values: any) => {
-        console.log("Finish:", values);
+    const onFinish = (values?: any) => {
+        onSearch(values?.keyword);
     };
 
     return (
         <>
             <Form form={form} name="horizontal_login" layout="inline" onFinish={onFinish}>
-                <Form.Item name="userName">
+                <Form.Item name="keyword">
                     <Input placeholder="角色模糊查询" />
                 </Form.Item>
                 <div className="flex-1">
                     <Button icon={<SearchOutlined />}>查询</Button>
                 </div>
                 <div>
-                    <Button type="primary" icon={<PlusOutlined />}>
-                        新增角色
-                    </Button>
+                    <Add refresh={() => onFinish()} />
                 </div>
             </Form>
         </>

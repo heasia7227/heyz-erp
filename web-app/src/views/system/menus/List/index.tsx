@@ -92,12 +92,14 @@ const columns: any[] = [
 
 const MenuList = () => {
     const [menuTrees, setMenuTrees] = useState<any[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         getMenus();
     }, []);
 
     const getMenus = async () => {
+        setLoading(true);
         const result = await httpFetch("/system/menus");
         const items = flat2tree(result, {
             parentKeyColumnName: "parentId",
@@ -105,6 +107,7 @@ const MenuList = () => {
             titleColumnName: "title",
         });
         setMenuTrees(items);
+        setLoading(false);
     };
 
     return (
@@ -122,6 +125,7 @@ const MenuList = () => {
                     columns={columns}
                     dataSource={menuTrees}
                     pagination={false}
+                    loading={loading}
                 />
             </div>
         </>

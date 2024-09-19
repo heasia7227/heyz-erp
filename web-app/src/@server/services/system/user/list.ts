@@ -12,6 +12,7 @@ const list = async (params?: any): Promise<any> => {
             t5.phone_number phoneNumber,
             t5.email,
             t5.status,
+            t1.account,
             t1.create_by createBy,
             t2.name createUserName,
             t1.create_date createDate,

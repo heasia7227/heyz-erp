@@ -11,7 +11,7 @@
  Target Server Version : 90001
  File Encoding         : 65001
 
- Date: 18/09/2024 09:36:04
+ Date: 19/09/2024 17:05:27
 */
 
 SET NAMES utf8mb4;
@@ -39,7 +39,14 @@ CREATE TABLE `t_hr_employee_files`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_hr_employee_files
+-- ----------------------------
+INSERT INTO `t_hr_employee_files` VALUES (1, '管理员', NULL, NULL, NULL, '15398027227', '515382435@qq.com', NULL, NULL, 3, 'enable', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_hr_employee_files` VALUES (2, '贺亚洲', '男', '1990/05/29', '610523199005294519', '15398027227', '515382435@qq.com', '本科', NULL, 1, 'enable', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_hr_employee_files` VALUES (3, '张三', '男', '1990/05/29', '610523199005294518', '13891370806', NULL, '专科', NULL, 3, 'enable', NULL, 1, '2024-09-19 09:01:17', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_employ_decision
@@ -172,7 +179,7 @@ CREATE TABLE `t_sys_departments`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_departments
@@ -290,22 +297,77 @@ CREATE TABLE `t_sys_operate_logs`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sys_role_menu`;
 CREATE TABLE `t_sys_role_menu`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
   `role_id` int(0) NOT NULL,
   `menu_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`role_id`, `menu_id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_role_menu
 -- ----------------------------
-INSERT INTO `t_sys_role_menu` VALUES (1, '10', 1, '2024-09-08 17:29:22');
-INSERT INTO `t_sys_role_menu` VALUES (1, '1001', 1, '2024-09-08 17:30:03');
-INSERT INTO `t_sys_role_menu` VALUES (1, '1002', 1, '2024-09-08 17:30:19');
-INSERT INTO `t_sys_role_menu` VALUES (1, '1003', 1, '2024-09-08 17:31:29');
-INSERT INTO `t_sys_role_menu` VALUES (1, '1004', 1, '2024-09-08 17:31:37');
-INSERT INTO `t_sys_role_menu` VALUES (1, '1005', 1, '2024-09-08 17:31:51');
+INSERT INTO `t_sys_role_menu` VALUES (19, 2, '0101', 1, '2024-09-19 17:02:14');
+INSERT INTO `t_sys_role_menu` VALUES (20, 2, '0102', 1, '2024-09-19 17:02:14');
+INSERT INTO `t_sys_role_menu` VALUES (21, 2, '0103', 1, '2024-09-19 17:02:14');
+INSERT INTO `t_sys_role_menu` VALUES (22, 2, '0104', 1, '2024-09-19 17:02:14');
+INSERT INTO `t_sys_role_menu` VALUES (23, 1, '1001', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (24, 1, '1002', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (25, 1, '1003', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (26, 1, '1004', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (27, 1, '1005', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (28, 1, '0101', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (29, 1, '0102', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (30, 1, '0103', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (31, 1, '0104', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (32, 1, '0201', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (33, 1, '0202', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (34, 1, '0203', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (35, 1, '0204', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (36, 1, '0205', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (37, 1, '0206', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (38, 1, '0207', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (39, 1, '0208', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (40, 1, '0301', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (41, 1, '0302', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (42, 1, '0303', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (43, 1, '0304', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (44, 1, '0305', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (45, 1, '0306', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (46, 1, '0307', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (47, 1, '0308', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (48, 1, '0401', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (49, 1, '0402', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (50, 1, '0403', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (51, 1, '0503', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (52, 1, '050101', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (53, 1, '050102', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (54, 1, '050103', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (55, 1, '050104', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (56, 1, '050201', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (57, 1, '050202', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (58, 1, '050203', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (59, 1, '0601', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (60, 1, '0602', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (61, 1, '0603', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (62, 1, '0604', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (63, 1, '0605', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (64, 1, '0606', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (65, 1, '0607', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (66, 1, '0608', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (67, 1, '0701', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (68, 1, '0702', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (69, 1, '0703', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (70, 1, '0704', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (71, 1, '0801', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (72, 1, '0802', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (73, 1, '0803', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (74, 1, '0901', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (75, 1, '0902', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (76, 1, '0903', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (77, 1, '0904', 1, '2024-09-19 17:04:53');
+INSERT INTO `t_sys_role_menu` VALUES (78, 1, '0905', 1, '2024-09-19 17:04:53');
 
 -- ----------------------------
 -- Table structure for t_sys_role_user
@@ -338,12 +400,13 @@ CREATE TABLE `t_sys_roles`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_roles
 -- ----------------------------
 INSERT INTO `t_sys_roles` VALUES (1, '系统管理员', '拥有系统管理权限', 'enable', 1, '2024-09-08 17:28:32', NULL, NULL);
+INSERT INTO `t_sys_roles` VALUES (2, '普通员工', '普通员工', 'enable', 1, '2024-09-19 09:58:03', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_sys_users
@@ -351,24 +414,20 @@ INSERT INTO `t_sys_roles` VALUES (1, '系统管理员', '拥有系统管理权�
 DROP TABLE IF EXISTS `t_sys_users`;
 CREATE TABLE `t_sys_users`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `department_id` int(0) NULL DEFAULT NULL,
-  `birthday` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `gender` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `phone_number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `employee_id` int(0) NULL DEFAULT NULL,
+  `account` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_users
 -- ----------------------------
-INSERT INTO `t_sys_users` VALUES (1, 'Admin', NULL, NULL, NULL, '15398027227', '515382435@qq.com', 'enable', 'A1qg7r2PRg5OTFDofDnxVel+QCSYdhSCGrwVZwwbN8I=', 1, '2024-09-08 17:25:33', NULL, NULL);
+INSERT INTO `t_sys_users` VALUES (1, 1, '15398027227', 'A1qg7r2PRg5OTFDofDnxVel+QCSYdhSCGrwVZwwbN8I=', 1, '2024-09-08 17:25:33', NULL, NULL);
+INSERT INTO `t_sys_users` VALUES (3, 2, '515382435@qq.com', 'A1qg7r2PRg5OTFDofDnxVel+QCSYdhSCGrwVZwwbN8I=', 1, '2024-09-19 08:55:54', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

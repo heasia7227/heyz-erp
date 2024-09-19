@@ -82,7 +82,6 @@ const EmployeeFiles = () => {
             dataIndex: "createUserName",
             key: "createUserName",
             width: 120,
-            render: (_: any, record: any) => record?.createUser?.name,
         },
         {
             title: "创建时间",
@@ -97,7 +96,6 @@ const EmployeeFiles = () => {
             dataIndex: "updateUserName",
             key: "updateUserName",
             width: 120,
-            render: (_: any, record: any) => record?.updateUser?.name,
         },
         {
             title: "修改时间",

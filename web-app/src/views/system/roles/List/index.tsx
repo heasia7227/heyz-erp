@@ -1,10 +1,11 @@
 "use client";
 
-import { Space, Switch, Table, Tag } from "antd";
 import { useEffect, useState } from "react";
+import { Space, Switch, Table } from "antd";
+import dayjs from "dayjs";
 import httpFetch from "@/utils/http-fetch";
 import Search from "./Search";
-import dayjs from "dayjs";
+import ConfigureMenus from "../ConfigureMenus";
 
 const columns: any[] = [
     {
@@ -65,7 +66,7 @@ const columns: any[] = [
             <Space size="middle">
                 <a>编辑</a>
                 <a>分配用户</a>
-                <a>配置菜单</a>
+                <ConfigureMenus roleId={record?.id} />
             </Space>
         ),
     },
@@ -73,21 +74,30 @@ const columns: any[] = [
 
 const RoleList = () => {
     const [roles, setRoles] = useState<any[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         getRoles();
     }, []);
 
-    const getRoles = async () => {
-        const result = await httpFetch("/system/roles");
+    const getRoles = async (keyword?: string) => {
+        setLoading(true);
+        const result = await httpFetch("/system/roles", {
+            params: { keyword },
+        });
         setRoles(result);
+        setLoading(false);
+    };
+
+    const onSearch = (keyword: string) => {
+        getRoles(keyword);
     };
 
     return (
         <>
             <div className="flex flex-col gap-3">
-                <Search />
-                <Table rowKey={"id"} size="small" bordered columns={columns} dataSource={roles} />
+                <Search onSearch={onSearch} />
+                <Table rowKey={"id"} size="small" bordered columns={columns} dataSource={roles} loading={loading} />
             </div>
         </>
     );

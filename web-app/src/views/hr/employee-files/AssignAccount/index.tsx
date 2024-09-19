@@ -13,6 +13,7 @@ const AssignAccount = ({ record, refresh }: IProps) => {
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [showAccountInput, setShowAccountType] = useState<boolean>(false);
+    const [saving, setSaving] = useState(false);
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -20,6 +21,7 @@ const AssignAccount = ({ record, refresh }: IProps) => {
 
     const handleOk = () => {
         form.validateFields().then(async (values) => {
+            setSaving(true);
             const params: any = { employeeId: record.id };
             if (values.accountType === 1) {
                 params.account = record.phoneNumber;
@@ -33,20 +35,20 @@ const AssignAccount = ({ record, refresh }: IProps) => {
                 method: "POST",
                 body: JSON.stringify(params),
             });
-            console.log("result: ", result);
             if (result?.error) {
                 messageApi.open({
                     type: "error",
                     content: result?.message,
                 });
             } else {
+                handleCancel();
+                refresh?.();
                 messageApi.open({
                     type: "success",
                     content: "分配账号成功！",
                 });
-                handleCancel();
-                refresh?.();
             }
+            setSaving(false);
         });
     };
 
@@ -70,9 +72,12 @@ const AssignAccount = ({ record, refresh }: IProps) => {
                 title="分配员工账号"
                 open={isModalOpen}
                 okText="分配"
+                okButtonProps={{ loading: saving }}
                 onOk={handleOk}
                 cancelText="取消"
                 onCancel={handleCancel}
+                cancelButtonProps={{ disabled: saving }}
+                closable={!saving}
             >
                 <Form form={form} onValuesChange={onValuesChange} initialValues={{ accountType: 1 }}>
                     <Form.Item name="accountType" noStyle>
