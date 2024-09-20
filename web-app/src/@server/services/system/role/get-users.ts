@@ -18,7 +18,7 @@ const getUsers = async (params: any): Promise<any> => {
                 LEFT JOIN t_hr_employee_files t3 ON t1.user_id = t3.id
                 LEFT JOIN t_sys_departments t4 ON t3.department_id = t4.id
                 LEFT JOIN t_hr_employee_files t5 ON t1.create_by = t5.id 
-            WHERE t1.id = ? 
+            WHERE t1.role_id = ? 
         `;
 
     const _params: any = [params.roleId];

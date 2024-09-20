@@ -35,6 +35,7 @@ const columns = [
     {
         title: "操作",
         key: "action",
+        width: 80,
         render: (_: any, record: any) => (
             <Space size={0} split={<Divider type="vertical" />}>
                 <a>删除</a>

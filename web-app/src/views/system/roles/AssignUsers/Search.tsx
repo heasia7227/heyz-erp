@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Button, Form, Input, TreeSelect } from "antd";
+import { useState } from "react";
+import { Button, Form, Input } from "antd";
 import { SearchOutlined, DeleteOutlined } from "@ant-design/icons";
-import httpFetch from "@/utils/http-fetch";
 import Add from "./Add";
+import DepartmentTree from "@/components/DepartmentTree";
 
 interface IProps {
     roleId: number;
@@ -13,34 +13,23 @@ interface IProps {
 
 const Search = ({ roleId, onSearch }: IProps) => {
     const [form] = Form.useForm();
-    const [departmentTrees, setDepartmentTress] = useState<any>();
-
-    useEffect(() => {
-        getDepartments();
-    }, []);
-
-    const getDepartments = async () => {
-        const result = await httpFetch("/system/departments/trees");
-        setDepartmentTress(result);
-    };
+    const [searchForm, setSearchForm] = useState<any>({});
 
     const onFinish = (values: any) => {
         console.log("Finish:", values);
         onSearch(values);
+        setSearchForm(values);
+    };
+
+    const refresh = () => {
+        onSearch(searchForm);
     };
 
     return (
         <>
             <Form form={form} name="horizontal_login" layout="inline" onFinish={onFinish}>
                 <Form.Item name="departmentId">
-                    <TreeSelect
-                        style={{ width: "180px" }}
-                        dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
-                        placeholder="请选择部门"
-                        allowClear
-                        treeDefaultExpandAll
-                        treeData={departmentTrees}
-                    />
+                    <DepartmentTree />
                 </Form.Item>
                 <Form.Item name="userName">
                     <Input placeholder="姓名模糊查询" />
@@ -56,7 +45,7 @@ const Search = ({ roleId, onSearch }: IProps) => {
                     </Button>
                 </div>
                 <div className="ml-4">
-                    <Add roleId={roleId} />
+                    <Add roleId={roleId} refresh={refresh} />
                 </div>
             </Form>
         </>

@@ -8,9 +8,10 @@ import Search from "./Search";
 
 interface IProps {
     roleId: number;
+    refresh: () => void;
 }
 
-const Add = ({ roleId }: IProps) => {
+const Add = ({ roleId, refresh }: IProps) => {
     const [messageApi, contextHolder] = message.useMessage();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,6 +35,7 @@ const Add = ({ roleId }: IProps) => {
                 type: "success",
                 content: "分配用户成功！",
             });
+            refresh();
             handleCancel();
         } else {
             messageApi.open({

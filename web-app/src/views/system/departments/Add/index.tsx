@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Form, Input, Modal, Switch, TreeSelect } from "antd";
+import { Button, Form, Input, Modal, Switch } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import httpFetch from "@/utils/http-fetch";
+import DepartmentTree from "@/components/DepartmentTree";
 
 const formItemLayout = {
     labelCol: {
@@ -25,15 +26,8 @@ const Add = ({ refresh }: IProps) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [saving, setSaving] = useState(false);
-    const [departmentTrees, setDepartmentTress] = useState<any>();
-
-    const getDepartments = async () => {
-        const result = await httpFetch("/system/departments/trees");
-        setDepartmentTress(result);
-    };
 
     const showModal = () => {
-        getDepartments();
         setIsModalOpen(true);
     };
 
@@ -74,13 +68,7 @@ const Add = ({ refresh }: IProps) => {
             >
                 <Form {...formItemLayout} form={form} style={{ maxWidth: 600 }} initialValues={{ status: true }}>
                     <Form.Item label="上级部门" name="parentId">
-                        <TreeSelect
-                            dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
-                            placeholder="请选择部门"
-                            allowClear
-                            treeDefaultExpandAll
-                            treeData={departmentTrees}
-                        />
+                        <DepartmentTree />
                     </Form.Item>
                     <Form.Item label="部门名称" name="title" rules={[{ required: true, message: "请输入部门名称!" }]}>
                         <Input placeholder="请输入部门名称" />
