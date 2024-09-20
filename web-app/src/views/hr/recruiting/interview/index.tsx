@@ -1,3 +1,5 @@
+"use client";
+
 const Interview = () => {
     return <>面试安排</>;
 };

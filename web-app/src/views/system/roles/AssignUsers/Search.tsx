@@ -1,11 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button, Form, Input, TreeSelect, TreeSelectProps } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import { Button, Form, Input, TreeSelect } from "antd";
+import { SearchOutlined, DeleteOutlined } from "@ant-design/icons";
 import httpFetch from "@/utils/http-fetch";
+import Add from "./Add";
 
-const Search = () => {
+interface IProps {
+    roleId: number;
+    onSearch: (values: any) => void;
+}
+
+const Search = ({ roleId, onSearch }: IProps) => {
     const [form] = Form.useForm();
     const [departmentTrees, setDepartmentTress] = useState<any>();
 
@@ -20,6 +26,7 @@ const Search = () => {
 
     const onFinish = (values: any) => {
         console.log("Finish:", values);
+        onSearch(values);
     };
 
     return (
@@ -39,13 +46,18 @@ const Search = () => {
                     <Input placeholder="姓名模糊查询" />
                 </Form.Item>
                 <div className="flex-1">
-                    <Button icon={<SearchOutlined />}>查询</Button>
-                </div>
-                {/* <div>
-                    <Button type="primary" icon={<PlusOutlined />}>
-                        新增用户
+                    <Button htmlType="submit" icon={<SearchOutlined />}>
+                        查询
                     </Button>
-                </div> */}
+                </div>
+                <div>
+                    <Button ghost danger icon={<DeleteOutlined />}>
+                        批量删除
+                    </Button>
+                </div>
+                <div className="ml-4">
+                    <Add roleId={roleId} />
+                </div>
             </Form>
         </>
     );

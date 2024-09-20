@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import httpFetch from "@/utils/http-fetch";
 import Search from "./Search";
 import ConfigureMenus from "../ConfigureMenus";
+import AssignUsers from "../AssignUsers";
 
 const columns: any[] = [
     {
@@ -65,7 +66,7 @@ const columns: any[] = [
         render: (_: any, record: any) => (
             <Space size="middle">
                 <a>编辑</a>
-                <a>分配用户</a>
+                <AssignUsers roleId={record?.id} />
                 <ConfigureMenus roleId={record?.id} />
             </Space>
         ),

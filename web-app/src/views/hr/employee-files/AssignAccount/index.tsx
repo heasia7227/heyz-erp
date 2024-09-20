@@ -1,6 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import httpFetch from "@/utils/http-fetch";
 import { Form, Input, message, Modal, Radio, Space } from "antd";
-import { useState } from "react";
 
 interface IProps {
     record: any;

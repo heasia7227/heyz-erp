@@ -4,7 +4,11 @@ import create from "@/@server/services/system/user/create";
 
 // List
 export async function GET(request: NextRequest) {
-    const result = await list();
+    const searchParams = request.nextUrl.searchParams;
+    const departmentId = searchParams.get("departmentId");
+    const userName = searchParams.get("userName");
+
+    const result = await list({ departmentId, userName });
     return Response.json({ code: 200, data: result });
 }
 
