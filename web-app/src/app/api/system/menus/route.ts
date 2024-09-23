@@ -1,9 +1,9 @@
+import { getMenus } from "@/@server/services/system/menu";
 import { NextRequest } from "next/server";
-import list from "@/@server/services/system/menu/list";
 
 // list
 export async function GET(request: NextRequest) {
-    const result = await list();
+    const result = await getMenus();
     return Response.json({ code: 200, data: result });
 }
 

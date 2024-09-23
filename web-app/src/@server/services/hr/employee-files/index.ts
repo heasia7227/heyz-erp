@@ -1,6 +1,14 @@
+import dayjs from "dayjs";
 import { getDataSource } from "@/@server/datasource";
+import { EmployeeFiles } from "@/@server/entities/hr/employee-files";
+import { getBirthdayByIdCard, getGenderByIdCard } from "@/utils/id-card";
 
-const list = async (params?: any): Promise<any> => {
+/**
+ * 查询员工档案列表
+ * @param params
+ * @returns
+ */
+export const getEmployeeFiles = async (params?: any): Promise<any> => {
     const appDataSource = await getDataSource();
     const employees = await appDataSource.manager.query(`
             SELECT
@@ -22,7 +30,7 @@ const list = async (params?: any): Promise<any> => {
                 t1.update_date updateDate,
                 CASE WHEN t2.id IS NULL THEN 0 ELSE 1 END assigned,
                 t2.account,
-                t3.title departmentName,
+                t3.title departmentTitle,
                 t4.NAME createUserName,
                 t5.NAME updateUserName 
             FROM
@@ -35,4 +43,19 @@ const list = async (params?: any): Promise<any> => {
     return { items: employees, totalCount: employees?.length };
 };
 
-export default list;
+/**
+ * 创建员工档案
+ * @param params
+ * @returns
+ */
+export const createEmployeeFile = async (params?: any): Promise<any> => {
+    const appDataSource = await getDataSource();
+
+    params.birthday = getBirthdayByIdCard(params.idCard);
+    params.gender = getGenderByIdCard(params.idCard);
+    params.createDate = dayjs().format("YYYY-MM-DD HH:mm:ss");
+    params.createUser = await appDataSource.getRepository(EmployeeFiles).findOne({ where: { id: params.createBy } });
+
+    const result = await appDataSource.getRepository(EmployeeFiles).save(new EmployeeFiles(params));
+    return result;
+};

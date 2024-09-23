@@ -1,16 +1,21 @@
 import { NextRequest } from "next/server";
-import getUsers from "@/@server/services/system/role/get-users";
-import assignUsers from "@/@server/services/system/role/assign-users";
+import { getAssignUsers, saveAssignUsers } from "@/@server/services/system/role/assign-users";
+import { IGetAssignUsersParams } from "@/interfaces/system/role/assign-users";
+import { getNumber, getString } from "@/utils/get-url-query";
 
 // 获取已分配用户
 export async function GET(request: NextRequest) {
-    const searchParams = request.nextUrl.searchParams;
-    const roleId = searchParams.get("roleId");
-    const departmentId = searchParams.get("departmentId");
-    const userName = searchParams.get("userName");
+    const roleId = getNumber(request, "roleId");
+    const departmentId = getNumber(request, "departmentId");
+    const userName = getString(request, "userName");
 
     if (roleId) {
-        const result = await getUsers({ roleId, departmentId, userName });
+        const _params = {
+            roleId: Number(roleId!),
+            departmentId: departmentId ? Number(departmentId) : departmentId,
+            userName,
+        } as IGetAssignUsersParams;
+        const result = await getAssignUsers(_params);
         return Response.json({ code: 200, data: result });
     }
     return Response.json({ code: 200, data: [] });
@@ -22,6 +27,6 @@ export async function POST(request: NextRequest) {
     const res = await request.json();
     res.createBy = request.headers.get("employeeId");
 
-    const result = await assignUsers(res);
+    const result = await saveAssignUsers(res);
     return Response.json({ code: 200, data: result });
 }

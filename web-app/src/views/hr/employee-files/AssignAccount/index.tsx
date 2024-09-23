@@ -3,6 +3,7 @@
 import { useState } from "react";
 import httpFetch from "@/utils/http-fetch";
 import { Form, Input, message, Modal, Radio, Space } from "antd";
+import { IAssignAccountResult } from "@/interfaces/system/user";
 
 interface IProps {
     record: any;
@@ -33,7 +34,7 @@ const AssignAccount = ({ record, refresh }: IProps) => {
                 params.account = values.account;
             }
 
-            const result = await httpFetch("/system/users", {
+            const result = await httpFetch<IAssignAccountResult>("/system/users", {
                 method: "POST",
                 body: JSON.stringify(params),
             });

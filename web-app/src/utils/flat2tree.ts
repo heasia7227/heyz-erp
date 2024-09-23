@@ -4,10 +4,10 @@ export interface IDataExplain {
     titleColumnName: string;
 }
 
-export default function flat2tree(data: Array<any>, dataExplain: IDataExplain) {
-    const tree: Array<any> = [];
+export default function flat2tree<T, P>(data: P[], dataExplain: IDataExplain) {
+    const tree: T[] = [];
 
-    const transposeData = (tree: Array<any>, data: Array<any>, dataExplain: IDataExplain) => {
+    const transposeData = (tree: any[], data: any[], dataExplain: IDataExplain) => {
         if (data && data.length > 0) {
             data.forEach((item) => {
                 item.key = item[dataExplain.keyColumnName];
@@ -24,7 +24,7 @@ export default function flat2tree(data: Array<any>, dataExplain: IDataExplain) {
         }
     };
 
-    const getFirstData = (parentKey: any, data: Array<any>, dataExplain: IDataExplain, currentItem: any): any => {
+    const getFirstData = (parentKey: string, data: any[], dataExplain: IDataExplain, currentItem: any): any => {
         const parent = data.find(
             (item) =>
                 item[dataExplain.keyColumnName] === parentKey &&
@@ -38,7 +38,7 @@ export default function flat2tree(data: Array<any>, dataExplain: IDataExplain) {
         }
     };
 
-    const getChildrenData = (tree: Array<any>, data: Array<any>, dataExplain: IDataExplain) => {
+    const getChildrenData = (tree: any[], data: any[], dataExplain: IDataExplain) => {
         tree.forEach((node) => {
             const children = data.filter(
                 (item) =>

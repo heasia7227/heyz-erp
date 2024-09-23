@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { Breadcrumb, Card } from "antd";
+import { usePathname } from "next/navigation";
 import { HomeOutlined } from "@ant-design/icons";
 import httpFetch from "@/utils/http-fetch";
+import { IMenu } from "@/interfaces/system/menu";
 import Menus from "./Menus";
-import { usePathname } from "next/navigation";
 
 interface IProps {
     children: React.ReactNode;
@@ -13,7 +14,7 @@ interface IProps {
 
 const Content = ({ children }: IProps) => {
     const pathname = usePathname();
-    const [menus, setMenus] = useState<any[]>([]);
+    const [menus, setMenus] = useState<IMenu[]>([]);
     const [breadcrumbs, setBreadcrumbs] = useState<any[]>([]);
 
     useEffect(() => {
@@ -28,7 +29,7 @@ const Content = ({ children }: IProps) => {
     }, [pathname, menus]);
 
     const getMenus = async () => {
-        const result = await httpFetch("/system/menus");
+        const result = await httpFetch<IMenu[]>("/system/menus");
         setMenus(result);
     };
 
@@ -41,9 +42,9 @@ const Content = ({ children }: IProps) => {
         }
     };
 
-    const findParent = (currentItem: any): any[] => {
+    const findParent = (currentItem: IMenu): any[] => {
         const parentItem = menus.find((item) => item.id === currentItem.parentId);
-        if (parentItem.parentId) {
+        if (parentItem?.parentId) {
             const parents = findParent(parentItem);
             return [parentItem, ...parents];
         }

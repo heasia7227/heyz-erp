@@ -5,6 +5,8 @@ import { Divider, Space, Table } from "antd";
 import httpFetch from "@/utils/http-fetch";
 import Search from "./Search";
 import dayjs from "dayjs";
+import { IPage } from "@/interfaces";
+import { IUser } from "@/interfaces/system/user";
 
 const columns = [
     {
@@ -64,7 +66,7 @@ const columns = [
 ];
 
 const UserList = () => {
-    const [data, setData] = useState<any>({});
+    const [data, setData] = useState<IPage<IUser[]>>();
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
@@ -73,7 +75,7 @@ const UserList = () => {
 
     const getUsers = async () => {
         setLoading(true);
-        const result = await httpFetch("/system/users");
+        const result = await httpFetch<IPage<IUser[]>>("/system/users");
         setData(result);
         setLoading(false);
     };

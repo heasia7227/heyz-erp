@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Switch, Table } from "antd";
 import dayjs from "dayjs";
 import httpFetch from "@/utils/http-fetch";
+import { IDepartmentTree } from "@/interfaces/system/department";
 import Search from "./Search";
 
 const columns = [
@@ -32,14 +33,13 @@ const columns = [
         dataIndex: "createUserName",
         key: "createUserName",
         width: 120,
-        render: (_: any, record: any) => record?.createUser?.name,
     },
     {
         title: "创建时间",
         dataIndex: "createDate",
         key: "createDate",
         width: 150,
-        render: (_: any, record: any) =>
+        render: (_: any, record: IDepartmentTree) =>
             record?.createDate ? dayjs(record?.createDate).format("YYYY-MM-DD HH:mm:ss") : "-",
     },
     {
@@ -47,26 +47,25 @@ const columns = [
         dataIndex: "updateUserName",
         key: "updateUserName",
         width: 120,
-        render: (_: any, record: any) => record?.updateUser?.name,
     },
     {
         title: "修改时间",
         dataIndex: "updateDate",
         key: "updateDate",
         width: 150,
-        render: (_: any, record: any) =>
+        render: (_: any, record: IDepartmentTree) =>
             record?.updateDate ? dayjs(record?.updateDate).format("YYYY-MM-DD HH:mm:ss") : "-",
     },
     {
         title: "操作",
         key: "action",
         width: 100,
-        render: (_: any, record: any) => <a>编辑</a>,
+        render: (_: any, record: IDepartmentTree) => <a>编辑</a>,
     },
 ];
 
 const DepartmentList = () => {
-    const [departmentTrees, setDepartmentTress] = useState<any>();
+    const [departmentTrees, setDepartmentTress] = useState<IDepartmentTree[]>();
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
@@ -75,7 +74,7 @@ const DepartmentList = () => {
 
     const getDepartments = async (keyword?: string) => {
         setLoading(true);
-        const result = await httpFetch("/system/departments/trees", {
+        const result = await httpFetch<IDepartmentTree[]>("/system/departments/trees", {
             params: { keyword },
         });
         setDepartmentTress(result);

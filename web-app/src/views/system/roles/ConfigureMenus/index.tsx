@@ -4,6 +4,7 @@ import { useState } from "react";
 import { message, Modal, Tree } from "antd";
 import httpFetch from "@/utils/http-fetch";
 import flat2tree from "@/utils/flat2tree";
+import { IMenu } from "@/interfaces/system/menu";
 
 interface IProps {
     roleId: number;
@@ -26,7 +27,7 @@ const ConfigureMenus = ({ roleId }: IProps) => {
 
     const getMenus = async () => {
         setLoading(true);
-        const _menus = await httpFetch("/system/menus");
+        const _menus = await httpFetch<IMenu[]>("/system/menus");
         setMenus(_menus);
 
         const items = flat2tree(_menus, {
@@ -36,7 +37,7 @@ const ConfigureMenus = ({ roleId }: IProps) => {
         });
         setMenuTrees(items);
 
-        const _configuredMenus = await httpFetch("/system/roles/configure-menus", {
+        const _configuredMenus = await httpFetch<string[]>("/system/roles/configure-menus", {
             params: { roleId },
         });
         setCheckedKeys(_configuredMenus);
@@ -52,7 +53,7 @@ const ConfigureMenus = ({ roleId }: IProps) => {
             setSaving(true);
             //去除父级，只要叶子节点
             const menuIds = checkedKeys.filter((key) => menus.find((menu) => menu.id === key)?.path);
-            const result = await httpFetch("/system/roles/configure-menus", {
+            const result = await httpFetch<boolean>("/system/roles/configure-menus", {
                 method: "POST",
                 body: JSON.stringify({ roleId, menuIds }),
             });

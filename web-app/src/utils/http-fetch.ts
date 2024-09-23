@@ -6,7 +6,7 @@ interface IOptions extends RequestInit {
 
 const baseURL = `${process.env.NEXT_PUBLIC_APP_URL}/api`;
 
-const httpFetch = async (url: string, options: IOptions = {}): Promise<any> => {
+const httpFetch = async <T>(url: string, options: IOptions = {}): Promise<T> => {
     try {
         if (options.params) {
             const _params: any = {};
@@ -37,10 +37,11 @@ const httpFetch = async (url: string, options: IOptions = {}): Promise<any> => {
 
         const response = await result.json();
         if (response?.code === 200) {
-            return response?.data;
+            return response?.data as T;
         }
+        return null as T;
     } catch (error) {
-        return null;
+        return null as T;
     }
 };
 

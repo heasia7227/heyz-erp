@@ -1,10 +1,9 @@
 import { NextRequest } from "next/server";
-import list from "@/@server/services/hr/employee-files/list";
-import create from "@/@server/services/hr/employee-files/create";
+import { createEmployeeFile, getEmployeeFiles } from "@/@server/services/hr/employee-files";
 
 // List
 export async function GET(request: NextRequest) {
-    const result = await list();
+    const result = await getEmployeeFiles();
     return Response.json({ code: 200, data: result });
 }
 
@@ -14,7 +13,7 @@ export async function POST(request: NextRequest) {
     const res = await request.json();
     res.createBy = request.headers.get("employeeId");
 
-    const result = await create(res);
+    const result = await createEmployeeFile(res);
     return Response.json({ code: 200, data: result });
 }
 

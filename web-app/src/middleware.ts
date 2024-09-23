@@ -20,7 +20,7 @@ export function middleware(request: NextRequest) {
         // }
 
         const response = NextResponse.next();
-        response.headers.set("employeeId", payload?.employee_id);
+        response.headers.set("employeeId", payload?.employeeId);
         return response;
     } else {
         return NextResponse.next();

@@ -6,16 +6,18 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import Search from "./Search";
 import AssignAccount from "../AssignAccount";
+import { IEmployeeFile } from "@/interfaces/hr/employee-file";
+import { IPage } from "@/interfaces";
 
 const EmployeeFiles = () => {
-    const [dataScource, setDataScource] = useState<any>();
+    const [dataScource, setDataScource] = useState<IPage<IEmployeeFile[]>>();
 
     useEffect(() => {
         getEmployeeFiles();
     }, []);
 
     const getEmployeeFiles = async (values?: any) => {
-        const result = await httpFetch("/hr/employee-files", {
+        const result = await httpFetch<IPage<IEmployeeFile[]>>("/hr/employee-files", {
             params: values,
         });
         setDataScource(result);
@@ -28,8 +30,8 @@ const EmployeeFiles = () => {
     const columns = [
         {
             title: "所属部门",
-            dataIndex: "departmentName",
-            key: "departmentName",
+            dataIndex: "departmentTitle",
+            key: "departmentTitle",
             width: 200,
         },
         {
@@ -70,7 +72,7 @@ const EmployeeFiles = () => {
             dataIndex: "actions",
             key: "actions",
             width: 150,
-            render: (_: any, record: any) =>
+            render: (_: any, record: IEmployeeFile) =>
                 record?.assigned === "1" ? (
                     record?.account
                 ) : (
@@ -88,7 +90,7 @@ const EmployeeFiles = () => {
             dataIndex: "createDate",
             key: "createDate",
             width: 150,
-            render: (_: any, record: any) =>
+            render: (_: any, record: IEmployeeFile) =>
                 record?.createDate ? dayjs(record?.createDate).format("YYYY-MM-DD HH:mm:ss") : "-",
         },
         {
@@ -102,14 +104,14 @@ const EmployeeFiles = () => {
             dataIndex: "updateDate",
             key: "updateDate",
             width: 150,
-            render: (_: any, record: any) =>
+            render: (_: any, record: IEmployeeFile) =>
                 record?.updateDate ? dayjs(record?.updateDate).format("YYYY-MM-DD HH:mm:ss") : "-",
         },
         {
             title: "操作",
             key: "action",
             width: 100,
-            render: (_: any, record: any) => (
+            render: (_: any, record: IEmployeeFile) => (
                 <Space>
                     <a>详情</a>
                     <a>编辑</a>

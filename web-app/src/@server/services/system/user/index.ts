@@ -1,11 +1,45 @@
+import dayjs from "dayjs";
 import { getDataSource } from "@/@server/datasource";
+import { EmployeeFiles } from "@/@server/entities/hr/employee-files";
+import { User } from "@/@server/entities/system/user";
+import aes from "@/utils/aes";
+import { IGetUsersParams } from "@/interfaces/system/user";
 
-const list = async (params?: any): Promise<any> => {
+/**
+ * 创建账号
+ * @param params
+ * @returns
+ */
+export const createAccount = async (params?: any): Promise<any> => {
+    const appDataSource = await getDataSource();
+    const userRepository = appDataSource.getRepository(User);
+
+    const users = await userRepository.find({ where: { account: params.account } });
+    if (users?.length > 0) {
+        return { error: true, message: `【${params.account}】账号已存在` };
+    }
+
+    params.createDate = dayjs().format("YYYY-MM-DD HH:mm:ss");
+    params.createUser = await appDataSource.getRepository(EmployeeFiles).findOne({ where: { id: params.createBy } });
+
+    params.password = aes.encrypt(aes.encrypt(process.env.NEXT_PUBLIC_DEFAULT_PASSWORD));
+
+    const result = await userRepository.save(new User(params));
+    return result;
+};
+
+/**
+ * 查询用户列表
+ * @param params
+ * @returns
+ */
+export const getUsers = async (params?: IGetUsersParams): Promise<any> => {
     const appDataSource = await getDataSource();
 
     let _sql = `
         SELECT
             t1.id,
+            t1.employee_id employeeId,
             t5.name,
             t5.department_id departmentId,
             t4.title departmentTitle,
@@ -43,5 +77,3 @@ const list = async (params?: any): Promise<any> => {
 
     return { items: users, totalCount: users?.length };
 };
-
-export default list;

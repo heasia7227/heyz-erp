@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import httpFetch from "@/utils/http-fetch";
 import { TableRowSelection } from "antd/es/table/interface";
 import Search from "./Search";
+import { IAssignUser, IGetAssignUsersParams } from "@/interfaces/system/role/assign-users";
 
 const columns = [
     {
@@ -29,14 +30,14 @@ const columns = [
         dataIndex: "createDate",
         key: "createDate",
         width: 150,
-        render: (_: any, record: any) =>
+        render: (_: any, record: IAssignUser) =>
             record?.createDate ? dayjs(record?.createDate).format("YYYY-MM-DD HH:mm:ss") : "-",
     },
     {
         title: "操作",
         key: "action",
         width: 80,
-        render: (_: any, record: any) => (
+        render: (_: any, record: IAssignUser) => (
             <Space size={0} split={<Divider type="vertical" />}>
                 <a>删除</a>
             </Space>
@@ -51,24 +52,24 @@ interface IProps {
 const AssignUsers = ({ roleId }: IProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [users, setUsers] = useState<any[]>([]);
+    const [users, setUsers] = useState<IAssignUser[]>([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
     const showModal = () => {
         setIsModalOpen(true);
-        getUsers({});
+        getUsers({} as IGetAssignUsersParams);
     };
 
-    const getUsers = async (values: any) => {
+    const getUsers = async (values: IGetAssignUsersParams) => {
         setLoading(true);
-        const _users = await httpFetch("/system/roles/assign-users", {
+        const _users = await httpFetch<IAssignUser[]>("/system/roles/assign-users", {
             params: { ...values, roleId },
         });
         setUsers(_users);
         setLoading(false);
     };
 
-    const onSearch = (values: any) => {
+    const onSearch = (values: IGetAssignUsersParams) => {
         getUsers(values || {});
     };
 
@@ -81,7 +82,7 @@ const AssignUsers = ({ roleId }: IProps) => {
         setSelectedRowKeys(newSelectedRowKeys);
     };
 
-    const rowSelection: TableRowSelection = {
+    const rowSelection: TableRowSelection<IAssignUser> = {
         selectedRowKeys,
         onChange: onSelectChange,
     };
@@ -94,7 +95,7 @@ const AssignUsers = ({ roleId }: IProps) => {
                     <Search roleId={roleId} onSearch={onSearch} />
                     <div className="mt-4">
                         <Table
-                            rowKey={"id"}
+                            rowKey={"userId"}
                             size="small"
                             bordered
                             rowSelection={rowSelection}

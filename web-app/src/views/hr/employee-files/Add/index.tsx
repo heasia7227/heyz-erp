@@ -5,6 +5,7 @@ import { Button, Form, Input, InputNumber, message, Modal, Select, Switch } from
 import { PlusOutlined } from "@ant-design/icons";
 import httpFetch from "@/utils/http-fetch";
 import DepartmentTree from "@/components/DepartmentTree";
+import { IEmployeeFile } from "@/interfaces/hr/employee-file";
 
 const formItemLayout = {
     labelCol: {
@@ -35,7 +36,7 @@ const Add = ({ refresh }: IProps) => {
     const handleOk = () => {
         form.validateFields().then(async (values) => {
             setSaving(true);
-            const result = await httpFetch("/hr/employee-files", {
+            const result = await httpFetch<IEmployeeFile>("/hr/employee-files", {
                 method: "POST",
                 body: JSON.stringify(values),
             });

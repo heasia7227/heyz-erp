@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, Form, Input, Modal, Switch } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import httpFetch from "@/utils/http-fetch";
+import { ISaveRoleParams } from "@/interfaces/system/role";
 
 const formItemLayout = {
     labelCol: {
@@ -31,7 +32,7 @@ const Add = ({ refresh }: IProps) => {
     };
 
     const handleOk = () => {
-        form.validateFields().then(async (values) => {
+        form.validateFields().then(async (values: ISaveRoleParams) => {
             setSaving(true);
             await httpFetch("/system/roles", {
                 method: "POST",

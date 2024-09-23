@@ -1,20 +1,23 @@
 import { NextRequest } from "next/server";
-import list from "@/@server/services/system/role/list";
-import create from "@/@server/services/system/role/create";
+import { createRole, getRoles } from "@/@server/services/system/role";
+import { IGetRolesParams } from "@/interfaces/system/role";
+import { getString } from "@/utils/get-url-query";
 
 // list
 export async function GET(request: NextRequest) {
-    const result = await list();
+    const keyword = getString(request, "keyword");
+
+    const result = await getRoles({ keyword } as IGetRolesParams);
     return Response.json({ code: 200, data: result });
 }
 
-// Create
+// 创建角色
 export async function POST(request: NextRequest) {
     // Get body params
     const res = await request.json();
     res.createBy = request.headers.get("employeeId");
 
-    const result = await create(res);
+    const result = await createRole(res);
     return Response.json({ code: 200, data: result });
 }
 

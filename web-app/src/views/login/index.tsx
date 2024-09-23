@@ -6,6 +6,7 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import aes from "@/utils/aes";
 import httpFetch from "@/utils/http-fetch";
 import { useRouter } from "next/navigation";
+import { ILoginResult } from "@/interfaces/system/user";
 
 const Login = () => {
     const router = useRouter();
@@ -17,7 +18,7 @@ const Login = () => {
     const onFinish = async (values: any) => {
         setLoading(true);
         values.password = aes.encrypt(values.password);
-        const result = await httpFetch("/system/login", {
+        const result = await httpFetch<ILoginResult>("/system/login", {
             method: "POST",
             body: JSON.stringify(values),
         });

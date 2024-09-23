@@ -9,7 +9,7 @@ const login = async (params: any): Promise<any> => {
 
     const users = await appDataSource.manager.query(
         `select 
-            t1.id, t1.name, t2.employee_id 
+            t1.id, t1.name, t2.employee_id employeeId
         from t_hr_employee_files t1 
         inner join t_sys_users t2 on t1.id = t2.employee_id 
         where t1.status='enable'

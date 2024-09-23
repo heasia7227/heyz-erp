@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { Space, Switch, Table } from "antd";
 import dayjs from "dayjs";
 import httpFetch from "@/utils/http-fetch";
+import { IRole } from "@/interfaces/system/role";
 import Search from "./Search";
 import ConfigureMenus from "../ConfigureMenus";
 import AssignUsers from "../AssignUsers";
 
-const columns: any[] = [
+const columns = [
     {
         title: "角色名称",
         dataIndex: "title",
@@ -34,14 +35,13 @@ const columns: any[] = [
         dataIndex: "createUserName",
         key: "createUserName",
         width: 120,
-        render: (_: any, record: any) => record?.createUser?.name,
     },
     {
         title: "创建时间",
         dataIndex: "createDate",
         key: "createDate",
         width: 150,
-        render: (_: any, record: any) =>
+        render: (_: any, record: IRole) =>
             record?.createDate ? dayjs(record?.createDate).format("YYYY-MM-DD HH:mm:ss") : "-",
     },
     {
@@ -49,21 +49,20 @@ const columns: any[] = [
         dataIndex: "updateUserName",
         key: "updateUserName",
         width: 120,
-        render: (_: any, record: any) => record?.updateUser?.name,
     },
     {
         title: "修改时间",
         dataIndex: "updateDate",
         key: "updateDate",
         width: 150,
-        render: (_: any, record: any) =>
+        render: (_: any, record: IRole) =>
             record?.updateDate ? dayjs(record?.updateDate).format("YYYY-MM-DD HH:mm:ss") : "-",
     },
     {
         title: "操作",
         key: "action",
         width: 250,
-        render: (_: any, record: any) => (
+        render: (_: any, record: IRole) => (
             <Space size="middle">
                 <a>编辑</a>
                 <AssignUsers roleId={record?.id} />
@@ -74,7 +73,7 @@ const columns: any[] = [
 ];
 
 const RoleList = () => {
-    const [roles, setRoles] = useState<any[]>([]);
+    const [roles, setRoles] = useState<IRole[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
@@ -83,7 +82,7 @@ const RoleList = () => {
 
     const getRoles = async (keyword?: string) => {
         setLoading(true);
-        const result = await httpFetch("/system/roles", {
+        const result = await httpFetch<IRole[]>("/system/roles", {
             params: { keyword },
         });
         setRoles(result);

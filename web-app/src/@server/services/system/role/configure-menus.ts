@@ -2,15 +2,16 @@ import dayjs from "dayjs";
 import { getDataSource } from "@/@server/datasource";
 import { EmployeeFiles } from "@/@server/entities/hr/employee-files";
 import { ConfigureMenus } from "@/@server/entities/system/role/configure-menus";
+import { ISaveConfigureMenuParams } from "@/interfaces/system/role/configure-menus";
 
-const configureMenus = async (params?: any): Promise<any> => {
+export const saveConfigureMenus = async (params: ISaveConfigureMenuParams): Promise<any> => {
     const appDataSource = await getDataSource();
 
     const createDate = dayjs().format("YYYY-MM-DD HH:mm:ss");
     const createUser = await appDataSource.getRepository(EmployeeFiles).findOne({ where: { id: params.createBy } });
 
     const _configureMenus = new Array<ConfigureMenus>();
-    params?.menuIds.forEach((menuId: string) => {
+    params?.menuIds.forEach((menuId) => {
         const configureMenu = new ConfigureMenus({
             roleId: params?.roleId,
             menuId,
@@ -31,4 +32,16 @@ const configureMenus = async (params?: any): Promise<any> => {
     }
 };
 
-export default configureMenus;
+/**
+ * 查询已配置菜单
+ * @param roleId
+ * @returns
+ */
+export const getConfigureMenus = async (roleId: number): Promise<any> => {
+    const appDataSource = await getDataSource();
+    const menuIds = await appDataSource.getRepository(ConfigureMenus).find({
+        select: { menuId: true },
+        where: { roleId },
+    });
+    return menuIds?.map((menu) => menu.menuId);
+};

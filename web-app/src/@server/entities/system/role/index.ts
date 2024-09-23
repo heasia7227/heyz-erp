@@ -33,12 +33,12 @@ export class Role extends BaseEntity {
     createUser?: EmployeeFiles;
 
     @Column({ name: "create_date" })
-    createDate!: string;
+    createDate?: string;
 
     @ManyToOne(() => EmployeeFiles)
     @JoinColumn({ name: "update_by", foreignKeyConstraintName: "id" })
     updateUser?: EmployeeFiles;
 
     @Column({ name: "update_date" })
-    updateDate!: string;
+    updateDate?: string;
 }

@@ -1,24 +1,23 @@
 import { NextRequest } from "next/server";
-import list from "@/@server/services/system/user/list";
-import create from "@/@server/services/system/user/create";
+import { createAccount, getUsers } from "@/@server/services/system/user";
+import { getNumber, getString } from "@/utils/get-url-query";
 
 // List
 export async function GET(request: NextRequest) {
-    const searchParams = request.nextUrl.searchParams;
-    const departmentId = searchParams.get("departmentId");
-    const userName = searchParams.get("userName");
+    const departmentId = getNumber(request, "departmentId");
+    const userName = getString(request, "userName");
 
-    const result = await list({ departmentId, userName });
+    const result = await getUsers({ departmentId, userName });
     return Response.json({ code: 200, data: result });
 }
 
-// Create
+// 分配账号
 export async function POST(request: NextRequest) {
     // Get body params
     const res = await request.json();
     res.createBy = request.headers.get("employeeId");
 
-    const result = await create(res);
+    const result = await createAccount(res);
     return Response.json({ code: 200, data: result });
 }
 

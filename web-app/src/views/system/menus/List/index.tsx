@@ -7,19 +7,25 @@ import { PlusOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import httpFetch from "@/utils/http-fetch";
 import flat2tree from "@/utils/flat2tree";
+import { IMenu } from "@/interfaces/system/menu";
+import { IBaseTree } from "@/interfaces";
+
+interface ITree extends IBaseTree, IMenu {
+    children: ITree[];
+}
 
 const getIcon = (iconName: string) => {
     const CustomIcon = (Icons as any)[iconName];
     return <CustomIcon />;
 };
 
-const columns: any[] = [
+const columns = [
     {
         title: "菜单名称",
         dataIndex: "title",
         key: "title",
         width: 200,
-        render: (_: any, record: any) => {
+        render: (_: any, record: ITree) => {
             return (
                 <Space size={"small"}>
                     {record.icon && getIcon(record.icon)}
@@ -53,14 +59,13 @@ const columns: any[] = [
         dataIndex: "createUserName",
         key: "createUserName",
         width: 120,
-        render: (_: any, record: any) => record?.createUser?.name,
     },
     {
         title: "创建时间",
         dataIndex: "createDate",
         key: "createDate",
         width: 150,
-        render: (_: any, record: any) =>
+        render: (_: any, record: ITree) =>
             record?.createDate ? dayjs(record?.createDate).format("YYYY-MM-DD HH:mm:ss") : "-",
     },
     {
@@ -68,21 +73,20 @@ const columns: any[] = [
         dataIndex: "updateUserName",
         key: "updateUserName",
         width: 120,
-        render: (_: any, record: any) => record?.updateUser?.name,
     },
     {
         title: "修改时间",
         dataIndex: "updateDate",
         key: "updateDate",
         width: 150,
-        render: (_: any, record: any) =>
+        render: (_: any, record: ITree) =>
             record?.updateDate ? dayjs(record?.updateDate).format("YYYY-MM-DD HH:mm:ss") : "-",
     },
     {
         title: "操作",
         key: "action",
         width: 100,
-        render: (_: any, record: any) => (
+        render: (_: any, record: ITree) => (
             <Space size="middle">
                 <a>编辑</a>
             </Space>
@@ -91,7 +95,7 @@ const columns: any[] = [
 ];
 
 const MenuList = () => {
-    const [menuTrees, setMenuTrees] = useState<any[]>([]);
+    const [menuTrees, setMenuTrees] = useState<ITree[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
@@ -100,8 +104,8 @@ const MenuList = () => {
 
     const getMenus = async () => {
         setLoading(true);
-        const result = await httpFetch("/system/menus");
-        const items = flat2tree(result, {
+        const result = await httpFetch<IMenu[]>("/system/menus");
+        const items = flat2tree<ITree, IMenu>(result, {
             parentKeyColumnName: "parentId",
             keyColumnName: "id",
             titleColumnName: "title",

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, message, Modal, Tooltip, Transfer, TransferProps } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import httpFetch from "@/utils/http-fetch";
+import { IGetUnassignUsersParams, IUnassignUser } from "@/interfaces/system/role/assign-users";
 import Search from "./Search";
 
 interface IProps {
@@ -26,7 +27,7 @@ const Add = ({ roleId, refresh }: IProps) => {
 
     const handleOk = async () => {
         setSaving(true);
-        const result = await httpFetch("/system/roles/assign-users", {
+        const result = await httpFetch<boolean>("/system/roles/assign-users", {
             method: "POST",
             body: JSON.stringify({ roleId, userIds: targetKeys }),
         });
@@ -66,13 +67,13 @@ const Add = ({ roleId, refresh }: IProps) => {
         setSelectedKeys([...sourceSelectedKeys, ...targetSelectedKeys]);
     };
 
-    const onSearch = (values: any) => {
+    const onSearch = (values: IGetUnassignUsersParams) => {
         // console.log("values: ", values);
         getUsers(values || {});
     };
 
-    const getUsers = async (values: any) => {
-        const result = await httpFetch("/system/roles/unassign-users", {
+    const getUsers = async (values: IGetUnassignUsersParams) => {
+        const result = await httpFetch<IUnassignUser[]>("/system/roles/unassign-users", {
             params: { ...values, roleId },
         });
         const _users = (result || []).map((item: any) => {

@@ -3,20 +3,21 @@
 import { useState } from "react";
 import { Button, Form, Input } from "antd";
 import { SearchOutlined, DeleteOutlined } from "@ant-design/icons";
-import Add from "./Add";
 import DepartmentTree from "@/components/DepartmentTree";
+import Add from "./Add";
+import { IGetAssignUsersParams } from "@/interfaces/system/role/assign-users";
 
 interface IProps {
     roleId: number;
-    onSearch: (values: any) => void;
+    onSearch: (values: IGetAssignUsersParams) => void;
 }
 
 const Search = ({ roleId, onSearch }: IProps) => {
     const [form] = Form.useForm();
-    const [searchForm, setSearchForm] = useState<any>({});
+    const [searchForm, setSearchForm] = useState<IGetAssignUsersParams>({} as IGetAssignUsersParams);
 
-    const onFinish = (values: any) => {
-        console.log("Finish:", values);
+    const onFinish = (values: IGetAssignUsersParams) => {
+        // console.log("Finish:", values);
         onSearch(values);
         setSearchForm(values);
     };

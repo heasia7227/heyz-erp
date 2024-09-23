@@ -5,13 +5,13 @@ import { SearchOutlined } from "@ant-design/icons";
 import DepartmentTree from "@/components/DepartmentTree";
 
 interface IProps {
-    onSearch: (values: any) => void;
+    onSearch: (values: IGetUnassignUsersParams) => void;
 }
 
 const Search = ({ onSearch }: IProps) => {
     const [form] = Form.useForm();
 
-    const onFinish = (values: any) => {
+    const onFinish = (values: IGetUnassignUsersParams) => {
         onSearch(values);
     };
 
