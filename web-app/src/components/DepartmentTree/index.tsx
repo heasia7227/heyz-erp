@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { TreeSelect, TreeSelectProps } from "antd";
 import httpFetch from "@/utils/http-fetch";

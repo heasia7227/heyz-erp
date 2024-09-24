@@ -8,13 +8,18 @@ const login = async (params: any): Promise<any> => {
     const appDataSource = await getDataSource();
 
     const users = await appDataSource.manager.query(
-        `select 
-            t1.id, t1.name, t2.employee_id employeeId
-        from t_hr_employee_files t1 
-        inner join t_sys_users t2 on t1.id = t2.employee_id 
-        where t1.status='enable'
-            and t2.password = ?
-            and t2.account = ?`,
+        `SELECT
+            t1.id,
+            t1.name,
+            t2.employee_id employeeId,
+            t1.department_id departmentId,
+            t3.title departmentTitle 
+        FROM t_hr_employee_files t1
+            INNER JOIN t_sys_users t2 ON t1.id = t2.employee_id
+            LEFT JOIN t_sys_departments t3 ON t1.department_id = t3.id 
+        WHERE t1.STATUS = 'enable'
+            AND t2.password = ?
+            AND t2.account = ?`,
         [params.password, params.username]
     );
 

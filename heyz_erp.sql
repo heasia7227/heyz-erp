@@ -11,11 +11,34 @@
  Target Server Version : 90001
  File Encoding         : 65001
 
- Date: 19/09/2024 17:05:27
+ Date: 24/09/2024 11:43:08
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_common_dictionaries
+-- ----------------------------
+DROP TABLE IF EXISTS `t_common_dictionaries`;
+CREATE TABLE `t_common_dictionaries`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `dictionary_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型',
+  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_common_dictionaries
+-- ----------------------------
+INSERT INTO `t_common_dictionaries` VALUES (1, '小学', 'education', 'enable');
+INSERT INTO `t_common_dictionaries` VALUES (2, '初中', 'education', 'enable');
+INSERT INTO `t_common_dictionaries` VALUES (3, '高中', 'education', 'enable');
+INSERT INTO `t_common_dictionaries` VALUES (4, '大专', 'education', 'enable');
+INSERT INTO `t_common_dictionaries` VALUES (5, '本科', 'education', 'enable');
+INSERT INTO `t_common_dictionaries` VALUES (6, '研究生', 'education', 'enable');
+INSERT INTO `t_common_dictionaries` VALUES (7, '博士', 'education', 'enable');
 
 -- ----------------------------
 -- Table structure for t_hr_employee_files
@@ -60,7 +83,7 @@ CREATE TABLE `t_hr_recruiting_employ_decision`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_employ_decision_auditing
@@ -75,7 +98,7 @@ CREATE TABLE `t_hr_recruiting_employ_decision_auditing`  (
   `opinion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '审批意见',
   `audit_date` datetime(0) NULL DEFAULT NULL COMMENT '审批时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_interview_planning
@@ -92,7 +115,7 @@ CREATE TABLE `t_hr_recruiting_interview_planning`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_planning
@@ -107,15 +130,21 @@ CREATE TABLE `t_hr_recruiting_planning`  (
   `experience` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工作经验',
   `salaries_range` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '薪资范围',
   `technology` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '技术要求',
-  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '状态(草稿/审核中/待招聘/招聘中/已关闭) ',
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'draft' COMMENT '状态(草稿/审核中/待招聘/招聘中/已关闭) ',
   `reason` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '招聘理由',
+  `recruiting_num` int(0) NULL DEFAULT NULL COMMENT '招聘人数',
   `hr_attache_id` int(0) NULL DEFAULT NULL COMMENT '人力专员',
   `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_hr_recruiting_planning
+-- ----------------------------
+INSERT INTO `t_hr_recruiting_planning` VALUES (1, 3, '软件工程师', '软件工程师软件工程师软件工程师软件工程师软件工程师', 4, '5年', '10000 ~ 20000', 'Java', 'draft', '软件工程师软件工程师', NULL, NULL, 1, '2024-09-24 11:32:34', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_planning_auditing
@@ -130,7 +159,7 @@ CREATE TABLE `t_hr_recruiting_planning_auditing`  (
   `opinion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '审批意见',
   `audit_date` datetime(0) NULL DEFAULT NULL COMMENT '审批时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_planning_auditing_config
@@ -142,7 +171,7 @@ CREATE TABLE `t_hr_recruiting_planning_auditing_config`  (
   `auditor_id` int(0) NULL DEFAULT NULL COMMENT '审批人',
   `audit_level` int(0) NULL DEFAULT NULL COMMENT '审批级别',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_resume
@@ -162,7 +191,7 @@ CREATE TABLE `t_hr_recruiting_resume`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_sys_departments
@@ -211,74 +240,74 @@ CREATE TABLE `t_sys_menus`  (
 -- ----------------------------
 -- Records of t_sys_menus
 -- ----------------------------
-INSERT INTO `t_sys_menus` VALUES ('01', '项目管理', 'FolderOpenOutlined', NULL, NULL, 1, 'enable', NULL, '2024-09-06 17:54:10', NULL, '2024-09-06 17:54:29');
-INSERT INTO `t_sys_menus` VALUES ('0101', '项目计划', NULL, '01', '/projects/planning', 1, 'enable', NULL, '2024-09-06 17:57:41', NULL, '2024-09-06 17:57:43');
-INSERT INTO `t_sys_menus` VALUES ('0102', '项目进度', NULL, '01', '/projects/schedule', 2, 'enable', NULL, '2024-09-06 17:58:52', NULL, '2024-09-06 17:58:55');
-INSERT INTO `t_sys_menus` VALUES ('0103', '项目成果', NULL, '01', '/projects/achievement', 3, 'enable', NULL, '2024-09-06 20:42:13', NULL, '2024-09-06 20:42:17');
-INSERT INTO `t_sys_menus` VALUES ('0104', '项目风险', NULL, '01', '/projects/risk', 4, 'enable', NULL, '2024-09-06 20:43:55', NULL, '2024-09-06 20:43:58');
-INSERT INTO `t_sys_menus` VALUES ('02', '财务管理', 'MoneyCollectOutlined', NULL, NULL, 2, 'enable', NULL, '2024-09-06 21:44:58', NULL, '2024-09-06 21:45:01');
-INSERT INTO `t_sys_menus` VALUES ('0201', '会计核算', NULL, '02', '/financial/accounting', 1, 'enable', NULL, '2024-09-06 21:46:32', NULL, '2024-09-06 21:46:34');
-INSERT INTO `t_sys_menus` VALUES ('0202', '发票管理', NULL, '02', '/financial/invoice', 2, 'enable', NULL, '2024-09-06 21:48:01', NULL, '2024-09-06 21:48:04');
-INSERT INTO `t_sys_menus` VALUES ('0203', '费用管理', NULL, '02', '/financial/expense', 3, 'enable', NULL, '2024-09-06 21:48:49', NULL, '2024-09-06 21:48:51');
-INSERT INTO `t_sys_menus` VALUES ('0204', '财务报表', NULL, '02', '/financial/report', 4, 'enable', NULL, '2024-09-06 21:49:39', NULL, '2024-09-06 21:49:42');
-INSERT INTO `t_sys_menus` VALUES ('0205', '财务预算', NULL, '02', '/financial/budget', 5, 'enable', NULL, '2024-09-06 21:50:57', NULL, '2024-09-06 21:50:59');
-INSERT INTO `t_sys_menus` VALUES ('0206', '财务分析', NULL, '02', '/financial/analysis', 6, 'enable', NULL, '2024-09-06 21:51:43', NULL, '2024-09-06 21:51:46');
-INSERT INTO `t_sys_menus` VALUES ('0207', '财务审计', NULL, '02', '/financial/auditing', 7, 'enable', NULL, '2024-09-06 21:53:00', NULL, '2024-09-06 21:53:02');
-INSERT INTO `t_sys_menus` VALUES ('0208', '财务决策', NULL, '02', '/financial/decision', 8, 'enable', NULL, '2024-09-06 21:53:56', NULL, '2024-09-06 21:53:58');
-INSERT INTO `t_sys_menus` VALUES ('03', '生产管理', 'AppstoreAddOutlined', NULL, NULL, 3, 'enable', NULL, '2024-09-06 21:56:29', NULL, '2024-09-06 21:56:32');
-INSERT INTO `t_sys_menus` VALUES ('0301', '生产计划', NULL, '03', '/production/planning', 1, 'enable', NULL, '2024-09-06 21:57:25', NULL, '2024-09-06 21:57:29');
-INSERT INTO `t_sys_menus` VALUES ('0302', '物料需求计划', NULL, '03', '/production/mrp', 2, 'enable', NULL, '2024-09-06 21:58:20', NULL, '2024-09-06 21:58:23');
-INSERT INTO `t_sys_menus` VALUES ('0303', '能力需求计划', NULL, '03', '/production/crp', 3, 'enable', NULL, '2024-09-06 21:58:59', NULL, '2024-09-06 21:59:03');
-INSERT INTO `t_sys_menus` VALUES ('0304', '车间控制', NULL, '03', '/production/shop-control', 4, 'enable', NULL, '2024-09-06 21:59:59', NULL, '2024-09-06 22:00:01');
-INSERT INTO `t_sys_menus` VALUES ('0305', '制造标准', NULL, '03', '/production/manufacture-standard', 5, 'enable', NULL, '2024-09-06 22:01:00', NULL, '2024-09-06 22:01:02');
-INSERT INTO `t_sys_menus` VALUES ('0306', '生产订单', NULL, '03', '/production/order', 6, 'enable', NULL, '2024-09-06 22:01:47', NULL, '2024-09-06 22:01:50');
-INSERT INTO `t_sys_menus` VALUES ('0307', '生产进度', NULL, '03', '/production/schedule', 7, 'enable', NULL, '2024-09-06 22:02:47', NULL, '2024-09-06 22:02:49');
-INSERT INTO `t_sys_menus` VALUES ('0308', '生产成本', NULL, '03', '/production/costing', 8, 'enable', NULL, '2024-09-06 22:03:38', NULL, '2024-09-06 22:03:40');
-INSERT INTO `t_sys_menus` VALUES ('04', '采购管理', 'TruckOutlined', NULL, NULL, 4, 'enable', NULL, '2024-09-06 22:04:10', NULL, '2024-09-06 22:04:12');
-INSERT INTO `t_sys_menus` VALUES ('0401', '采购计划', NULL, '04', '/purchasing/planning', 1, 'enable', NULL, '2024-09-06 22:05:25', NULL, '2024-09-06 22:05:28');
-INSERT INTO `t_sys_menus` VALUES ('0402', '采购订单', NULL, '04', '/purchasing/order', 2, 'enable', NULL, '2024-09-06 22:06:09', NULL, '2024-09-06 22:06:13');
-INSERT INTO `t_sys_menus` VALUES ('0403', '采购收货', NULL, '04', '/purchasing/receiving', 3, 'enable', NULL, '2024-09-06 22:07:00', NULL, '2024-09-06 22:07:05');
-INSERT INTO `t_sys_menus` VALUES ('05', '销售管理', 'ShareAltOutlined', NULL, NULL, 5, 'enable', NULL, '2024-09-06 22:08:17', NULL, '2024-09-06 22:08:19');
-INSERT INTO `t_sys_menus` VALUES ('0501', '客户关系管理(CRM)', NULL, '05', NULL, 1, 'enable', NULL, '2024-09-06 22:08:50', NULL, '2024-09-06 22:08:52');
-INSERT INTO `t_sys_menus` VALUES ('050101', '客户档案', NULL, '0501', '/selling/crm/customer-archives', 1, 'enable', NULL, '2024-09-06 22:10:22', NULL, '2024-09-06 22:10:24');
-INSERT INTO `t_sys_menus` VALUES ('050102', '客户投诉', NULL, '0501', '/selling/crm/customer-complaints', 2, 'enable', NULL, '2024-09-06 22:11:26', NULL, '2024-09-06 22:11:28');
-INSERT INTO `t_sys_menus` VALUES ('050103', '客户满意度调查', NULL, '0501', '/selling/crm/satisfaction-surveys', 3, 'enable', NULL, '2024-09-06 22:12:40', NULL, '2024-09-06 22:12:43');
-INSERT INTO `t_sys_menus` VALUES ('050104', '客户关怀', NULL, '0501', '/selling/crm/customer-cares', 4, 'enable', NULL, '2024-09-06 22:13:34', NULL, '2024-09-06 22:13:37');
-INSERT INTO `t_sys_menus` VALUES ('0502', '销售管理', NULL, '05', NULL, 2, 'enable', NULL, '2024-09-06 22:14:07', NULL, '2024-09-06 22:14:09');
-INSERT INTO `t_sys_menus` VALUES ('050201', '销售计划', NULL, '0502', '/selling/selling/planning', 1, 'enable', NULL, '2024-09-06 22:14:58', NULL, '2024-09-06 22:14:59');
-INSERT INTO `t_sys_menus` VALUES ('050202', '销售订单', NULL, '0502', '/selling/selling/order', 2, 'enable', NULL, '2024-09-06 22:15:50', NULL, '2024-09-06 22:15:52');
-INSERT INTO `t_sys_menus` VALUES ('050203', '销售出库', NULL, '0502', '/selling/selling/outbound', 3, 'enable', NULL, '2024-09-06 22:16:40', NULL, '2024-09-06 22:16:42');
-INSERT INTO `t_sys_menus` VALUES ('0503', '租赁管理', NULL, '05', '/selling/leasing', 3, 'enable', NULL, '2024-09-06 22:17:45', NULL, '2024-09-06 22:17:47');
-INSERT INTO `t_sys_menus` VALUES ('06', '库存管理', 'BankOutlined', NULL, NULL, 6, 'enable', NULL, '2024-09-06 22:18:48', NULL, '2024-09-06 22:18:51');
-INSERT INTO `t_sys_menus` VALUES ('0601', '供应商管理', NULL, '06', '/inventory/suppliers', 1, 'enable', NULL, '2024-09-06 22:19:56', NULL, '2024-09-06 22:19:59');
-INSERT INTO `t_sys_menus` VALUES ('0602', '物资管理', NULL, '06', '/inventory/materials', 2, 'enable', NULL, '2024-09-06 22:21:03', NULL, '2024-09-06 22:21:05');
-INSERT INTO `t_sys_menus` VALUES ('0603', '库房管理', NULL, '06', '/inventory/warehouse', 3, 'enable', NULL, '2024-09-06 22:21:53', NULL, '2024-09-06 22:21:55');
-INSERT INTO `t_sys_menus` VALUES ('0604', '库存管理', NULL, '06', '/inventory/inventory', 4, 'enable', NULL, '2024-09-06 22:23:15', NULL, '2024-09-06 22:23:17');
-INSERT INTO `t_sys_menus` VALUES ('0605', '库存盘点', NULL, '06', '/inventory/counting', 5, 'enable', NULL, '2024-09-06 22:25:02', NULL, '2024-09-06 22:25:04');
-INSERT INTO `t_sys_menus` VALUES ('0606', '库存调拨', NULL, '06', '/inventory/transfer', 6, 'enable', NULL, '2024-09-06 22:25:46', NULL, '2024-09-06 22:25:49');
-INSERT INTO `t_sys_menus` VALUES ('0607', '库存报废', NULL, '06', '/inventory/scrapping', 7, 'enable', NULL, '2024-09-06 22:27:02', NULL, '2024-09-06 22:27:04');
-INSERT INTO `t_sys_menus` VALUES ('0608', '库存预警', NULL, '06', '/inventory/early-warning', 8, 'enable', NULL, '2024-09-06 22:27:56', NULL, '2024-09-06 22:27:58');
-INSERT INTO `t_sys_menus` VALUES ('07', '资产管理', 'DeploymentUnitOutlined', NULL, NULL, 7, 'enable', NULL, '2024-09-06 22:28:25', NULL, '2024-09-06 22:28:28');
-INSERT INTO `t_sys_menus` VALUES ('0701', '资产档案', NULL, '07', '/asset/archives', 1, 'enable', NULL, '2024-09-06 22:30:10', NULL, '2024-09-06 22:30:12');
-INSERT INTO `t_sys_menus` VALUES ('0702', '资产折旧', NULL, '07', '/asset/depreciation', 2, 'enable', NULL, '2024-09-06 22:30:44', NULL, '2024-09-06 22:30:47');
-INSERT INTO `t_sys_menus` VALUES ('0703', '资产维修', NULL, '07', '/asset/maintaining', 3, 'enable', NULL, '2024-09-06 22:31:14', NULL, '2024-09-06 22:31:16');
-INSERT INTO `t_sys_menus` VALUES ('0704', '资产报废', NULL, '07', '/asset/scrapping', 4, 'enable', NULL, '2024-09-06 22:31:44', NULL, '2024-09-06 22:31:46');
-INSERT INTO `t_sys_menus` VALUES ('08', '综合办公', 'NodeExpandOutlined', NULL, NULL, 8, 'enable', NULL, '2024-09-06 22:32:06', NULL, '2024-09-06 22:32:08');
-INSERT INTO `t_sys_menus` VALUES ('0801', '流程管理', NULL, '08', '/oa/following', 1, 'enable', NULL, '2024-09-06 22:33:43', NULL, '2024-09-06 22:33:46');
-INSERT INTO `t_sys_menus` VALUES ('0802', '公文管理', NULL, '08', '/oa/official-document', 2, 'enable', NULL, '2024-09-06 22:34:17', NULL, '2024-09-06 22:34:19');
-INSERT INTO `t_sys_menus` VALUES ('0803', '协同工作', NULL, '08', '/oa/teamwork', 3, 'enable', NULL, '2024-09-06 22:34:48', NULL, '2024-09-06 22:34:50');
-INSERT INTO `t_sys_menus` VALUES ('09', '人力资源管理', 'UserSwitchOutlined', NULL, NULL, 9, 'enable', NULL, '2024-09-06 22:35:20', NULL, '2024-09-06 22:35:22');
-INSERT INTO `t_sys_menus` VALUES ('0901', '档案管理', NULL, '09', '/hr/employee-files', 1, 'enable', NULL, '2024-09-06 22:37:43', NULL, '2024-09-06 22:37:45');
-INSERT INTO `t_sys_menus` VALUES ('0902', '薪资福利', NULL, '09', '/hr/salaries', 2, 'enable', NULL, '2024-09-06 22:38:16', NULL, '2024-09-06 22:38:18');
-INSERT INTO `t_sys_menus` VALUES ('0903', '绩效考核', NULL, '09', '/hr/performance-appraisal', 3, 'enable', NULL, '2024-09-06 22:38:49', NULL, '2024-09-06 22:38:50');
-INSERT INTO `t_sys_menus` VALUES ('0904', '培训管理', NULL, '09', '/hr/traning', 4, 'enable', NULL, '2024-09-06 22:39:19', NULL, '2024-09-06 22:39:21');
-INSERT INTO `t_sys_menus` VALUES ('0905', '招聘管理', NULL, '09', '/hr/recruiting', 5, 'enable', NULL, '2024-09-06 22:39:53', NULL, '2024-09-06 22:39:55');
-INSERT INTO `t_sys_menus` VALUES ('10', '系统管理', 'SettingOutlined', NULL, NULL, 10, 'enable', NULL, '2024-09-06 22:40:18', NULL, '2024-09-06 22:40:19');
-INSERT INTO `t_sys_menus` VALUES ('1001', '用户管理', NULL, '10', '/system/users', 1, 'enable', NULL, '2024-09-06 22:42:15', NULL, '2024-09-06 22:42:17');
-INSERT INTO `t_sys_menus` VALUES ('1002', '角色管理', NULL, '10', '/system/roles', 2, 'enable', NULL, '2024-09-06 22:42:45', NULL, '2024-09-06 22:42:47');
-INSERT INTO `t_sys_menus` VALUES ('1003', '部门管理', NULL, '10', '/system/departments', 3, 'enable', NULL, '2024-09-06 22:43:16', NULL, '2024-09-06 22:43:18');
-INSERT INTO `t_sys_menus` VALUES ('1004', '菜单管理', NULL, '10', '/system/menus', 4, 'enable', NULL, '2024-09-06 22:43:45', NULL, '2024-09-06 22:43:47');
-INSERT INTO `t_sys_menus` VALUES ('1005', '系统日志', NULL, '10', '/system/logs', 5, 'enable', NULL, '2024-09-06 22:44:14', NULL, '2024-09-06 22:44:16');
+INSERT INTO `t_sys_menus` VALUES ('01', '项目管理', 'FolderOpenOutlined', NULL, NULL, 1, 'enable', 1, '2024-09-06 17:54:10', 1, '2024-09-06 17:54:29');
+INSERT INTO `t_sys_menus` VALUES ('0101', '项目计划', NULL, '01', '/projects/planning', 1, 'enable', 1, '2024-09-06 17:57:41', 1, '2024-09-06 17:57:43');
+INSERT INTO `t_sys_menus` VALUES ('0102', '项目进度', NULL, '01', '/projects/schedule', 2, 'enable', 1, '2024-09-06 17:58:52', 1, '2024-09-06 17:58:55');
+INSERT INTO `t_sys_menus` VALUES ('0103', '项目成果', NULL, '01', '/projects/achievement', 3, 'enable', 1, '2024-09-06 20:42:13', 1, '2024-09-06 20:42:17');
+INSERT INTO `t_sys_menus` VALUES ('0104', '项目风险', NULL, '01', '/projects/risk', 4, 'enable', 1, '2024-09-06 20:43:55', 1, '2024-09-06 20:43:58');
+INSERT INTO `t_sys_menus` VALUES ('02', '财务管理', 'MoneyCollectOutlined', NULL, NULL, 2, 'enable', 1, '2024-09-06 21:44:58', 1, '2024-09-06 21:45:01');
+INSERT INTO `t_sys_menus` VALUES ('0201', '会计核算', NULL, '02', '/financial/accounting', 1, 'enable', 1, '2024-09-06 21:46:32', 1, '2024-09-06 21:46:34');
+INSERT INTO `t_sys_menus` VALUES ('0202', '发票管理', NULL, '02', '/financial/invoice', 2, 'enable', 1, '2024-09-06 21:48:01', 1, '2024-09-06 21:48:04');
+INSERT INTO `t_sys_menus` VALUES ('0203', '费用管理', NULL, '02', '/financial/expense', 3, 'enable', 1, '2024-09-06 21:48:49', 1, '2024-09-06 21:48:51');
+INSERT INTO `t_sys_menus` VALUES ('0204', '财务报表', NULL, '02', '/financial/report', 4, 'enable', 1, '2024-09-06 21:49:39', 1, '2024-09-06 21:49:42');
+INSERT INTO `t_sys_menus` VALUES ('0205', '财务预算', NULL, '02', '/financial/budget', 5, 'enable', 1, '2024-09-06 21:50:57', 1, '2024-09-06 21:50:59');
+INSERT INTO `t_sys_menus` VALUES ('0206', '财务分析', NULL, '02', '/financial/analysis', 6, 'enable', 1, '2024-09-06 21:51:43', 1, '2024-09-06 21:51:46');
+INSERT INTO `t_sys_menus` VALUES ('0207', '财务审计', NULL, '02', '/financial/auditing', 7, 'enable', 1, '2024-09-06 21:53:00', 1, '2024-09-06 21:53:02');
+INSERT INTO `t_sys_menus` VALUES ('0208', '财务决策', NULL, '02', '/financial/decision', 8, 'enable', 1, '2024-09-06 21:53:56', 1, '2024-09-06 21:53:58');
+INSERT INTO `t_sys_menus` VALUES ('03', '生产管理', 'AppstoreAddOutlined', NULL, NULL, 3, 'enable', 1, '2024-09-06 21:56:29', 1, '2024-09-06 21:56:32');
+INSERT INTO `t_sys_menus` VALUES ('0301', '生产计划', NULL, '03', '/production/planning', 1, 'enable', 1, '2024-09-06 21:57:25', 1, '2024-09-06 21:57:29');
+INSERT INTO `t_sys_menus` VALUES ('0302', '物料需求计划', NULL, '03', '/production/mrp', 2, 'enable', 1, '2024-09-06 21:58:20', 1, '2024-09-06 21:58:23');
+INSERT INTO `t_sys_menus` VALUES ('0303', '能力需求计划', NULL, '03', '/production/crp', 3, 'enable', 1, '2024-09-06 21:58:59', 1, '2024-09-06 21:59:03');
+INSERT INTO `t_sys_menus` VALUES ('0304', '车间控制', NULL, '03', '/production/shop-control', 4, 'enable', 1, '2024-09-06 21:59:59', 1, '2024-09-06 22:00:01');
+INSERT INTO `t_sys_menus` VALUES ('0305', '制造标准', NULL, '03', '/production/manufacture-standard', 5, 'enable', 1, '2024-09-06 22:01:00', 1, '2024-09-06 22:01:02');
+INSERT INTO `t_sys_menus` VALUES ('0306', '生产订单', NULL, '03', '/production/order', 6, 'enable', 1, '2024-09-06 22:01:47', 1, '2024-09-06 22:01:50');
+INSERT INTO `t_sys_menus` VALUES ('0307', '生产进度', NULL, '03', '/production/schedule', 7, 'enable', 1, '2024-09-06 22:02:47', 1, '2024-09-06 22:02:49');
+INSERT INTO `t_sys_menus` VALUES ('0308', '生产成本', NULL, '03', '/production/costing', 8, 'enable', 1, '2024-09-06 22:03:38', 1, '2024-09-06 22:03:40');
+INSERT INTO `t_sys_menus` VALUES ('04', '采购管理', 'TruckOutlined', NULL, NULL, 4, 'enable', 1, '2024-09-06 22:04:10', 1, '2024-09-06 22:04:12');
+INSERT INTO `t_sys_menus` VALUES ('0401', '采购计划', NULL, '04', '/purchasing/planning', 1, 'enable', 1, '2024-09-06 22:05:25', 1, '2024-09-06 22:05:28');
+INSERT INTO `t_sys_menus` VALUES ('0402', '采购订单', NULL, '04', '/purchasing/order', 2, 'enable', 1, '2024-09-06 22:06:09', 1, '2024-09-06 22:06:13');
+INSERT INTO `t_sys_menus` VALUES ('0403', '采购收货', NULL, '04', '/purchasing/receiving', 3, 'enable', 1, '2024-09-06 22:07:00', 1, '2024-09-06 22:07:05');
+INSERT INTO `t_sys_menus` VALUES ('05', '销售管理', 'ShareAltOutlined', NULL, NULL, 5, 'enable', 1, '2024-09-06 22:08:17', 1, '2024-09-06 22:08:19');
+INSERT INTO `t_sys_menus` VALUES ('0501', '客户关系管理(CRM)', NULL, '05', NULL, 1, 'enable', 1, '2024-09-06 22:08:50', 1, '2024-09-06 22:08:52');
+INSERT INTO `t_sys_menus` VALUES ('050101', '客户档案', NULL, '0501', '/selling/crm/customer-archives', 1, 'enable', 1, '2024-09-06 22:10:22', 1, '2024-09-06 22:10:24');
+INSERT INTO `t_sys_menus` VALUES ('050102', '客户投诉', NULL, '0501', '/selling/crm/customer-complaints', 2, 'enable', 1, '2024-09-06 22:11:26', 1, '2024-09-06 22:11:28');
+INSERT INTO `t_sys_menus` VALUES ('050103', '客户满意度调查', NULL, '0501', '/selling/crm/satisfaction-surveys', 3, 'enable', 1, '2024-09-06 22:12:40', 1, '2024-09-06 22:12:43');
+INSERT INTO `t_sys_menus` VALUES ('050104', '客户关怀', NULL, '0501', '/selling/crm/customer-cares', 4, 'enable', 1, '2024-09-06 22:13:34', 1, '2024-09-06 22:13:37');
+INSERT INTO `t_sys_menus` VALUES ('0502', '销售管理', NULL, '05', NULL, 2, 'enable', 1, '2024-09-06 22:14:07', 1, '2024-09-06 22:14:09');
+INSERT INTO `t_sys_menus` VALUES ('050201', '销售计划', NULL, '0502', '/selling/selling/planning', 1, 'enable', 1, '2024-09-06 22:14:58', 1, '2024-09-06 22:14:59');
+INSERT INTO `t_sys_menus` VALUES ('050202', '销售订单', NULL, '0502', '/selling/selling/order', 2, 'enable', 1, '2024-09-06 22:15:50', 1, '2024-09-06 22:15:52');
+INSERT INTO `t_sys_menus` VALUES ('050203', '销售出库', NULL, '0502', '/selling/selling/outbound', 3, 'enable', 1, '2024-09-06 22:16:40', 1, '2024-09-06 22:16:42');
+INSERT INTO `t_sys_menus` VALUES ('0503', '租赁管理', NULL, '05', '/selling/leasing', 3, 'enable', 1, '2024-09-06 22:17:45', 1, '2024-09-06 22:17:47');
+INSERT INTO `t_sys_menus` VALUES ('06', '库存管理', 'BankOutlined', NULL, NULL, 6, 'enable', 1, '2024-09-06 22:18:48', 1, '2024-09-06 22:18:51');
+INSERT INTO `t_sys_menus` VALUES ('0601', '供应商管理', NULL, '06', '/inventory/suppliers', 1, 'enable', 1, '2024-09-06 22:19:56', 1, '2024-09-06 22:19:59');
+INSERT INTO `t_sys_menus` VALUES ('0602', '物资管理', NULL, '06', '/inventory/materials', 2, 'enable', 1, '2024-09-06 22:21:03', 1, '2024-09-06 22:21:05');
+INSERT INTO `t_sys_menus` VALUES ('0603', '库房管理', NULL, '06', '/inventory/warehouse', 3, 'enable', 1, '2024-09-06 22:21:53', 1, '2024-09-06 22:21:55');
+INSERT INTO `t_sys_menus` VALUES ('0604', '库存管理', NULL, '06', '/inventory/inventory', 4, 'enable', 1, '2024-09-06 22:23:15', 1, '2024-09-06 22:23:17');
+INSERT INTO `t_sys_menus` VALUES ('0605', '库存盘点', NULL, '06', '/inventory/counting', 5, 'enable', 1, '2024-09-06 22:25:02', 1, '2024-09-06 22:25:04');
+INSERT INTO `t_sys_menus` VALUES ('0606', '库存调拨', NULL, '06', '/inventory/transfer', 6, 'enable', 1, '2024-09-06 22:25:46', 1, '2024-09-06 22:25:49');
+INSERT INTO `t_sys_menus` VALUES ('0607', '库存报废', NULL, '06', '/inventory/scrapping', 7, 'enable', 1, '2024-09-06 22:27:02', 1, '2024-09-06 22:27:04');
+INSERT INTO `t_sys_menus` VALUES ('0608', '库存预警', NULL, '06', '/inventory/early-warning', 8, 'enable', 1, '2024-09-06 22:27:56', 1, '2024-09-06 22:27:58');
+INSERT INTO `t_sys_menus` VALUES ('07', '资产管理', 'DeploymentUnitOutlined', NULL, NULL, 7, 'enable', 1, '2024-09-06 22:28:25', 1, '2024-09-06 22:28:28');
+INSERT INTO `t_sys_menus` VALUES ('0701', '资产档案', NULL, '07', '/asset/archives', 1, 'enable', 1, '2024-09-06 22:30:10', 1, '2024-09-06 22:30:12');
+INSERT INTO `t_sys_menus` VALUES ('0702', '资产折旧', NULL, '07', '/asset/depreciation', 2, 'enable', 1, '2024-09-06 22:30:44', 1, '2024-09-06 22:30:47');
+INSERT INTO `t_sys_menus` VALUES ('0703', '资产维修', NULL, '07', '/asset/maintaining', 3, 'enable', 1, '2024-09-06 22:31:14', 1, '2024-09-06 22:31:16');
+INSERT INTO `t_sys_menus` VALUES ('0704', '资产报废', NULL, '07', '/asset/scrapping', 4, 'enable', 1, '2024-09-06 22:31:44', 1, '2024-09-06 22:31:46');
+INSERT INTO `t_sys_menus` VALUES ('08', '综合办公', 'NodeExpandOutlined', NULL, NULL, 8, 'enable', 1, '2024-09-06 22:32:06', 1, '2024-09-06 22:32:08');
+INSERT INTO `t_sys_menus` VALUES ('0801', '流程管理', NULL, '08', '/oa/following', 1, 'enable', 1, '2024-09-06 22:33:43', 1, '2024-09-06 22:33:46');
+INSERT INTO `t_sys_menus` VALUES ('0802', '公文管理', NULL, '08', '/oa/official-document', 2, 'enable', 1, '2024-09-06 22:34:17', 1, '2024-09-06 22:34:19');
+INSERT INTO `t_sys_menus` VALUES ('0803', '协同工作', NULL, '08', '/oa/teamwork', 3, 'enable', 1, '2024-09-06 22:34:48', 1, '2024-09-06 22:34:50');
+INSERT INTO `t_sys_menus` VALUES ('09', '人力资源管理', 'UserSwitchOutlined', NULL, NULL, 9, 'enable', 1, '2024-09-06 22:35:20', 1, '2024-09-06 22:35:22');
+INSERT INTO `t_sys_menus` VALUES ('0901', '档案管理', NULL, '09', '/hr/employee-files', 1, 'enable', 1, '2024-09-06 22:37:43', 1, '2024-09-06 22:37:45');
+INSERT INTO `t_sys_menus` VALUES ('0902', '薪资福利', NULL, '09', '/hr/salaries', 2, 'enable', 1, '2024-09-06 22:38:16', 1, '2024-09-06 22:38:18');
+INSERT INTO `t_sys_menus` VALUES ('0903', '绩效考核', NULL, '09', '/hr/performance-appraisal', 3, 'enable', 1, '2024-09-06 22:38:49', 1, '2024-09-06 22:38:50');
+INSERT INTO `t_sys_menus` VALUES ('0904', '培训管理', NULL, '09', '/hr/traning', 4, 'enable', 1, '2024-09-06 22:39:19', 1, '2024-09-06 22:39:21');
+INSERT INTO `t_sys_menus` VALUES ('0905', '招聘管理', NULL, '09', '/hr/recruiting', 5, 'enable', 1, '2024-09-06 22:39:53', 1, '2024-09-06 22:39:55');
+INSERT INTO `t_sys_menus` VALUES ('10', '系统管理', 'SettingOutlined', NULL, NULL, 10, 'enable', 1, '2024-09-06 22:40:18', 1, '2024-09-06 22:40:19');
+INSERT INTO `t_sys_menus` VALUES ('1001', '用户管理', NULL, '10', '/system/users', 1, 'enable', 1, '2024-09-06 22:42:15', 1, '2024-09-06 22:42:17');
+INSERT INTO `t_sys_menus` VALUES ('1002', '角色管理', NULL, '10', '/system/roles', 2, 'enable', 1, '2024-09-06 22:42:45', 1, '2024-09-06 22:42:47');
+INSERT INTO `t_sys_menus` VALUES ('1003', '部门管理', NULL, '10', '/system/departments', 3, 'enable', 1, '2024-09-06 22:43:16', 1, '2024-09-06 22:43:18');
+INSERT INTO `t_sys_menus` VALUES ('1004', '菜单管理', NULL, '10', '/system/menus', 4, 'enable', 1, '2024-09-06 22:43:45', 1, '2024-09-06 22:43:47');
+INSERT INTO `t_sys_menus` VALUES ('1005', '系统日志', NULL, '10', '/system/logs', 5, 'enable', 1, '2024-09-06 22:44:14', 1, '2024-09-06 22:44:16');
 
 -- ----------------------------
 -- Table structure for t_sys_operate_logs
@@ -303,7 +332,7 @@ CREATE TABLE `t_sys_role_menu`  (
   `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 79 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_role_menu
@@ -374,17 +403,20 @@ INSERT INTO `t_sys_role_menu` VALUES (78, 1, '0905', 1, '2024-09-19 17:04:53');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sys_role_user`;
 CREATE TABLE `t_sys_role_user`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
   `role_id` int(0) NOT NULL,
   `user_id` int(0) NOT NULL,
   `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`role_id`, `user_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_role_user
 -- ----------------------------
-INSERT INTO `t_sys_role_user` VALUES (1, 1, 1, '2024-09-08 17:28:46');
+INSERT INTO `t_sys_role_user` VALUES (1, 1, 1, 1, '2024-09-08 17:28:46');
+INSERT INTO `t_sys_role_user` VALUES (2, 2, 3, 1, '2024-09-20 15:22:44');
+INSERT INTO `t_sys_role_user` VALUES (3, 2, 2, 1, '2024-09-20 15:28:13');
 
 -- ----------------------------
 -- Table structure for t_sys_roles

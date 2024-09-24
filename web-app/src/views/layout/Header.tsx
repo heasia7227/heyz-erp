@@ -20,7 +20,7 @@ const Header = () => {
     return (
         <>
             <div className="h-[56px] leading-[56px] border-b-[1px] border-slate-200 px-3 flex justify-between">
-                <div className="flex items-center">
+                <div className="flex items-center gap-2">
                     <Image src={"/imgs/logo.png"} alt="" width={32} height={32} />
                     企业资源计划
                 </div>

@@ -10,6 +10,7 @@
 | 工作经验                               | experience               |
 | 薪资范围                               | salaries_range           |
 | 技术要求                               | technology               |
+| 招聘人数                               | recruiting_num           |
 | 状态(草稿/审核中/待招聘/招聘中/已关闭) | status                   |
 | 招聘理由                               | reason                   |
 | 人力专员                               | hr_attache_id            |

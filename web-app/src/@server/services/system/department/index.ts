@@ -1,7 +1,15 @@
+import dayjs from "dayjs";
 import { getDataSource } from "@/@server/datasource";
+import { EmployeeFiles } from "@/@server/entities/hr/employee-files";
+import { Department } from "@/@server/entities/system/department";
 import { IKeyword } from "@/interfaces";
 import flat2tree from "@/utils/flat2tree";
 
+/**
+ * 部门树
+ * @param params
+ * @returns
+ */
 export const getDempartmentTrees = async (params?: IKeyword): Promise<any> => {
     const keyword = params?.keyword;
 
@@ -40,4 +48,19 @@ export const getDempartmentTrees = async (params?: IKeyword): Promise<any> => {
         titleColumnName: "title",
     });
     return trees;
+};
+
+/**
+ * 创建部门
+ * @param params
+ * @returns
+ */
+export const createDepartment = async (params?: any): Promise<any> => {
+    const appDataSource = await getDataSource();
+
+    params.createDate = dayjs().format("YYYY-MM-DD HH:mm:ss");
+    params.createUser = await appDataSource.getRepository(EmployeeFiles).findOne({ where: { id: params.createBy } });
+
+    const result = await appDataSource.getRepository(Department).save(new Department(params));
+    return result;
 };
