@@ -22,6 +22,7 @@ export const getPlannings = async (params: any) => {
                 t1.technology,
                 t1.status,
                 t1.reason,
+                t1.recruiting_num recruitingNum,
                 t1.hr_attache_id hrattacheId,
                 t4.name hrAttacheName,
                 t2.name createUserName,
@@ -29,7 +30,8 @@ export const getPlannings = async (params: any) => {
                 t1.create_date createDate,
                 t3.name updateUserName,
                 t1.update_by updateBy,
-                t1.update_date updateDate 
+                t1.update_date updateDate, 
+                t1.close_date closeDate 
             FROM
                 t_hr_recruiting_planning t1
                 LEFT JOIN t_hr_employee_files t2 ON t1.create_by = t2.id

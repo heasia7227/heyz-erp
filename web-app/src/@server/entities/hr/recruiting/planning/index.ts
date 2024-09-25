@@ -1,5 +1,4 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Department } from "@/@server/entities/system/department";
 import { EmployeeFiles } from "@/@server/entities/hr/employee-files";
 
 @Entity({ name: "t_hr_recruiting_planning" })
@@ -14,6 +13,7 @@ export class RecruitingPlanning extends BaseEntity {
         this.salariesRange = recruitingPlanning?.salariesRange;
         this.technology = recruitingPlanning?.technology;
         this.reason = recruitingPlanning?.reason;
+        this.recruitingNum = recruitingPlanning?.recruitingNum;
         this.hrAttache = recruitingPlanning?.hrAttache;
         // this.department = recruitingPlanning?.department;
         this.departmentId = recruitingPlanning?.departmentId;
@@ -62,6 +62,9 @@ export class RecruitingPlanning extends BaseEntity {
 
     @Column({ name: "recruiting_num" })
     recruitingNum?: number;
+
+    @Column({ name: "close_date" })
+    closeDate?: string;
 
     // @Column({ name: "hr_attache_id" })
     // hrAttacheId?: number;

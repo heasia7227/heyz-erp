@@ -11,7 +11,7 @@
  Target Server Version : 90001
  File Encoding         : 65001
 
- Date: 24/09/2024 11:43:08
+ Date: 25/09/2024 10:44:38
 */
 
 SET NAMES utf8mb4;
@@ -27,7 +27,7 @@ CREATE TABLE `t_common_dictionaries`  (
   `dictionary_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型',
   `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_common_dictionaries
@@ -158,18 +158,10 @@ CREATE TABLE `t_hr_recruiting_planning_auditing`  (
   `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '审批结果(驳回/通过)',
   `opinion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '审批意见',
   `audit_date` datetime(0) NULL DEFAULT NULL COMMENT '审批时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for t_hr_recruiting_planning_auditing_config
--- ----------------------------
-DROP TABLE IF EXISTS `t_hr_recruiting_planning_auditing_config`;
-CREATE TABLE `t_hr_recruiting_planning_auditing_config`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `planning_id` int(0) NULL DEFAULT NULL COMMENT '计划编号',
-  `auditor_id` int(0) NULL DEFAULT NULL COMMENT '审批人',
-  `audit_level` int(0) NULL DEFAULT NULL COMMENT '审批级别',
+  `create_by` int(0) NULL DEFAULT NULL,
+  `create_date` datetime(0) NULL DEFAULT NULL,
+  `update_by` int(0) NULL DEFAULT NULL,
+  `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 

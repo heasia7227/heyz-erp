@@ -14,12 +14,7 @@
 | 状态(草稿/审核中/待招聘/招聘中/已关闭) | status                   |
 | 招聘理由                               | reason                   |
 | 人力专员                               | hr_attache_id            |
-
-| 招聘计划审批配置表 | t_hr_recruiting_planning_auditing_config |
-| ------------------ | ---------------------------------------- |
-| 计划编号           | planning_id                              |
-| 审批人             | auditor_id                               |
-| 审批级别           | audit_level                              |
+| 关闭时间                               | close_date               |
 
 | 招聘计划审批表      | t_hr_recruiting_planning_auditing |
 | ------------------- | --------------------------------- |

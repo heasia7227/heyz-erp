@@ -1,9 +1,13 @@
 import { NextRequest } from "next/server";
 import { createEmployeeFile, getEmployeeFiles } from "@/@server/services/hr/employee-files";
+import { getNumber, getString } from "@/utils/get-url-query";
 
 // List
 export async function GET(request: NextRequest) {
-    const result = await getEmployeeFiles();
+    const departmentId = getNumber(request, "departmentId");
+    const userName = getString(request, "userName");
+
+    const result = await getEmployeeFiles({ departmentId, userName });
     return Response.json({ code: 200, data: result });
 }
 

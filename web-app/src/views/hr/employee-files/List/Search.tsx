@@ -20,7 +20,7 @@ const Search = ({ onSearch }: IProps) => {
     return (
         <>
             <Form form={form} name="horizontal_login" layout="inline" onFinish={onFinish}>
-                <Form.Item name="departmentName">
+                <Form.Item name="departmentId">
                     <DepartmentTree />
                 </Form.Item>
                 <Form.Item name="userName">

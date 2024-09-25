@@ -6,7 +6,18 @@ import { ConfigureMenus } from "./system/role/configure-menus";
 import { AssignUsers } from "./system/role/assign-users";
 import { EmployeeFiles } from "./hr/employee-files";
 import { RecruitingPlanning } from "./hr/recruiting/planning";
+import { RecruitingPlanningAuditing } from "./hr/recruiting/planning/auditing";
 
-const entities = [EmployeeFiles, User, Department, Menu, Role, ConfigureMenus, AssignUsers, RecruitingPlanning];
+const entities = [
+    EmployeeFiles,
+    User,
+    Department,
+    Menu,
+    Role,
+    ConfigureMenus,
+    AssignUsers,
+    RecruitingPlanning,
+    RecruitingPlanningAuditing,
+];
 
 export default entities;

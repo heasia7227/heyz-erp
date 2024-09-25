@@ -5,11 +5,13 @@ export interface IRecruitingPlanning {
     postTitle: string;
     postInfo: string;
     education: string;
+    educationTitle: string;
     experience: string;
     salariesRange: string;
     technology: string;
     status: string;
     reason: string;
+    recruitingNum: number;
     hrattacheId: number;
     hrAttacheName: string;
     createUserName: string;
@@ -18,4 +20,5 @@ export interface IRecruitingPlanning {
     updateUserName: string;
     updateBy: number;
     updateDate: string;
+    closeDate: string;
 }
