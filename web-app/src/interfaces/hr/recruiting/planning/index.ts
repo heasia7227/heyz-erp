@@ -1,5 +1,6 @@
 export interface IRecruitingPlanning {
     id: number;
+    planningId: number;
     departmentId: number;
     departmentTitle: string;
     postTitle: string;

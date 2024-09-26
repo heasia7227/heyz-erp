@@ -7,7 +7,7 @@ import { ISaveRecruitingPlanningAuditingParams } from "@/interfaces/hr/recruitin
 
 export const getRecruitingPlanningAuditing = async (planningId: number) => {
     const appDataSource = await getDataSource();
-    const config = await appDataSource.manager.query(
+    const auditings = await appDataSource.manager.query(
         `
             SELECT
                 t1.planning_id planningId,
@@ -25,7 +25,7 @@ export const getRecruitingPlanningAuditing = async (planningId: number) => {
         `,
         [planningId]
     );
-    return config;
+    return auditings;
 };
 
 export const createRecruitingPlanningAuditing = async (params: ISaveRecruitingPlanningAuditingParams) => {

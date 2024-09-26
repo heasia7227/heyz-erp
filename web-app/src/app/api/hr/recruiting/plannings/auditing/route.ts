@@ -8,7 +8,6 @@ import {
 // 获取招聘计划审批配置
 export async function GET(request: NextRequest) {
     const planningId = getNumber(request, "planningId");
-    console.log("planningId: ", planningId);
 
     if (planningId) {
         const result = await getRecruitingPlanningAuditing(planningId);

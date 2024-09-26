@@ -11,7 +11,7 @@
  Target Server Version : 90001
  File Encoding         : 65001
 
- Date: 25/09/2024 10:44:38
+ Date: 26/09/2024 17:22:08
 */
 
 SET NAMES utf8mb4;
@@ -68,7 +68,7 @@ CREATE TABLE `t_hr_employee_files`  (
 -- Records of t_hr_employee_files
 -- ----------------------------
 INSERT INTO `t_hr_employee_files` VALUES (1, '管理员', NULL, NULL, NULL, '15398027227', '515382435@qq.com', NULL, NULL, 3, 'enable', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `t_hr_employee_files` VALUES (2, '贺亚洲', '男', '1990/05/29', '610523199005294519', '15398027227', '515382435@qq.com', '本科', NULL, 1, 'enable', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_hr_employee_files` VALUES (2, '贺亚洲', '男', '1990/05/29', '610523199005294519', '15398027227', '515382435@qq.com', '本科', NULL, 3, 'enable', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `t_hr_employee_files` VALUES (3, '张三', '男', '1990/05/29', '610523199005294518', '13891370806', NULL, '专科', NULL, 3, 'enable', NULL, 1, '2024-09-19 09:01:17', NULL, NULL);
 
 -- ----------------------------
@@ -83,7 +83,7 @@ CREATE TABLE `t_hr_recruiting_employ_decision`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_employ_decision_auditing
@@ -98,7 +98,7 @@ CREATE TABLE `t_hr_recruiting_employ_decision_auditing`  (
   `opinion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '审批意见',
   `audit_date` datetime(0) NULL DEFAULT NULL COMMENT '审批时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_interview_planning
@@ -115,7 +115,7 @@ CREATE TABLE `t_hr_recruiting_interview_planning`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_planning
@@ -134,6 +134,7 @@ CREATE TABLE `t_hr_recruiting_planning`  (
   `reason` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '招聘理由',
   `recruiting_num` int(0) NULL DEFAULT NULL COMMENT '招聘人数',
   `hr_attache_id` int(0) NULL DEFAULT NULL COMMENT '人力专员',
+  `close_date` datetime(0) NULL DEFAULT NULL,
   `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
   `update_by` int(0) NULL DEFAULT NULL,
@@ -144,7 +145,7 @@ CREATE TABLE `t_hr_recruiting_planning`  (
 -- ----------------------------
 -- Records of t_hr_recruiting_planning
 -- ----------------------------
-INSERT INTO `t_hr_recruiting_planning` VALUES (1, 3, '软件工程师', '软件工程师软件工程师软件工程师软件工程师软件工程师', 4, '5年', '10000 ~ 20000', 'Java', 'draft', '软件工程师软件工程师', NULL, NULL, 1, '2024-09-24 11:32:34', NULL, NULL);
+INSERT INTO `t_hr_recruiting_planning` VALUES (1, 3, '软件工程师', '软件工程师软件工程师软件工程师软件工程师软件工程师', 4, '5年', '10000 ~ 20000', 'Java', 'auditing', '软件工程师软件工程师', 1, NULL, NULL, 1, '2024-09-24 11:32:34', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_planning_auditing
@@ -163,7 +164,13 @@ CREATE TABLE `t_hr_recruiting_planning_auditing`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_hr_recruiting_planning_auditing
+-- ----------------------------
+INSERT INTO `t_hr_recruiting_planning_auditing` VALUES (1, 1, 2, 1, NULL, NULL, NULL, 1, '2024-09-26 14:00:37', NULL, NULL);
+INSERT INTO `t_hr_recruiting_planning_auditing` VALUES (2, 1, 3, 2, NULL, NULL, NULL, 1, '2024-09-26 14:00:37', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_hr_recruiting_resume
@@ -183,7 +190,7 @@ CREATE TABLE `t_hr_recruiting_resume`  (
   `update_by` int(0) NULL DEFAULT NULL,
   `update_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_sys_departments
@@ -324,7 +331,7 @@ CREATE TABLE `t_sys_role_menu`  (
   `create_by` int(0) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 79 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 78 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_role_menu
@@ -407,8 +414,8 @@ CREATE TABLE `t_sys_role_user`  (
 -- Records of t_sys_role_user
 -- ----------------------------
 INSERT INTO `t_sys_role_user` VALUES (1, 1, 1, 1, '2024-09-08 17:28:46');
-INSERT INTO `t_sys_role_user` VALUES (2, 2, 3, 1, '2024-09-20 15:22:44');
-INSERT INTO `t_sys_role_user` VALUES (3, 2, 2, 1, '2024-09-20 15:28:13');
+INSERT INTO `t_sys_role_user` VALUES (2, 1, 3, 1, '2024-09-20 15:22:44');
+INSERT INTO `t_sys_role_user` VALUES (3, 1, 2, 1, '2024-09-20 15:28:13');
 
 -- ----------------------------
 -- Table structure for t_sys_roles
@@ -452,6 +459,7 @@ CREATE TABLE `t_sys_users`  (
 -- Records of t_sys_users
 -- ----------------------------
 INSERT INTO `t_sys_users` VALUES (1, 1, '15398027227', 'A1qg7r2PRg5OTFDofDnxVel+QCSYdhSCGrwVZwwbN8I=', 1, '2024-09-08 17:25:33', NULL, NULL);
+INSERT INTO `t_sys_users` VALUES (2, 3, '123.com', 'A1qg7r2PRg5OTFDofDnxVel+QCSYdhSCGrwVZwwbN8I=', 1, '2024-09-26 13:44:07', NULL, NULL);
 INSERT INTO `t_sys_users` VALUES (3, 2, '515382435@qq.com', 'A1qg7r2PRg5OTFDofDnxVel+QCSYdhSCGrwVZwwbN8I=', 1, '2024-09-19 08:55:54', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

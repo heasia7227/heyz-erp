@@ -12,6 +12,7 @@ const Recruiting = () => {
             <Tabs
                 size="small"
                 defaultActiveKey="1"
+                destroyInactiveTabPane
                 items={[
                     {
                         label: "招聘计划制定",

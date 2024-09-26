@@ -36,7 +36,9 @@ const Details = ({ planning }: IProps) => {
                 color: "#1677ff",
                 children: (
                     <>
-                        <p>创建计划</p>
+                        <p>
+                            创建计划<span className="text-gray-300">（{planning?.createUserName}）</span>
+                        </p>
                         <p>{planning?.createDate ? dayjs(planning?.createDate).format("YYYY-MM-DD HH:mm:ss") : "-"}</p>
                     </>
                 ),
@@ -55,7 +57,14 @@ const Details = ({ planning }: IProps) => {
                     />
                 ),
             });
-            _logs.push({ color: "#cbd5e1", children: <p className="text-slate-300">审批（未指定）</p> });
+            _logs.push({
+                color: "#cbd5e1",
+                children: (
+                    <p className="text-slate-300">
+                        审批<span className="text-gray-300">（未指定）</span>
+                    </p>
+                ),
+            });
         } else {
             const auditings = await getAuditings();
             if (auditings?.length > 0) {
@@ -81,7 +90,9 @@ const Details = ({ planning }: IProps) => {
                         color: _color,
                         children: (
                             <>
-                                <p className={_textColor}>审批（{item.auditorName}）</p>
+                                <p className={_textColor}>
+                                    审批<span className="text-gray-300">（{item.auditorName}）</span>
+                                </p>
                                 {item.auditDate && <p>{dayjs(item.auditDate).format("YYYY-MM-DD HH:mm:ss")}</p>}
                             </>
                         ),
@@ -97,14 +108,23 @@ const Details = ({ planning }: IProps) => {
                 color: planning?.closeDate ? "#1677ff" : "#52c41a",
                 children: (
                     <>
-                        <p>招聘（{planning.hrAttacheName}）</p>
+                        <p>
+                            招聘<span className="text-gray-300">（{planning.hrAttacheName}）</span>
+                        </p>
                         <p>{_hrAttacheDate ? dayjs(_hrAttacheDate).format("YYYY-MM-DD HH:mm:ss") : "-"}</p>
                     </>
                 ),
             });
         } else {
             _stepItems.push({ title: "招聘", subTitle: `(未指定)` });
-            _logs.push({ color: "#cbd5e1", children: <p className="text-slate-300">招聘（未指定）</p> });
+            _logs.push({
+                color: "#cbd5e1",
+                children: (
+                    <p className="text-slate-300">
+                        招聘<span className="text-gray-300">（未指定）</span>
+                    </p>
+                ),
+            });
         }
 
         _stepItems.push({ title: "完成" });
@@ -130,7 +150,7 @@ const Details = ({ planning }: IProps) => {
 
     const getAuditings = async () => {
         const result = await httpFetch<IRecruitingPlanningAuditing[]>("/hr/recruiting/plannings/auditing", {
-            params: { planningId: planning.id },
+            params: { planningId: planning.planningId },
         });
         return result;
     };

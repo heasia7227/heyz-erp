@@ -8,9 +8,11 @@ import { RecruitingPlanning } from "@/@server/entities/hr/recruiting/planning";
  */
 export const getPlannings = async (params: any) => {
     const appDataSource = await getDataSource();
-    const plannings = await appDataSource.manager.query(`
+    const plannings = await appDataSource.manager.query(
+        `
             SELECT
                 t1.id,
+                t1.id planningId,
                 t1.department_id departmentId,
                 t5.title departmentTitle,
                 t1.post_title postTitle,
@@ -39,7 +41,10 @@ export const getPlannings = async (params: any) => {
                 LEFT JOIN t_hr_employee_files t4 ON t1.hr_attache_id = t4.id
                 LEFT JOIN t_sys_departments t5 ON t1.department_id = t5.id
                 LEFT JOIN t_common_dictionaries t6 on t1.education = t6.id
-        `);
+            WHERE t1.create_by = ?
+        `,
+        [params.employeeId]
+    );
 
     return { items: plannings, totalCount: plannings?.length };
 };

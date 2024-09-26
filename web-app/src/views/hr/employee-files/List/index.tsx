@@ -11,16 +11,19 @@ import { IPage } from "@/interfaces";
 
 const EmployeeFiles = () => {
     const [dataScource, setDataScource] = useState<IPage<IEmployeeFile[]>>();
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         getEmployeeFiles();
     }, []);
 
     const getEmployeeFiles = async (values?: any) => {
+        setLoading(true);
         const result = await httpFetch<IPage<IEmployeeFile[]>>("/hr/employee-files", {
             params: values,
         });
         setDataScource(result);
+        setLoading(false);
     };
 
     const onSearch = (values?: any) => {
@@ -124,7 +127,14 @@ const EmployeeFiles = () => {
         <>
             <div className="flex flex-col gap-3">
                 <Search onSearch={onSearch} />
-                <Table rowKey={"id"} size="small" bordered columns={columns} dataSource={dataScource?.items} />
+                <Table
+                    rowKey={"id"}
+                    size="small"
+                    bordered
+                    columns={columns}
+                    dataSource={dataScource?.items}
+                    loading={loading}
+                />
             </div>
         </>
     );

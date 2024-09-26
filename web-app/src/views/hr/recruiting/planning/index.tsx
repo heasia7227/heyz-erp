@@ -76,11 +76,7 @@ const Planning = () => {
             width: 100,
             render: (status: string) => {
                 const item = statusColors[status];
-                return (
-                    <>
-                        <Tag color={item.color}>{item.title}</Tag>
-                    </>
-                );
+                return <Tag color={item.color}>{item.title}</Tag>;
             },
         },
         {

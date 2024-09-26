@@ -1,13 +1,19 @@
 "use client";
 
-import { Space, Table } from "antd";
+import { IPage } from "@/interfaces";
+import { IRecruitingPlanningPendingAuditing } from "@/interfaces/hr/recruiting/planning/pending/auditing";
+import httpFetch from "@/utils/http-fetch";
+import { Space, Table, Tag } from "antd";
 import dayjs from "dayjs";
+import { useEffect, useState } from "react";
+import Search from "./Search";
+import Details from "../planning/Details";
 
 const columns = [
     {
         title: "需求部门",
-        dataIndex: "departmentName",
-        key: "departmentName",
+        dataIndex: "departmentTitle",
+        key: "departmentTitle",
         width: 200,
     },
     {
@@ -17,49 +23,60 @@ const columns = [
     },
     {
         title: "学历要求",
-        dataIndex: "education",
-        key: "education",
-        width: 120,
+        dataIndex: "educationTitle",
+        key: "educationTitle",
+        width: 100,
     },
     {
         title: "工作经验",
         dataIndex: "experience",
         key: "experience",
-        width: 120,
+        width: 100,
     },
     {
         title: "薪资范围",
         dataIndex: "salariesRange",
         key: "salariesRange",
-        width: 120,
+        width: 150,
     },
     {
         title: "状态",
-        dataIndex: "status",
-        key: "status",
+        dataIndex: "auditStatus",
+        key: "auditStatus",
         width: 100,
+        render: (auditStatus: any, record: IRecruitingPlanningPendingAuditing) => {
+            if (auditStatus === "agreed") {
+                return <Tag color="#52c41a">通过</Tag>;
+            } else if (auditStatus === "rejected") {
+                return <Tag color="#f5222d">驳回</Tag>;
+            } else if (record.isActive === "active") {
+                return <Tag color="#fa8c16">待审批</Tag>;
+            } else {
+                return <>-</>;
+            }
+        },
     },
     {
         title: "审批意见",
-        dataIndex: "status",
-        key: "status",
-        width: 200,
+        dataIndex: "opinion",
+        key: "opinion",
+        width: 300,
     },
     {
         title: "审批时间",
-        dataIndex: "updateDate",
-        key: "updateDate",
+        dataIndex: "auditDate",
+        key: "auditDate",
         width: 150,
-        render: (_: any, record: any) =>
-            record?.updateDate ? dayjs(record?.updateDate).format("YYYY-MM-DD HH:mm:ss") : "-",
+        render: (_: any, record: IRecruitingPlanningPendingAuditing) =>
+            record?.auditDate ? dayjs(record?.auditDate).format("YYYY-MM-DD HH:mm:ss") : "-",
     },
     {
         title: "操作",
         key: "action",
         width: 100,
-        render: (_: any, record: any) => (
+        render: (_: any, record: IRecruitingPlanningPendingAuditing) => (
             <Space>
-                <a>详情</a>
+                <Details planning={record} />
                 <a>审批</a>
             </Space>
         ),
@@ -67,10 +84,38 @@ const columns = [
 ];
 
 const PlanningAuditing = () => {
+    const [dataScource, setDataScource] = useState<IPage<IRecruitingPlanningPendingAuditing[]>>();
+    const [loading, setLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        getPendingAuditings();
+    }, []);
+
+    const getPendingAuditings = async (values?: any) => {
+        setLoading(true);
+        const result = await httpFetch<IPage<IRecruitingPlanningPendingAuditing[]>>(
+            "/hr/recruiting/plannings/pending/auditing"
+        );
+        setDataScource(result);
+        setLoading(false);
+    };
+
+    const onSearch = () => {
+        getPendingAuditings();
+    };
+
     return (
         <>
             <div className="flex flex-col gap-3">
-                <Table rowKey={"id"} size="small" bordered columns={columns} dataSource={[]} />
+                <Search onSearch={onSearch} />
+                <Table
+                    rowKey={"id"}
+                    size="small"
+                    bordered
+                    columns={columns}
+                    dataSource={dataScource?.items}
+                    loading={loading}
+                />
             </div>
         </>
     );
