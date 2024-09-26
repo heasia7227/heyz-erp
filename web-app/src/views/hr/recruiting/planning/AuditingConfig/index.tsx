@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button, Form, Modal, Select, Space, TreeSelect } from "antd";
+import { Button, Form, message, Modal, Select, Space, TreeSelect } from "antd";
 import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import httpFetch from "@/utils/http-fetch";
 import { IEmployeeFile } from "@/interfaces/hr/employee-file";
@@ -17,6 +17,7 @@ interface IProps {
 
 const AuditingConfig = ({ planning, button, refresh }: IProps) => {
     const [form] = Form.useForm();
+    const [messageApi, contextHolder] = message.useMessage();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [saving, setSaving] = useState(false);
@@ -37,10 +38,28 @@ const AuditingConfig = ({ planning, button, refresh }: IProps) => {
     };
 
     const handleOk = () => {
-        form.validateFields().then((values) => {
-            form.resetFields();
-            setIsModalOpen(false);
-            refresh();
+        form.validateFields().then(async (values) => {
+            const auditorIds = values.users?.map((item: any) => item.auditorId);
+            const planningId = planning.id;
+            const result = await httpFetch<boolean>("/hr/recruiting/plannings/auditing", {
+                method: "POST",
+                body: JSON.stringify({ planningId, auditorIds }),
+            });
+
+            if (result) {
+                messageApi.open({
+                    type: "success",
+                    content: "配置审批人成功！",
+                });
+                form.resetFields();
+                setIsModalOpen(false);
+                refresh();
+            } else {
+                messageApi.open({
+                    type: "error",
+                    content: "配置审批人失败！",
+                });
+            }
         });
     };
 
@@ -60,6 +79,7 @@ const AuditingConfig = ({ planning, button, refresh }: IProps) => {
 
     return (
         <>
+            {contextHolder}
             {React.cloneElement(button, { onClick: showModal })}
             <Modal
                 title="配置审批人"
@@ -98,7 +118,7 @@ const AuditingConfig = ({ planning, button, refresh }: IProps) => {
                                         </Form.Item>
                                         <Form.Item
                                             {...restField}
-                                            name={[name, "employeeId"]}
+                                            name={[name, "auditorId"]}
                                             rules={[{ required: true, message: "请选择员工！" }]}
                                         >
                                             <Select

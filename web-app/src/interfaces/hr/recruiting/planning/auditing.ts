@@ -7,3 +7,9 @@ export interface IRecruitingPlanningAuditing {
     opinion: string;
     auditDate: string;
 }
+
+export interface ISaveRecruitingPlanningAuditingParams {
+    planningId: number;
+    auditorIds: Array<number>;
+    createBy?: number;
+}

@@ -1,5 +1,4 @@
 import { NextRequest } from "next/server";
-import _ from "lodash";
 
 export const getSearchParams = (request: NextRequest): URLSearchParams => {
     return request.nextUrl.searchParams;
@@ -8,7 +7,8 @@ export const getSearchParams = (request: NextRequest): URLSearchParams => {
 export const getNumber = (request: NextRequest, name: string) => {
     const searchParams = getSearchParams(request);
     const value = searchParams.get(name);
-    if (value && _.isNumber(value)) {
+
+    if (value && /^\d+$/.test(value)) {
         return Number(value);
     }
     return undefined;

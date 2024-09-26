@@ -16,6 +16,7 @@ const Details = ({ planning }: IProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [stepItems, setStepItems] = useState<any[]>([]);
+    const [stepNum, setStepNum] = useState<number>(0);
     const [logs, setLogs] = useState<any[]>([]);
 
     const showModal = () => {
@@ -27,9 +28,12 @@ const Details = ({ planning }: IProps) => {
     const getSteps = async () => {
         setLoading(true);
 
+        let _stepNum = 0;
+        let _hrAttacheDate = "";
         const _stepItems: any[] = [{ title: "草稿" }];
         const _logs: any[] = [
             {
+                color: "#1677ff",
                 children: (
                     <>
                         <p>创建计划</p>
@@ -39,12 +43,7 @@ const Details = ({ planning }: IProps) => {
             },
         ];
 
-        const auditings = await getAuditings();
-        if (auditings?.length > 0) {
-            auditings.forEach((item) => {
-                _stepItems.push({ title: "审批", subTitle: `(${item.auditorName})` });
-            });
-        } else {
+        if (planning?.status === "draft") {
             _stepItems.push({
                 title: "审批",
                 subTitle: "(未指定)",
@@ -56,34 +55,50 @@ const Details = ({ planning }: IProps) => {
                     />
                 ),
             });
-        }
-        const auditeds = auditings.filter((item) => item.status);
-        if (auditeds?.length > 0) {
-            auditeds?.forEach((item) => {
-                _logs.push({
-                    children: (
-                        <>
-                            <p>审批（{item.auditorName}）</p>
-                            <p>{item.auditDate ? dayjs(item.auditDate).format("YYYY-MM-DD HH:mm:ss") : "-"}</p>
-                        </>
-                    ),
-                });
-            });
-        } else {
             _logs.push({ color: "#cbd5e1", children: <p className="text-slate-300">审批（未指定）</p> });
+        } else {
+            const auditings = await getAuditings();
+            if (auditings?.length > 0) {
+                _stepNum++;
+                _hrAttacheDate = auditings.at(-1)?.auditDate || "";
+                auditings.forEach((item, index) => {
+                    _stepItems.push({ title: "审批", subTitle: `(${item.auditorName})` });
+
+                    let _color = "";
+                    let _textColor = "";
+                    if (item.auditDate) {
+                        _color = "#1677ff";
+                    } else if (index === 0) {
+                        _color = "#52c41a";
+                    } else if (auditings[index - 1]?.auditDate) {
+                        _color = "#52c41a";
+                        _stepNum++;
+                    } else {
+                        _color = "#cbd5e1";
+                        _textColor = "text-slate-300";
+                    }
+                    _logs.push({
+                        color: _color,
+                        children: (
+                            <>
+                                <p className={_textColor}>审批（{item.auditorName}）</p>
+                                {item.auditDate && <p>{dayjs(item.auditDate).format("YYYY-MM-DD HH:mm:ss")}</p>}
+                            </>
+                        ),
+                    });
+                });
+            }
         }
 
         if (planning?.hrattacheId) {
+            _stepNum++;
             _stepItems.push({ title: "招聘", subTitle: `(${planning.hrAttacheName})` });
             _logs.push({
+                color: planning?.closeDate ? "#1677ff" : "#52c41a",
                 children: (
                     <>
                         <p>招聘（{planning.hrAttacheName}）</p>
-                        <p>
-                            {auditeds.at(-1)?.auditDate
-                                ? dayjs(auditeds.at(-1)?.auditDate).format("YYYY-MM-DD HH:mm:ss")
-                                : "-"}
-                        </p>
+                        <p>{_hrAttacheDate ? dayjs(_hrAttacheDate).format("YYYY-MM-DD HH:mm:ss") : "-"}</p>
                     </>
                 ),
             });
@@ -94,6 +109,7 @@ const Details = ({ planning }: IProps) => {
 
         _stepItems.push({ title: "完成" });
         if (planning?.status === "completed") {
+            _stepNum++;
             _logs.push({
                 children: (
                     <>
@@ -106,6 +122,7 @@ const Details = ({ planning }: IProps) => {
             _logs.push({ color: "#cbd5e1", children: <p className="text-slate-300">完成</p> });
         }
 
+        setStepNum(_stepNum);
         setStepItems(_stepItems);
         setLogs(_logs);
         setLoading(false);
@@ -145,7 +162,7 @@ const Details = ({ planning }: IProps) => {
                 loading={loading}
             >
                 <div>
-                    <Steps current={0} items={stepItems} />
+                    <Steps current={stepNum} items={stepItems} />
                 </div>
                 <div className="flex mt-8 gap-8">
                     <div className="flex-1 flex flex-col gap-3">
